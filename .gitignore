@@ -1,0 +1,28 @@
+# Python Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments (DO NOT COMMIT)
+.venv/
+.venv311/
+venv/
+env/
+
+# OS / System Junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Weights, Checkpoints & Raw Data
+checkpoints/
+*.pt
+*.pth
+*.bin
+data/raw/
+data/processed/
+
+# Notebook Checkpoints
+.ipynb_checkpoints

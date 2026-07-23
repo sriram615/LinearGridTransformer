@@ -1,0 +1,8 @@
+sequence_length,vanilla_rss_mb,linear_rss_mb,vanilla_oom
+128,0.0352,0.3047,False
+256,0.0,0.5977,False
+512,0.0,0.0039,False
+1024,0.0,1.6094,False
+2048,0.0,0.0,False
+4096,4.0,0.0312,False
+8192,13.6602,0.0156,False
