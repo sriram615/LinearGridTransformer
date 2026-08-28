@@ -1,8 +1,11 @@
 # Python Bytecode & Caches
 __pycache__/
 *.py[cod]
+*.pyc
+*.pyo
 *$py.class
 *.so
+.pytest_cache/
 
 # Virtual Environments (DO NOT COMMIT)
 .venv/
@@ -16,13 +19,19 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Weights, Checkpoints & Raw Data
-checkpoints/
-*.pt
-*.pth
-*.bin
+# Raw Data & Intermediate Payload Artifacts
 data/raw/
-data/processed/
+output/cloud_ready/
+kaggle_upload/
+
+# Large Binaries / Archives
+*.zip
+*.tar.gz
+
+# Weights & Checkpoints (except tracked comparative checkpoints)
+checkpoints/*
+!checkpoints/comparative_lgt.pt
+!checkpoints/comparative_cdlinear.pt
 
 # Notebook Checkpoints
 .ipynb_checkpoints

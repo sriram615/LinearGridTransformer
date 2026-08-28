@@ -1,0 +1,15 @@
+# LinearGridTransformer — dependencies
+#
+# Version floors reflect the APIs actually used in this codebase (pandas
+# groupby/datetime handling, numpy dtype ops, torch autograd/CUDA). They are
+# NOT a pin of the exact versions used for the reported GPU run — that run
+# was on Kaggle's default GPU notebook image (Tesla T4, CUDA-enabled torch),
+# whose exact package versions were not captured at run time. If you need a
+# byte-for-byte reproducible environment, capture `pip freeze` on the actual
+# training machine and replace this file with it.
+
+torch>=2.0
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.5
+psutil>=5.9
