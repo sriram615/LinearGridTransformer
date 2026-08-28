@@ -232,8 +232,9 @@ class DenominatorTracker:
         self._latest_debug: dict | None = None
         self._handle   = None          # torch hook handle, for removal
         # Cumulative counters
-        self.total_checks    = 0
-        self.dilution_events = 0
+        self.total_checks        = 0
+        self.dilution_events     = 0
+        self.non_positive_events = 0   # steps where Z_min <= 0 (kernel sign flip)
 
     # ── Hook function (registered on LinearKernelAttention) ──────────────────
 
@@ -308,6 +309,31 @@ class DenominatorTracker:
             print(
                 f"  step={step}  Var(Z)={z_var:.2e}  < eps={self.var_eps:.0e}  "
                 f"(event #{self.dilution_events})"
+            )
+            print(WARN)
+            print()
+
+        # ── Non-positivity warning ──────────────────────────────────────────
+        # Z_t = phi(q_t)^T * sum_t' phi(k_t') is the Taylor-kernel stand-in for
+        # a softmax partition function. Unlike true softmax, exp(qk) >= 0 is
+        # NOT guaranteed here: the 2nd-degree polynomial 1 + z + z^2 used by
+        # TaylorFeatureMap can go negative once z moves away from 0. When that
+        # happens on real (non-synthetic) data, the `eps` guard in
+        # LinearKernelAttention.forward() is masking a sign flip rather than
+        # just avoiding a divide-by-zero, and the resulting "attention weights"
+        # for those tokens are not meaningful. This is the failure mode the
+        # variance check above does NOT catch, so it's tracked separately.
+        if z_min <= 0.0:
+            self.non_positive_events += 1
+            print()
+            print(WARN)
+            print(
+                f"  WARNING: Non-positive denominator detected — "
+                f"the Taylor-kernel approximation to exp(qk) has gone negative."
+            )
+            print(
+                f"  step={step}  Z_min={z_min:.4e}  "
+                f"(event #{self.non_positive_events})"
             )
             print(WARN)
             print()
@@ -579,6 +605,8 @@ def main() -> None:
     print(f"    Z-stat checks run   : {tracker.total_checks}")
     print(f"    Dilution events     : {tracker.dilution_events}  "
           f"({'⚠  check attention scale' if tracker.dilution_events else '✔  none detected'})")
+    print(f"    Non-positive Z      : {tracker.non_positive_events}  "
+          f"({'⚠  Taylor kernel went negative — see train.py docstring' if tracker.non_positive_events else '✔  none detected'})")
     print(SEP)
 
     # ── Save model checkpoint ─────────────────────────────────────────────────
@@ -625,8 +653,11 @@ def main() -> None:
             loss_drop  = first5_avg - last5_avg
             is_learning = slope < 0
 
-        # ── Z-variance stability check ────────────────────────────────────────
-        z_stable = tracker.dilution_events == 0
+        # ── Z stability check ─────────────────────────────────────────────────
+        # Both failure modes matter: low variance (dilution) and any
+        # non-positive Z (the Taylor kernel's sign-flip failure mode, which
+        # variance alone does not catch — see DenominatorTracker.log_stats).
+        z_stable = tracker.dilution_events == 0 and tracker.non_positive_events == 0
 
         print()
         print(SEP)
@@ -645,7 +676,9 @@ def main() -> None:
         print(f"  ── Z-variance (attention denominator) ───────────────────")
         print(f"  Z-stat checks       : {tracker.total_checks}")
         print(f"  Dilution events     : {tracker.dilution_events}  "
-              f"({'✔  Z-var stable & non-zero' if z_stable else '⚠  manifold flattening detected'})")
+              f"({'✔  Z-var stable & non-zero' if tracker.dilution_events == 0 else '⚠  manifold flattening detected'})")
+        print(f"  Non-positive Z      : {tracker.non_positive_events}  "
+              f"({'✔  kernel stayed positive' if tracker.non_positive_events == 0 else '⚠  Taylor kernel went negative'})")
         print()
         print(f"  ── Speed & memory ───────────────────────────────────────")
         print(f"  Iterations / sec    : {iters_per_sec:.2f} it/s  "

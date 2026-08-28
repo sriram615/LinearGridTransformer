@@ -307,16 +307,27 @@ def run_evaluation(
     Accumulates per-channel squared-errors and absolute-errors over all
     validation samples × forecast steps to compute global MAE and RMSE.
 
+    Alongside the model's own error, this also accumulates the error of a
+    trivial "always predict the training-set per-channel mean" baseline on
+    the *exact same* validation samples — computing this is nearly free once
+    we're already iterating the loader, and it answers the question a
+    reviewer asks first: is the model actually better than guessing the
+    mean, per channel, or only in aggregate?
+
     Returns
     -------
     dict with keys:
-        'n_samples'    : int      — total validation samples processed
-        'n_forecast'   : int      — T_FORECAST horizon (60)
-        'n_channels'   : int      — number of feature channels (7)
-        'mae_per_ch'   : list[float]  — per-channel MAE in physical units
-        'rmse_per_ch'  : list[float]  — per-channel RMSE in physical units
-        'mae_global'   : float        — mean MAE across all channels
-        'rmse_global'  : float        — mean RMSE across all channels
+        'n_samples'        : int      — total validation samples processed
+        'n_forecast'       : int      — T_FORECAST horizon (60)
+        'n_channels'       : int      — number of feature channels (7)
+        'mae_per_ch'       : list[float]  — per-channel model MAE, physical units
+        'rmse_per_ch'      : list[float]  — per-channel model RMSE, physical units
+        'mae_global'       : float        — mean model MAE across all channels
+        'rmse_global'      : float        — mean model RMSE across all channels
+        'mae_per_ch_naive' : list[float]  — per-channel naive-mean-baseline MAE
+        'rmse_per_ch_naive': list[float]  — per-channel naive-mean-baseline RMSE
+        'mae_global_naive' : float        — mean naive-baseline MAE
+        'rmse_global_naive': float        — mean naive-baseline RMSE
     """
     model.eval()
 
@@ -328,6 +339,11 @@ def run_evaluation(
     # Shape (N_CHANNELS,) — accumulated over all samples × forecast steps
     sum_sq_err  = torch.zeros(N_CHANNELS, device=device)
     sum_abs_err = torch.zeros(N_CHANNELS, device=device)
+
+    # Same accumulators for the naive "predict the training mean" baseline
+    sum_sq_err_naive  = torch.zeros(N_CHANNELS, device=device)
+    sum_abs_err_naive = torch.zeros(N_CHANNELS, device=device)
+
     total_elements = 0   # scalar count of (samples × T_FORECAST) elements
 
     n_batches  = len(loader)
@@ -369,6 +385,12 @@ def run_evaluation(
             sum_sq_err  += (residual ** 2).sum(dim=(0, 1))   # (C,)
             sum_abs_err += residual.abs().sum(dim=(0, 1))     # (C,)
 
+            # ── Naive baseline: predict the training-set mean for every step ──
+            # `mean` has shape (C,) and broadcasts against y_phys (B, T_F, C).
+            residual_naive = mean - y_phys                    # [B, T_F, C]
+            sum_sq_err_naive  += (residual_naive ** 2).sum(dim=(0, 1))  # (C,)
+            sum_abs_err_naive += residual_naive.abs().sum(dim=(0, 1))    # (C,)
+
             # Number of (sample, timestep) pairs this batch contributed
             B = x.size(0)
             total_elements += B * T_FORECAST
@@ -397,6 +419,12 @@ def run_evaluation(
     mae_global  = float(np.mean(mae_per_ch))
     rmse_global = float(np.mean(rmse_per_ch))
 
+    mae_per_ch_naive  = (sum_abs_err_naive / n).cpu().tolist()
+    rmse_per_ch_naive = ((sum_sq_err_naive / n).sqrt()).cpu().tolist()
+
+    mae_global_naive  = float(np.mean(mae_per_ch_naive))
+    rmse_global_naive = float(np.mean(rmse_per_ch_naive))
+
     batches_run = min(batch_idx + 1, cap) if total_elements > 0 else 0
     return {
         "n_samples":       total_elements,
@@ -406,6 +434,10 @@ def run_evaluation(
         "rmse_per_ch":     rmse_per_ch,
         "mae_global":      mae_global,
         "rmse_global":     rmse_global,
+        "mae_per_ch_naive":  mae_per_ch_naive,
+        "rmse_per_ch_naive": rmse_per_ch_naive,
+        "mae_global_naive":  mae_global_naive,
+        "rmse_global_naive": rmse_global_naive,
         "batches_evaluated": batches_run,
         "batches_total":     n_batches,
         "partial_eval":      batches_run < n_batches,
@@ -435,12 +467,17 @@ def _print_report(
     print()
 
     # ── Per-channel table ─────────────────────────────────────────────────────
-    col_w = [28, 8, 12, 12]
+    # Includes the naive "always predict the training mean" baseline next to
+    # the model's own numbers — beating this per channel is the minimum bar
+    # for "the model learned something," not just beating it in aggregate.
+    col_w = [28, 8, 12, 12, 14, 8]
     header = (
         f"  {'Channel':<{col_w[0]}} "
         f"{'Unit':<{col_w[1]}} "
         f"{'MAE':>{col_w[2]}} "
-        f"{'RMSE':>{col_w[3]}}"
+        f"{'RMSE':>{col_w[3]}} "
+        f"{'Naive MAE':>{col_w[4]}} "
+        f"{'Beats?':>{col_w[5]}}"
     )
     print(header)
     print("  " + sep[2:])
@@ -449,15 +486,19 @@ def _print_report(
     std_list  = std.tolist()
 
     for ch_idx, (col, unit) in enumerate(zip(FEATURE_COLS, CHANNEL_UNITS)):
-        mae  = metrics["mae_per_ch"][ch_idx]
-        rmse = metrics["rmse_per_ch"][ch_idx]
+        mae        = metrics["mae_per_ch"][ch_idx]
+        rmse       = metrics["rmse_per_ch"][ch_idx]
+        mae_naive  = metrics["mae_per_ch_naive"][ch_idx]
+        beats      = "yes" if mae < mae_naive else "NO"
         mu   = mean_list[ch_idx]
         sigma = std_list[ch_idx]
         print(
             f"  {col:<{col_w[0]}} "
             f"{unit:<{col_w[1]}} "
             f"{mae:>{col_w[2]}.4f} "
-            f"{rmse:>{col_w[3]}.4f}"
+            f"{rmse:>{col_w[3]}.4f} "
+            f"{mae_naive:>{col_w[4]}.4f} "
+            f"{beats:>{col_w[5]}}"
             f"   (μ={mu:.4f}, σ={sigma:.4f})"
         )
 
@@ -466,7 +507,9 @@ def _print_report(
         f"  {'GLOBAL MEAN':<{col_w[0]}} "
         f"{'':>{col_w[1]}} "
         f"{metrics['mae_global']:>{col_w[2]}.4f} "
-        f"{metrics['rmse_global']:>{col_w[3]}.4f}"
+        f"{metrics['rmse_global']:>{col_w[3]}.4f} "
+        f"{metrics['mae_global_naive']:>{col_w[4]}.4f} "
+        f"{'yes' if metrics['mae_global'] < metrics['mae_global_naive'] else 'NO':>{col_w[5]}}"
     )
     print()
     print(f"  Report saved → {_REPORT_PATH}")
@@ -495,14 +538,19 @@ def _write_json(
     # Build structured per-channel breakdown
     channels = []
     for ch_idx, (col, unit) in enumerate(zip(FEATURE_COLS, CHANNEL_UNITS)):
+        model_mae  = metrics["mae_per_ch"][ch_idx]
+        naive_mae  = metrics["mae_per_ch_naive"][ch_idx]
         channels.append({
             "index":       ch_idx,
             "name":        col,
             "unit":        unit,
             "train_mean":  round(mean_list[ch_idx], 6),
             "train_std":   round(std_list[ch_idx],  6),
-            "mae":         round(metrics["mae_per_ch"][ch_idx],  6),
+            "mae":         round(model_mae,  6),
             "rmse":        round(metrics["rmse_per_ch"][ch_idx], 6),
+            "naive_baseline_mae":  round(naive_mae, 6),
+            "naive_baseline_rmse": round(metrics["rmse_per_ch_naive"][ch_idx], 6),
+            "beats_naive_baseline": bool(model_mae < naive_mae),
         })
 
     report = {
@@ -535,6 +583,18 @@ def _write_json(
             "description":   "All metrics computed on denormalised (physical-unit) outputs",
             "global_mae":    round(metrics["mae_global"],  6),
             "global_rmse":   round(metrics["rmse_global"], 6),
+            "naive_baseline": {
+                "description": (
+                    "Trivial baseline: predict the training-set per-channel "
+                    "mean for every forecast step, evaluated on the exact "
+                    "same validation samples as the model above."
+                ),
+                "global_mae":  round(metrics["mae_global_naive"],  6),
+                "global_rmse": round(metrics["rmse_global_naive"], 6),
+            },
+            "beats_naive_baseline_global": bool(
+                metrics["mae_global"] < metrics["mae_global_naive"]
+            ),
             "per_channel":   channels,
         },
     }

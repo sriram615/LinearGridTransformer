@@ -3,19 +3,39 @@ profile_memory.py
 -----------------
 Principal AI Infrastructure Performance Engineer — LinearGridTransformer project.
 
-Rigorous hardware memory profiling script that compares the Resident Set Size
-(RSS) footprint of two attention mechanisms across expanding sequence lengths:
+Rigorous hardware memory profiling script that compares the peak Resident Set
+Size (RSS) of two attention mechanisms across expanding sequence lengths:
 
     1. Vanilla Softmax Attention  (torch.nn.MultiheadAttention)   — O(T²) memory
     2. Custom LinearKernelAttention                                — O(T)  memory
 
 Method
 ------
-For every sequence length T in [128, 256, 512, 1024, 2048, 4096, 8192]:
-  • Build isolated layer instances with fresh random Q/K/V tensors.
-  • Measure the OS-level RSS delta (via psutil) bracketing the forward pass.
-  • Vanilla attention is wrapped in try/except — OOM or any RuntimeError is
-    caught, logged as "OOM", and profiling continues for the linear layer.
+For every sequence length T in [128, 256, 512, 1024, 2048, 4096, 8192], each
+(mechanism, T) pair runs in its own **fresh subprocess** (see
+``_memory_worker.py``), which reports its own peak RSS via
+``resource.getrusage(RUSAGE_SELF).ru_maxrss``.
+
+  Vanilla attention is wrapped in try/except inside the worker — OOM or any
+  RuntimeError is caught, reported back as an error, and profiling continues
+  for the linear layer.
+
+Why a subprocess per data point, instead of measuring RSS before/after a
+forward pass in one long-lived process
+-------------------------------------------------------------------------
+An earlier version of this script measured RSS immediately before and after
+each forward pass in the same process, with an untimed "warmup" pass run
+first using the exact same tensor shapes. That warmup silently defeated the
+measurement: PyTorch's CPU allocator keeps freed buffers in an internal pool
+rather than returning them to the OS, so the warmup pass already grew the
+process to (approximately) its peak size, and the *timed* pass then reused
+that cached memory — producing a near-zero, noisy "delta" regardless of T
+(this is exactly what the old data/benchmarks/memory_scale.csv showed: sub-MB
+deltas at every T up to 8192, non-monotonic, with vanilla_oom never True).
+Running each data point in an isolated process removes that cross-call
+contamination entirely, and reading peak RSS (rather than a before/after
+snapshot) captures the transient [T×T] score-matrix allocation even though
+PyTorch frees it again before the process exits.
 
 Outputs
 -------
@@ -33,31 +53,30 @@ Dependencies: torch, psutil, matplotlib, numpy (all standard ML deps)
 from __future__ import annotations
 
 import csv
-import gc
+import json
 import logging
-import os
 import pathlib
+import subprocess
 import sys
-import time
 from typing import Optional
 
 import matplotlib
 matplotlib.use("Agg")   # headless backend — safe in any environment
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
-import numpy as np
-import psutil
 import torch
-import torch.nn as nn
 
 # ── Path bootstrap — allow running from any working directory ─────────────────
 _ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(_ROOT))
-from src.models.linear_attention import LinearKernelAttention
 
 # ── Output paths ──────────────────────────────────────────────────────────────
 _CSV_PATH = _ROOT / "data" / "benchmarks" / "memory_scale.csv"
 _PNG_PATH = _ROOT / "docs" / "memory_vs_sequence.png"
+
+# ── Per-data-point subprocess timeout (seconds) — a hang past this is treated
+#    as an OOM/thrash condition rather than left to block the whole sweep ────
+_WORKER_TIMEOUT_S = 180
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -76,109 +95,47 @@ NUM_HEADS:  int = 4
 HEAD_DIM:   int = 16      # per-head dimension; embed_dim = NUM_HEADS * HEAD_DIM
 EMBED_DIM:  int = NUM_HEADS * HEAD_DIM   # = 64
 
-# Extra warmup forward pass before measurement (populates CUDA caches / JIT)
-WARMUP_PASSES: int = 1
-
-# Bytes → MB conversion
-_MB = 1 / (1024 ** 2)
-
-
 # ═══════════════════════════════════════════════════════════════════════════════
-# Utilities
+# Isolated-subprocess measurement
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def _current_rss_mb() -> float:
-    """Return the current process RSS in megabytes."""
-    return psutil.Process(os.getpid()).memory_info().rss * _MB
-
-
-def _gc_collect() -> None:
-    """Force Python + (optionally) CUDA garbage collection."""
-    gc.collect()
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
-
-
-def _make_qkv(T: int, device: torch.device) -> tuple[torch.Tensor, ...]:
+def _run_worker(mode: str, T: int, device: torch.device) -> tuple[float, Optional[str]]:
     """
-    Create isolated random Q, K, V tensors for a single forward pass.
+    Run one (mode, T) measurement in a fresh subprocess via ``_memory_worker.py``
+    and return (peak_rss_mb, error_or_None).
 
-    Shapes
-    ------
-    Q, K : [BATCH_SIZE, NUM_HEADS, T, HEAD_DIM]
-    V    : [BATCH_SIZE, NUM_HEADS, T, HEAD_DIM]
-
-    For vanilla torch.nn.MultiheadAttention we also need a flattened
-    [T, BATCH_SIZE, EMBED_DIM] version; that is returned as the 4th element.
+    See the module docstring for why this runs out-of-process rather than
+    measuring a before/after RSS delta in the long-lived parent process.
     """
-    torch.manual_seed(42)  # deterministic — same tensors every call
-    Q = torch.randn(BATCH_SIZE, NUM_HEADS, T, HEAD_DIM, device=device)
-    K = torch.randn(BATCH_SIZE, NUM_HEADS, T, HEAD_DIM, device=device)
-    V = torch.randn(BATCH_SIZE, NUM_HEADS, T, HEAD_DIM, device=device)
+    cmd = [
+        sys.executable, "-m", "src.benchmarks._memory_worker",
+        "--mode", mode, "--T", str(T),
+        "--device", device.type,
+    ]
+    try:
+        result = subprocess.run(
+            cmd, cwd=str(_ROOT), capture_output=True, text=True,
+            timeout=_WORKER_TIMEOUT_S,
+        )
+    except subprocess.TimeoutExpired:
+        return float("nan"), f"OOM (worker exceeded {_WORKER_TIMEOUT_S}s — likely thrashing)"
 
-    # Vanilla MHA expects [T, B, embed_dim]
-    x_flat = torch.randn(T, BATCH_SIZE, EMBED_DIM, device=device)
-    return Q, K, V, x_flat
-
-
-def _measure_rss_delta(fn) -> tuple[float, Optional[str]]:
-    """
-    Execute ``fn()`` and return the peak RSS delta in MB.
-
-    Strategy
-    --------
-    • Record RSS immediately before call (post-GC).
-    • Record RSS immediately after call.
-    • Delta = after − before  (negative values are clamped to 0).
-
-    Parameters
-    ----------
-    fn : callable  — zero-argument forward-pass thunk
-
-    Returns
-    -------
-    (delta_mb, error_string)
-        error_string is None on success, or "OOM" / exception message on failure.
-    """
-    _gc_collect()
-    rss_before = _current_rss_mb()
+    stdout = result.stdout.strip()
+    if not stdout:
+        # Process died (e.g. OS OOM-killer) before it could print its report.
+        return float("nan"), (
+            f"OOM (subprocess exit code {result.returncode}, "
+            f"stderr tail: {result.stderr[-300:]!r})"
+        )
 
     try:
-        fn()
-        rss_after = _current_rss_mb()
-        delta = max(0.0, rss_after - rss_before)
-        return delta, None
-    except (RuntimeError, MemoryError, Exception) as exc:
-        # Catch OOM / any memory wall — log verbosely, report "OOM"
-        return float("nan"), f"OOM ({type(exc).__name__}: {exc})"
+        payload = json.loads(stdout.splitlines()[-1])
+    except (json.JSONDecodeError, IndexError):
+        return float("nan"), f"OOM (unparseable worker output: {stdout!r})"
 
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# Layer builders
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def _build_vanilla_mha(device: torch.device) -> nn.MultiheadAttention:
-    """Instantiate a standard softmax MultiheadAttention layer."""
-    layer = nn.MultiheadAttention(
-        embed_dim=EMBED_DIM,
-        num_heads=NUM_HEADS,
-        batch_first=False,   # expects [T, B, E]
-        bias=True,
-    ).to(device)
-    layer.eval()
-    return layer
-
-
-def _build_linear_attention(device: torch.device) -> LinearKernelAttention:
-    """Instantiate the custom O(T) LinearKernelAttention layer."""
-    layer = LinearKernelAttention(
-        head_dim=HEAD_DIM,
-        num_heads=NUM_HEADS,
-        scale_input=True,
-        eps=1e-6,
-    ).to(device)
-    layer.eval()
-    return layer
+    if payload.get("error"):
+        return float("nan"), payload["error"]
+    return float(payload["peak_rss_mb"]), None
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -187,90 +144,53 @@ def _build_linear_attention(device: torch.device) -> LinearKernelAttention:
 
 def _profile_vanilla(T: int, device: torch.device) -> tuple[float, Optional[str]]:
     """
-    Profile vanilla torch.nn.MultiheadAttention for sequence length T.
+    Profile vanilla torch.nn.MultiheadAttention for sequence length T, in an
+    isolated subprocess.
 
     Returns
     -------
-    (rss_delta_mb, error_or_None)
+    (peak_rss_mb, error_or_None)
     """
-    log.info("  [Vanilla  MHA] T=%-5d  building layer …", T)
+    log.info("  [Vanilla  MHA] T=%-5d  running isolated subprocess …", T)
 
-    # Materialise fresh layer and inputs inside the measured scope so that
-    # parameter allocation is counted in the RSS delta.
-    layer = _build_vanilla_mha(device)
-
-    Q, K, V, x_flat = _make_qkv(T, device)
-
-    # Optional warmup (outside measured window)
-    if WARMUP_PASSES > 0:
-        try:
-            with torch.no_grad():
-                layer(x_flat, x_flat, x_flat)
-        except Exception:
-            pass   # warmup failure is non-fatal
-
-    def _forward():
-        with torch.no_grad():
-            out, _ = layer(x_flat, x_flat, x_flat)
-        return out
-
-    delta_mb, err = _measure_rss_delta(_forward)
+    peak_mb, err = _run_worker("vanilla", T, device)
 
     if err is None:
-        log.info("  [Vanilla  MHA] T=%-5d  RSS delta = %.2f MB", T, delta_mb)
+        log.info("  [Vanilla  MHA] T=%-5d  peak RSS = %.2f MB", T, peak_mb)
     else:
         log.warning("  [Vanilla  MHA] T=%-5d  %s", T, err)
 
-    # Explicit teardown — release all tensors before next iteration
-    del layer, Q, K, V, x_flat
-    _gc_collect()
-
-    return delta_mb, err
+    return peak_mb, err
 
 
 def _profile_linear(T: int, device: torch.device) -> tuple[float, Optional[str]]:
     """
-    Profile LinearKernelAttention for sequence length T.
+    Profile LinearKernelAttention for sequence length T, in an isolated
+    subprocess.
 
     Returns
     -------
-    (rss_delta_mb, error_or_None)
+    (peak_rss_mb, error_or_None)
     """
-    log.info("  [LinearKernel] T=%-5d  building layer …", T)
+    log.info("  [LinearKernel] T=%-5d  running isolated subprocess …", T)
 
-    layer = _build_linear_attention(device)
-    Q, K, V, _ = _make_qkv(T, device)
-
-    # Warmup
-    if WARMUP_PASSES > 0:
-        try:
-            with torch.no_grad():
-                layer(Q, K, V)
-        except Exception:
-            pass
-
-    def _forward():
-        with torch.no_grad():
-            out, _ = layer(Q, K, V)
-        return out
-
-    delta_mb, err = _measure_rss_delta(_forward)
+    peak_mb, err = _run_worker("linear", T, device)
 
     if err is None:
-        log.info("  [LinearKernel] T=%-5d  RSS delta = %.2f MB", T, delta_mb)
+        log.info("  [LinearKernel] T=%-5d  peak RSS = %.2f MB", T, peak_mb)
     else:
         log.warning("  [LinearKernel] T=%-5d  %s", T, err)
 
-    del layer, Q, K, V
-    _gc_collect()
-
-    return delta_mb, err
+    return peak_mb, err
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # CSV export
 # ═══════════════════════════════════════════════════════════════════════════════
 
+# NOTE: *_rss_mb columns are each mechanism's peak process RSS while running
+# a single isolated forward pass in its own subprocess (see _memory_worker.py)
+# — not a before/after delta in a shared process. See module docstring.
 _CSV_HEADER = [
     "sequence_length",
     "vanilla_rss_mb",
@@ -370,7 +290,7 @@ def _make_plot(rows: list[dict]) -> None:
         spine.set_edgecolor("#30363D")
 
     ax.set_xlabel("Sequence Length  (T)", color="#C9D1D9", fontsize=12, labelpad=10)
-    ax.set_ylabel("RSS Memory Delta  (MB)", color="#C9D1D9", fontsize=12, labelpad=10)
+    ax.set_ylabel("Peak Process RSS  (MB)", color="#C9D1D9", fontsize=12, labelpad=10)
 
     # ── Title & legend ────────────────────────────────────────────────────────
     ax.set_title(
