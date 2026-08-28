@@ -1,0 +1,1157 @@
+06:01:08  INFO      Device: cuda
+06:01:08  INFO      CPU cores: 4, intra-op threads: 4
+06:01:08  INFO      Loading train/val datasets (sub_sample=True) …
+06:01:08  INFO      NumExpr defaulting to 4 threads.
+06:01:09  INFO      Train: GridSequenceDataset(n_samples=334,659, x=(1440, 7), y=(60, 7), sub_sample=True)
+06:01:09  INFO      Val:   GridSequenceDataset(n_samples=13,810, x=(1440, 7), y=(60, 7), sub_sample=True)
+06:01:09  INFO      Norm stats loaded — μ: [1.1102744340896606, 0.12217928469181061, 240.73716735839844, 4.70739221572876, 1.15873384475708, 1.3514279127120972, 6.364406585693359]
+06:01:09  INFO                         σ: [1.0910840034484863, 0.11191162467002869, 3.352499485015869, 4.58626651763916, 6.274318695068359, 6.003559112548828, 8.403670310974121]
+06:01:09  INFO      ======================================================================
+06:01:09  INFO      Training LinearGridTransformer …
+06:01:09  INFO      ======================================================================
+06:01:36  INFO        [LinearGridTransformer epoch 1/10] batch   200/10458  running_loss=1.180507  243.4 samples/s  elapsed=26s
+06:02:02  INFO        [LinearGridTransformer epoch 1/10] batch   400/10458  running_loss=1.033594  246.6 samples/s  elapsed=52s
+06:02:27  INFO        [LinearGridTransformer epoch 1/10] batch   600/10458  running_loss=0.971438  248.7 samples/s  elapsed=77s
+06:02:53  INFO        [LinearGridTransformer epoch 1/10] batch   800/10458  running_loss=0.941888  249.3 samples/s  elapsed=103s
+06:03:18  INFO        [LinearGridTransformer epoch 1/10] batch  1000/10458  running_loss=0.914749  249.8 samples/s  elapsed=128s
+06:03:44  INFO        [LinearGridTransformer epoch 1/10] batch  1200/10458  running_loss=0.901516  250.2 samples/s  elapsed=153s
+06:04:09  INFO        [LinearGridTransformer epoch 1/10] batch  1400/10458  running_loss=0.886331  250.6 samples/s  elapsed=179s
+06:04:34  INFO        [LinearGridTransformer epoch 1/10] batch  1600/10458  running_loss=0.876367  250.8 samples/s  elapsed=204s
+06:05:00  INFO        [LinearGridTransformer epoch 1/10] batch  1800/10458  running_loss=0.864255  251.1 samples/s  elapsed=229s
+06:05:25  INFO        [LinearGridTransformer epoch 1/10] batch  2000/10458  running_loss=0.858776  251.2 samples/s  elapsed=255s
+06:05:50  INFO        [LinearGridTransformer epoch 1/10] batch  2200/10458  running_loss=0.852629  251.2 samples/s  elapsed=280s
+06:06:16  INFO        [LinearGridTransformer epoch 1/10] batch  2400/10458  running_loss=0.848964  251.3 samples/s  elapsed=306s
+06:06:41  INFO        [LinearGridTransformer epoch 1/10] batch  2600/10458  running_loss=0.844007  251.3 samples/s  elapsed=331s
+06:09:39  INFO        [LinearGridTransformer epoch 1/10] batch  4000/10458  running_loss=0.828709  251.4 samples/s  elapsed=509s
+06:10:05  INFO        [LinearGridTransformer epoch 1/10] batch  4200/10458  running_loss=0.826067  251.4 samples/s  elapsed=535s
+06:10:30  INFO        [LinearGridTransformer epoch 1/10] batch  4400/10458  running_loss=0.824690  251.4 samples/s  elapsed=560s
+06:10:56  INFO        [LinearGridTransformer epoch 1/10] batch  4600/10458  running_loss=0.823500  251.4 samples/s  elapsed=586s
+06:11:21  INFO        [LinearGridTransformer epoch 1/10] batch  4800/10458  running_loss=0.822384  251.4 samples/s  elapsed=611s
+06:11:47  INFO        [LinearGridTransformer epoch 1/10] batch  5000/10458  running_loss=0.820878  251.4 samples/s  elapsed=636s
+06:12:12  INFO        [LinearGridTransformer epoch 1/10] batch  5200/10458  running_loss=0.818507  251.4 samples/s  elapsed=662s
+06:12:38  INFO        [LinearGridTransformer epoch 1/10] batch  5400/10458  running_loss=0.817623  251.4 samples/s  elapsed=687s
+06:13:03  INFO        [LinearGridTransformer epoch 1/10] batch  5600/10458  running_loss=0.816903  251.4 samples/s  elapsed=713s
+06:13:28  INFO        [LinearGridTransformer epoch 1/10] batch  5800/10458  running_loss=0.815555  251.4 samples/s  elapsed=738s
+06:13:54  INFO        [LinearGridTransformer epoch 1/10] batch  6000/10458  running_loss=0.814309  251.4 samples/s  elapsed=764s
+06:14:19  INFO        [LinearGridTransformer epoch 1/10] batch  6200/10458  running_loss=0.813202  251.4 samples/s  elapsed=789s
+06:14:45  INFO        [LinearGridTransformer epoch 1/10] batch  6400/10458  running_loss=0.812293  251.4 samples/s  elapsed=815s
+06:15:10  INFO        [LinearGridTransformer epoch 1/10] batch  6600/10458  running_loss=0.811086  251.4 samples/s  elapsed=840s
+06:15:36  INFO        [LinearGridTransformer epoch 1/10] batch  6800/10458  running_loss=0.810333  251.4 samples/s  elapsed=866s
+06:18:34  INFO        [LinearGridTransformer epoch 1/10] batch  8200/10458  running_loss=0.805392  251.5 samples/s  elapsed=1044s
+06:18:59  INFO        [LinearGridTransformer epoch 1/10] batch  8400/10458  running_loss=0.804889  251.5 samples/s  elapsed=1069s
+06:19:24  INFO        [LinearGridTransformer epoch 1/10] batch  8600/10458  running_loss=0.803626  251.5 samples/s  elapsed=1094s
+06:19:50  INFO        [LinearGridTransformer epoch 1/10] batch  8800/10458  running_loss=0.803143  251.5 samples/s  elapsed=1120s
+06:20:15  INFO        [LinearGridTransformer epoch 1/10] batch  9000/10458  running_loss=0.803289  251.5 samples/s  elapsed=1145s
+06:20:41  INFO        [LinearGridTransformer epoch 1/10] batch  9200/10458  running_loss=0.803196  251.5 samples/s  elapsed=1170s
+06:21:06  INFO        [LinearGridTransformer epoch 1/10] batch  9400/10458  running_loss=0.802528  251.5 samples/s  elapsed=1196s
+06:21:32  INFO        [LinearGridTransformer epoch 1/10] batch  9600/10458  running_loss=0.801870  251.5 samples/s  elapsed=1221s
+06:21:57  INFO        [LinearGridTransformer epoch 1/10] batch  9800/10458  running_loss=0.800780  251.5 samples/s  elapsed=1247s
+06:22:22  INFO        [LinearGridTransformer epoch 1/10] batch 10000/10458  running_loss=0.800598  251.5 samples/s  elapsed=1272s
+06:22:48  INFO        [LinearGridTransformer epoch 1/10] batch 10200/10458  running_loss=0.800222  251.5 samples/s  elapsed=1298s
+06:23:13  INFO        [LinearGridTransformer epoch 1/10] batch 10400/10458  running_loss=0.800114  251.5 samples/s  elapsed=1323s
+06:24:21  INFO        [LinearGridTransformer epoch 2/10] batch   400/10458  running_loss=0.786296  250.7 samples/s  elapsed=51s
+06:24:47  INFO        [LinearGridTransformer epoch 2/10] batch   600/10458  running_loss=0.789317  251.0 samples/s  elapsed=77s
+06:25:12  INFO        [LinearGridTransformer epoch 2/10] batch   800/10458  running_loss=0.780532  251.2 samples/s  elapsed=102s
+06:25:37  INFO        [LinearGridTransformer epoch 2/10] batch  1000/10458  running_loss=0.784427  251.3 samples/s  elapsed=127s
+06:26:03  INFO        [LinearGridTransformer epoch 2/10] batch  1200/10458  running_loss=0.783914  251.5 samples/s  elapsed=153s
+06:26:28  INFO        [LinearGridTransformer epoch 2/10] batch  1400/10458  running_loss=0.782701  251.6 samples/s  elapsed=178s
+06:26:53  INFO        [LinearGridTransformer epoch 2/10] batch  1600/10458  running_loss=0.781338  251.7 samples/s  elapsed=203s
+06:27:19  INFO        [LinearGridTransformer epoch 2/10] batch  1800/10458  running_loss=0.782137  251.8 samples/s  elapsed=229s
+06:27:44  INFO        [LinearGridTransformer epoch 2/10] batch  2000/10458  running_loss=0.780072  251.8 samples/s  elapsed=254s
+06:28:10  INFO        [LinearGridTransformer epoch 2/10] batch  2200/10458  running_loss=0.779183  251.9 samples/s  elapsed=279s
+06:28:35  INFO        [LinearGridTransformer epoch 2/10] batch  2400/10458  running_loss=0.777672  251.9 samples/s  elapsed=305s
+06:29:00  INFO        [LinearGridTransformer epoch 2/10] batch  2600/10458  running_loss=0.777627  251.9 samples/s  elapsed=330s
+06:29:26  INFO        [LinearGridTransformer epoch 2/10] batch  2800/10458  running_loss=0.777615  252.0 samples/s  elapsed=356s
+06:30:42  INFO        [LinearGridTransformer epoch 2/10] batch  3400/10458  running_loss=0.776044  252.0 samples/s  elapsed=432s
+06:31:07  INFO        [LinearGridTransformer epoch 2/10] batch  3600/10458  running_loss=0.776861  252.0 samples/s  elapsed=457s
+06:31:33  INFO        [LinearGridTransformer epoch 2/10] batch  3800/10458  running_loss=0.775250  252.0 samples/s  elapsed=483s
+06:31:58  INFO        [LinearGridTransformer epoch 2/10] batch  4000/10458  running_loss=0.774247  252.0 samples/s  elapsed=508s
+06:32:24  INFO        [LinearGridTransformer epoch 2/10] batch  4200/10458  running_loss=0.774419  251.9 samples/s  elapsed=533s
+06:32:49  INFO        [LinearGridTransformer epoch 2/10] batch  4400/10458  running_loss=0.774525  251.9 samples/s  elapsed=559s
+06:33:14  INFO        [LinearGridTransformer epoch 2/10] batch  4600/10458  running_loss=0.775329  251.9 samples/s  elapsed=584s
+06:33:40  INFO        [LinearGridTransformer epoch 2/10] batch  4800/10458  running_loss=0.774749  251.9 samples/s  elapsed=610s
+06:34:05  INFO        [LinearGridTransformer epoch 2/10] batch  5000/10458  running_loss=0.774166  251.8 samples/s  elapsed=635s
+06:34:31  INFO        [LinearGridTransformer epoch 2/10] batch  5200/10458  running_loss=0.774235  251.8 samples/s  elapsed=661s
+06:34:56  INFO        [LinearGridTransformer epoch 2/10] batch  5400/10458  running_loss=0.773912  251.8 samples/s  elapsed=686s
+06:35:22  INFO        [LinearGridTransformer epoch 2/10] batch  5600/10458  running_loss=0.774114  251.8 samples/s  elapsed=712s
+06:35:47  INFO        [LinearGridTransformer epoch 2/10] batch  5800/10458  running_loss=0.774604  251.8 samples/s  elapsed=737s
+06:36:12  INFO        [LinearGridTransformer epoch 2/10] batch  6000/10458  running_loss=0.774673  251.9 samples/s  elapsed=762s
+06:36:38  INFO        [LinearGridTransformer epoch 2/10] batch  6200/10458  running_loss=0.775111  251.9 samples/s  elapsed=788s
+06:37:03  INFO        [LinearGridTransformer epoch 2/10] batch  6400/10458  running_loss=0.774670  251.9 samples/s  elapsed=813s
+06:37:28  INFO        [LinearGridTransformer epoch 2/10] batch  6600/10458  running_loss=0.773541  251.9 samples/s  elapsed=838s
+06:37:54  INFO        [LinearGridTransformer epoch 2/10] batch  6800/10458  running_loss=0.773434  252.0 samples/s  elapsed=864s
+06:38:19  INFO        [LinearGridTransformer epoch 2/10] batch  7000/10458  running_loss=0.772678  252.0 samples/s  elapsed=889s
+06:38:44  INFO        [LinearGridTransformer epoch 2/10] batch  7200/10458  running_loss=0.772625  252.0 samples/s  elapsed=914s
+06:39:10  INFO        [LinearGridTransformer epoch 2/10] batch  7400/10458  running_loss=0.772469  252.0 samples/s  elapsed=940s
+06:39:35  INFO        [LinearGridTransformer epoch 2/10] batch  7600/10458  running_loss=0.772818  252.0 samples/s  elapsed=965s
+06:40:01  INFO        [LinearGridTransformer epoch 2/10] batch  7800/10458  running_loss=0.772903  251.9 samples/s  elapsed=991s
+06:40:26  INFO        [LinearGridTransformer epoch 2/10] batch  8000/10458  running_loss=0.773626  251.9 samples/s  elapsed=1016s
+06:40:52  INFO        [LinearGridTransformer epoch 2/10] batch  8200/10458  running_loss=0.773575  251.9 samples/s  elapsed=1042s
+06:41:17  INFO        [LinearGridTransformer epoch 2/10] batch  8400/10458  running_loss=0.773312  251.9 samples/s  elapsed=1067s
+06:41:43  INFO        [LinearGridTransformer epoch 2/10] batch  8600/10458  running_loss=0.773108  251.9 samples/s  elapsed=1093s
+06:42:08  INFO        [LinearGridTransformer epoch 2/10] batch  8800/10458  running_loss=0.772905  251.9 samples/s  elapsed=1118s
+06:42:33  INFO        [LinearGridTransformer epoch 2/10] batch  9000/10458  running_loss=0.772658  251.9 samples/s  elapsed=1143s
+06:42:59  INFO        [LinearGridTransformer epoch 2/10] batch  9200/10458  running_loss=0.772858  251.9 samples/s  elapsed=1169s
+06:43:24  INFO        [LinearGridTransformer epoch 2/10] batch  9400/10458  running_loss=0.773181  251.9 samples/s  elapsed=1194s
+06:43:50  INFO        [LinearGridTransformer epoch 2/10] batch  9600/10458  running_loss=0.773309  251.9 samples/s  elapsed=1220s
+06:44:15  INFO        [LinearGridTransformer epoch 2/10] batch  9800/10458  running_loss=0.773513  251.9 samples/s  elapsed=1245s
+06:44:41  INFO        [LinearGridTransformer epoch 2/10] batch 10000/10458  running_loss=0.773398  251.9 samples/s  elapsed=1270s
+06:45:06  INFO        [LinearGridTransformer epoch 2/10] batch 10200/10458  running_loss=0.773543  251.9 samples/s  elapsed=1296s
+06:45:31  INFO        [LinearGridTransformer epoch 2/10] batch 10400/10458  running_loss=0.774229  251.9 samples/s  elapsed=1321s
+06:45:39  INFO        [LinearGridTransformer epoch 2/10] batch 10458/10458  running_loss=0.774144  251.9 samples/s  elapsed=1329s
+06:45:39  INFO      Starting evaluation over 432 / 432 validation batches …
+06:45:39  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+06:45:40  INFO        batch   50 / 432   samples=96000   elapsed=1.1 s
+06:45:41  INFO        batch  100 / 432   samples=192000   elapsed=2.1 s
+06:45:42  INFO        batch  150 / 432   samples=288000   elapsed=3.2 s
+06:45:43  INFO        batch  200 / 432   samples=384000   elapsed=4.2 s
+06:45:44  INFO        batch  250 / 432   samples=480000   elapsed=5.2 s
+06:45:45  INFO        batch  300 / 432   samples=576000   elapsed=6.3 s
+06:45:46  INFO        batch  350 / 432   samples=672000   elapsed=7.3 s
+06:45:47  INFO        batch  400 / 432   samples=768000   elapsed=8.4 s
+06:45:48  INFO      Evaluation complete — 828600 samples (432/432 batches) in 9.1 s
+06:45:48  INFO      [LinearGridTransformer] epoch  2/10 | train_loss=0.774144 | val_MAE=1.9825 (naive=2.4923, beats naive) | val_RMSE=3.5663 | train=1328.6s val=9.1s | RAM=1565MB
+06:46:13  INFO        [LinearGridTransformer epoch 3/10] batch   200/10458  running_loss=0.771407  249.9 samples/s  elapsed=26s
+06:46:39  INFO        [LinearGridTransformer epoch 3/10] batch   400/10458  running_loss=0.780069  250.6 samples/s  elapsed=51s
+06:47:04  INFO        [LinearGridTransformer epoch 3/10] batch   600/10458  running_loss=0.766400  251.3 samples/s  elapsed=76s
+06:47:30  INFO        [LinearGridTransformer epoch 3/10] batch   800/10458  running_loss=0.764516  251.6 samples/s  elapsed=102s
+06:47:55  INFO        [LinearGridTransformer epoch 3/10] batch  1000/10458  running_loss=0.768970  251.7 samples/s  elapsed=127s
+06:48:20  INFO        [LinearGridTransformer epoch 3/10] batch  1200/10458  running_loss=0.765251  251.7 samples/s  elapsed=153s
+06:48:46  INFO        [LinearGridTransformer epoch 3/10] batch  1400/10458  running_loss=0.763585  251.7 samples/s  elapsed=178s
+06:49:11  INFO        [LinearGridTransformer epoch 3/10] batch  1600/10458  running_loss=0.762933  251.7 samples/s  elapsed=203s
+06:49:37  INFO        [LinearGridTransformer epoch 3/10] batch  1800/10458  running_loss=0.764686  251.6 samples/s  elapsed=229s
+06:50:02  INFO        [LinearGridTransformer epoch 3/10] batch  2000/10458  running_loss=0.764719  251.6 samples/s  elapsed=254s
+06:50:28  INFO        [LinearGridTransformer epoch 3/10] batch  2200/10458  running_loss=0.764635  251.5 samples/s  elapsed=280s
+06:50:53  INFO        [LinearGridTransformer epoch 3/10] batch  2400/10458  running_loss=0.764155  251.5 samples/s  elapsed=305s
+06:51:19  INFO        [LinearGridTransformer epoch 3/10] batch  2600/10458  running_loss=0.766094  251.5 samples/s  elapsed=331s
+06:51:44  INFO        [LinearGridTransformer epoch 3/10] batch  2800/10458  running_loss=0.766855  251.5 samples/s  elapsed=356s
+06:52:10  INFO        [LinearGridTransformer epoch 3/10] batch  3000/10458  running_loss=0.766895  251.5 samples/s  elapsed=382s
+06:52:35  INFO        [LinearGridTransformer epoch 3/10] batch  3200/10458  running_loss=0.767594  251.5 samples/s  elapsed=407s
+06:53:01  INFO        [LinearGridTransformer epoch 3/10] batch  3400/10458  running_loss=0.767725  251.4 samples/s  elapsed=433s
+06:53:26  INFO        [LinearGridTransformer epoch 3/10] batch  3600/10458  running_loss=0.766981  251.4 samples/s  elapsed=458s
+06:53:51  INFO        [LinearGridTransformer epoch 3/10] batch  3800/10458  running_loss=0.767089  251.4 samples/s  elapsed=484s
+06:54:17  INFO        [LinearGridTransformer epoch 3/10] batch  4000/10458  running_loss=0.766511  251.4 samples/s  elapsed=509s
+06:54:42  INFO        [LinearGridTransformer epoch 3/10] batch  4200/10458  running_loss=0.767455  251.4 samples/s  elapsed=535s
+06:55:08  INFO        [LinearGridTransformer epoch 3/10] batch  4400/10458  running_loss=0.767504  251.4 samples/s  elapsed=560s
+06:55:33  INFO        [LinearGridTransformer epoch 3/10] batch  4600/10458  running_loss=0.767440  251.4 samples/s  elapsed=585s
+06:55:59  INFO        [LinearGridTransformer epoch 3/10] batch  4800/10458  running_loss=0.768072  251.4 samples/s  elapsed=611s
+06:56:24  INFO        [LinearGridTransformer epoch 3/10] batch  5000/10458  running_loss=0.767407  251.5 samples/s  elapsed=636s
+06:56:50  INFO        [LinearGridTransformer epoch 3/10] batch  5200/10458  running_loss=0.767048  251.5 samples/s  elapsed=662s
+06:57:15  INFO        [LinearGridTransformer epoch 3/10] batch  5400/10458  running_loss=0.767099  251.5 samples/s  elapsed=687s
+06:57:40  INFO        [LinearGridTransformer epoch 3/10] batch  5600/10458  running_loss=0.767480  251.5 samples/s  elapsed=713s
+06:58:06  INFO        [LinearGridTransformer epoch 3/10] batch  5800/10458  running_loss=0.767195  251.5 samples/s  elapsed=738s
+06:58:31  INFO        [LinearGridTransformer epoch 3/10] batch  6000/10458  running_loss=0.766770  251.5 samples/s  elapsed=764s
+06:58:57  INFO        [LinearGridTransformer epoch 3/10] batch  6200/10458  running_loss=0.766526  251.5 samples/s  elapsed=789s
+06:59:22  INFO        [LinearGridTransformer epoch 3/10] batch  6400/10458  running_loss=0.767323  251.5 samples/s  elapsed=814s
+06:59:48  INFO        [LinearGridTransformer epoch 3/10] batch  6600/10458  running_loss=0.766401  251.5 samples/s  elapsed=840s
+07:00:13  INFO        [LinearGridTransformer epoch 3/10] batch  6800/10458  running_loss=0.766707  251.5 samples/s  elapsed=865s
+07:00:39  INFO        [LinearGridTransformer epoch 3/10] batch  7000/10458  running_loss=0.766669  251.5 samples/s  elapsed=891s
+07:01:04  INFO        [LinearGridTransformer epoch 3/10] batch  7200/10458  running_loss=0.765875  251.5 samples/s  elapsed=916s
+07:01:29  INFO        [LinearGridTransformer epoch 3/10] batch  7400/10458  running_loss=0.765944  251.5 samples/s  elapsed=942s
+07:01:55  INFO        [LinearGridTransformer epoch 3/10] batch  7600/10458  running_loss=0.766108  251.5 samples/s  elapsed=967s
+07:02:20  INFO        [LinearGridTransformer epoch 3/10] batch  7800/10458  running_loss=0.766566  251.5 samples/s  elapsed=992s
+07:02:46  INFO        [LinearGridTransformer epoch 3/10] batch  8000/10458  running_loss=0.766661  251.5 samples/s  elapsed=1018s
+07:03:11  INFO        [LinearGridTransformer epoch 3/10] batch  8200/10458  running_loss=0.766618  251.5 samples/s  elapsed=1043s
+07:03:37  INFO        [LinearGridTransformer epoch 3/10] batch  8400/10458  running_loss=0.766745  251.5 samples/s  elapsed=1069s
+07:04:02  INFO        [LinearGridTransformer epoch 3/10] batch  8600/10458  running_loss=0.766143  251.5 samples/s  elapsed=1094s
+07:04:27  INFO        [LinearGridTransformer epoch 3/10] batch  8800/10458  running_loss=0.766399  251.5 samples/s  elapsed=1120s
+07:04:53  INFO        [LinearGridTransformer epoch 3/10] batch  9000/10458  running_loss=0.766091  251.5 samples/s  elapsed=1145s
+07:05:18  INFO        [LinearGridTransformer epoch 3/10] batch  9200/10458  running_loss=0.766428  251.5 samples/s  elapsed=1171s
+07:05:44  INFO        [LinearGridTransformer epoch 3/10] batch  9400/10458  running_loss=0.765891  251.5 samples/s  elapsed=1196s
+07:06:09  INFO        [LinearGridTransformer epoch 3/10] batch  9600/10458  running_loss=0.765744  251.5 samples/s  elapsed=1221s
+07:06:35  INFO        [LinearGridTransformer epoch 3/10] batch  9800/10458  running_loss=0.765717  251.5 samples/s  elapsed=1247s
+07:07:00  INFO        [LinearGridTransformer epoch 3/10] batch 10000/10458  running_loss=0.765690  251.5 samples/s  elapsed=1272s
+07:07:26  INFO        [LinearGridTransformer epoch 3/10] batch 10200/10458  running_loss=0.765716  251.5 samples/s  elapsed=1298s
+07:07:51  INFO        [LinearGridTransformer epoch 3/10] batch 10400/10458  running_loss=0.766190  251.5 samples/s  elapsed=1323s
+07:07:58  INFO        [LinearGridTransformer epoch 3/10] batch 10458/10458  running_loss=0.766125  251.5 samples/s  elapsed=1331s
+07:07:58  INFO      Starting evaluation over 432 / 432 validation batches …
+07:07:59  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+07:08:00  INFO        batch   50 / 432   samples=96000   elapsed=1.1 s
+07:08:01  INFO        batch  100 / 432   samples=192000   elapsed=2.2 s
+07:08:02  INFO        batch  150 / 432   samples=288000   elapsed=3.2 s
+07:08:03  INFO        batch  200 / 432   samples=384000   elapsed=4.2 s
+07:08:04  INFO        batch  250 / 432   samples=480000   elapsed=5.3 s
+07:08:05  INFO        batch  300 / 432   samples=576000   elapsed=6.3 s
+07:08:06  INFO        batch  350 / 432   samples=672000   elapsed=7.4 s
+07:08:07  INFO        batch  400 / 432   samples=768000   elapsed=8.4 s
+07:08:08  INFO      Evaluation complete — 828600 samples (432/432 batches) in 9.1 s
+07:08:08  INFO      [LinearGridTransformer] epoch  3/10 | train_loss=0.766125 | val_MAE=1.9839 (naive=2.4923, beats naive) | val_RMSE=3.5778 | train=1330.6s val=9.1s | RAM=1566MB
+07:08:33  INFO        [LinearGridTransformer epoch 4/10] batch   200/10458  running_loss=0.748442  250.7 samples/s  elapsed=26s
+07:08:59  INFO        [LinearGridTransformer epoch 4/10] batch   400/10458  running_loss=0.752293  251.1 samples/s  elapsed=51s
+07:09:24  INFO        [LinearGridTransformer epoch 4/10] batch   600/10458  running_loss=0.760813  251.2 samples/s  elapsed=76s
+07:09:50  INFO        [LinearGridTransformer epoch 4/10] batch   800/10458  running_loss=0.761921  251.3 samples/s  elapsed=102s
+07:10:15  INFO        [LinearGridTransformer epoch 4/10] batch  1000/10458  running_loss=0.761226  251.4 samples/s  elapsed=127s
+07:10:40  INFO        [LinearGridTransformer epoch 4/10] batch  1200/10458  running_loss=0.755425  251.4 samples/s  elapsed=153s
+07:11:06  INFO        [LinearGridTransformer epoch 4/10] batch  1400/10458  running_loss=0.755390  251.4 samples/s  elapsed=178s
+07:11:31  INFO        [LinearGridTransformer epoch 4/10] batch  1600/10458  running_loss=0.753149  251.4 samples/s  elapsed=204s
+07:11:57  INFO        [LinearGridTransformer epoch 4/10] batch  1800/10458  running_loss=0.755909  251.4 samples/s  elapsed=229s
+07:12:22  INFO        [LinearGridTransformer epoch 4/10] batch  2000/10458  running_loss=0.756120  251.4 samples/s  elapsed=255s
+07:12:48  INFO        [LinearGridTransformer epoch 4/10] batch  2200/10458  running_loss=0.757000  251.5 samples/s  elapsed=280s
+07:13:13  INFO        [LinearGridTransformer epoch 4/10] batch  2400/10458  running_loss=0.757788  251.5 samples/s  elapsed=305s
+07:13:39  INFO        [LinearGridTransformer epoch 4/10] batch  2600/10458  running_loss=0.759432  251.5 samples/s  elapsed=331s
+07:14:04  INFO        [LinearGridTransformer epoch 4/10] batch  2800/10458  running_loss=0.759483  251.5 samples/s  elapsed=356s
+07:14:29  INFO        [LinearGridTransformer epoch 4/10] batch  3000/10458  running_loss=0.762215  251.5 samples/s  elapsed=382s
+07:14:55  INFO        [LinearGridTransformer epoch 4/10] batch  3200/10458  running_loss=0.761716  251.5 samples/s  elapsed=407s
+07:15:20  INFO        [LinearGridTransformer epoch 4/10] batch  3400/10458  running_loss=0.761814  251.5 samples/s  elapsed=433s
+07:15:46  INFO        [LinearGridTransformer epoch 4/10] batch  3600/10458  running_loss=0.761532  251.5 samples/s  elapsed=458s
+07:16:11  INFO        [LinearGridTransformer epoch 4/10] batch  3800/10458  running_loss=0.762456  251.5 samples/s  elapsed=484s
+07:16:37  INFO        [LinearGridTransformer epoch 4/10] batch  4000/10458  running_loss=0.761715  251.5 samples/s  elapsed=509s
+07:17:02  INFO        [LinearGridTransformer epoch 4/10] batch  4200/10458  running_loss=0.763566  251.5 samples/s  elapsed=534s
+07:17:28  INFO        [LinearGridTransformer epoch 4/10] batch  4400/10458  running_loss=0.763181  251.5 samples/s  elapsed=560s
+07:17:53  INFO        [LinearGridTransformer epoch 4/10] batch  4600/10458  running_loss=0.761604  251.5 samples/s  elapsed=585s
+07:18:18  INFO        [LinearGridTransformer epoch 4/10] batch  4800/10458  running_loss=0.760745  251.5 samples/s  elapsed=611s
+07:18:44  INFO        [LinearGridTransformer epoch 4/10] batch  5000/10458  running_loss=0.761327  251.5 samples/s  elapsed=636s
+07:19:09  INFO        [LinearGridTransformer epoch 4/10] batch  5200/10458  running_loss=0.761126  251.5 samples/s  elapsed=662s
+07:19:35  INFO        [LinearGridTransformer epoch 4/10] batch  5400/10458  running_loss=0.761500  251.5 samples/s  elapsed=687s
+07:20:00  INFO        [LinearGridTransformer epoch 4/10] batch  5600/10458  running_loss=0.761567  251.5 samples/s  elapsed=713s
+07:20:26  INFO        [LinearGridTransformer epoch 4/10] batch  5800/10458  running_loss=0.761356  251.5 samples/s  elapsed=738s
+07:20:51  INFO        [LinearGridTransformer epoch 4/10] batch  6000/10458  running_loss=0.761238  251.5 samples/s  elapsed=764s
+07:21:17  INFO        [LinearGridTransformer epoch 4/10] batch  6200/10458  running_loss=0.760731  251.5 samples/s  elapsed=789s
+07:21:42  INFO        [LinearGridTransformer epoch 4/10] batch  6400/10458  running_loss=0.761325  251.5 samples/s  elapsed=814s
+07:22:08  INFO        [LinearGridTransformer epoch 4/10] batch  6600/10458  running_loss=0.761561  251.4 samples/s  elapsed=840s
+07:22:33  INFO        [LinearGridTransformer epoch 4/10] batch  6800/10458  running_loss=0.761200  251.4 samples/s  elapsed=865s
+07:22:59  INFO        [LinearGridTransformer epoch 4/10] batch  7000/10458  running_loss=0.760992  251.4 samples/s  elapsed=891s
+07:23:24  INFO        [LinearGridTransformer epoch 4/10] batch  7200/10458  running_loss=0.761207  251.4 samples/s  elapsed=916s
+07:23:49  INFO        [LinearGridTransformer epoch 4/10] batch  7400/10458  running_loss=0.761707  251.4 samples/s  elapsed=942s
+07:24:15  INFO        [LinearGridTransformer epoch 4/10] batch  7600/10458  running_loss=0.761713  251.4 samples/s  elapsed=967s
+07:24:40  INFO        [LinearGridTransformer epoch 4/10] batch  7800/10458  running_loss=0.762014  251.4 samples/s  elapsed=993s
+07:25:06  INFO        [LinearGridTransformer epoch 4/10] batch  8000/10458  running_loss=0.762027  251.4 samples/s  elapsed=1018s
+07:25:31  INFO        [LinearGridTransformer epoch 4/10] batch  8200/10458  running_loss=0.761174  251.4 samples/s  elapsed=1044s
+07:25:57  INFO        [LinearGridTransformer epoch 4/10] batch  8400/10458  running_loss=0.761086  251.4 samples/s  elapsed=1069s
+07:26:22  INFO        [LinearGridTransformer epoch 4/10] batch  8600/10458  running_loss=0.761202  251.4 samples/s  elapsed=1095s
+07:26:48  INFO        [LinearGridTransformer epoch 4/10] batch  8800/10458  running_loss=0.760701  251.4 samples/s  elapsed=1120s
+07:27:13  INFO        [LinearGridTransformer epoch 4/10] batch  9000/10458  running_loss=0.760786  251.4 samples/s  elapsed=1146s
+07:27:39  INFO        [LinearGridTransformer epoch 4/10] batch  9200/10458  running_loss=0.760128  251.4 samples/s  elapsed=1171s
+07:28:04  INFO        [LinearGridTransformer epoch 4/10] batch  9400/10458  running_loss=0.759674  251.4 samples/s  elapsed=1197s
+07:28:30  INFO        [LinearGridTransformer epoch 4/10] batch  9600/10458  running_loss=0.759288  251.4 samples/s  elapsed=1222s
+07:28:55  INFO        [LinearGridTransformer epoch 4/10] batch  9800/10458  running_loss=0.759496  251.4 samples/s  elapsed=1247s
+07:29:21  INFO        [LinearGridTransformer epoch 4/10] batch 10000/10458  running_loss=0.759945  251.4 samples/s  elapsed=1273s
+07:29:46  INFO        [LinearGridTransformer epoch 4/10] batch 10200/10458  running_loss=0.759888  251.4 samples/s  elapsed=1298s
+07:30:11  INFO        [LinearGridTransformer epoch 4/10] batch 10400/10458  running_loss=0.759510  251.4 samples/s  elapsed=1324s
+07:30:19  INFO        [LinearGridTransformer epoch 4/10] batch 10458/10458  running_loss=0.759454  251.4 samples/s  elapsed=1331s
+07:30:19  INFO      Starting evaluation over 432 / 432 validation batches …
+07:30:19  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+07:30:20  INFO        batch   50 / 432   samples=96000   elapsed=1.1 s
+07:30:21  INFO        batch  100 / 432   samples=192000   elapsed=2.1 s
+07:30:22  INFO        batch  150 / 432   samples=288000   elapsed=3.2 s
+07:30:23  INFO        batch  200 / 432   samples=384000   elapsed=4.2 s
+07:30:24  INFO        batch  250 / 432   samples=480000   elapsed=5.3 s
+07:30:25  INFO        batch  300 / 432   samples=576000   elapsed=6.3 s
+07:30:26  INFO        batch  350 / 432   samples=672000   elapsed=7.3 s
+07:30:27  INFO        batch  400 / 432   samples=768000   elapsed=8.4 s
+07:30:28  INFO      Evaluation complete — 828600 samples (432/432 batches) in 9.1 s
+07:30:28  INFO      [LinearGridTransformer] epoch  4/10 | train_loss=0.759454 | val_MAE=1.9881 (naive=2.4923, beats naive) | val_RMSE=3.5939 | train=1331.0s val=9.1s | RAM=1567MB
+07:30:53  INFO        [LinearGridTransformer epoch 5/10] batch   200/10458  running_loss=0.778896  250.5 samples/s  elapsed=26s
+07:31:19  INFO        [LinearGridTransformer epoch 5/10] batch   400/10458  running_loss=0.762764  250.8 samples/s  elapsed=51s
+07:31:44  INFO        [LinearGridTransformer epoch 5/10] batch   600/10458  running_loss=0.751832  251.1 samples/s  elapsed=76s
+07:32:10  INFO        [LinearGridTransformer epoch 5/10] batch   800/10458  running_loss=0.754455  251.4 samples/s  elapsed=102s
+07:32:35  INFO        [LinearGridTransformer epoch 5/10] batch  1000/10458  running_loss=0.755228  251.6 samples/s  elapsed=127s
+07:33:00  INFO        [LinearGridTransformer epoch 5/10] batch  1200/10458  running_loss=0.754373  251.7 samples/s  elapsed=153s
+07:33:26  INFO        [LinearGridTransformer epoch 5/10] batch  1400/10458  running_loss=0.755464  251.7 samples/s  elapsed=178s
+07:33:51  INFO        [LinearGridTransformer epoch 5/10] batch  1600/10458  running_loss=0.752562  251.6 samples/s  elapsed=203s
+07:34:17  INFO        [LinearGridTransformer epoch 5/10] batch  1800/10458  running_loss=0.752615  251.6 samples/s  elapsed=229s
+07:34:42  INFO        [LinearGridTransformer epoch 5/10] batch  2000/10458  running_loss=0.751303  251.6 samples/s  elapsed=254s
+07:35:08  INFO        [LinearGridTransformer epoch 5/10] batch  2200/10458  running_loss=0.753278  251.6 samples/s  elapsed=280s
+07:35:33  INFO        [LinearGridTransformer epoch 5/10] batch  2400/10458  running_loss=0.753403  251.6 samples/s  elapsed=305s
+07:35:59  INFO        [LinearGridTransformer epoch 5/10] batch  2600/10458  running_loss=0.751799  251.6 samples/s  elapsed=331s
+07:36:24  INFO        [LinearGridTransformer epoch 5/10] batch  2800/10458  running_loss=0.751991  251.5 samples/s  elapsed=356s
+07:36:50  INFO        [LinearGridTransformer epoch 5/10] batch  3000/10458  running_loss=0.752122  251.5 samples/s  elapsed=382s
+07:37:15  INFO        [LinearGridTransformer epoch 5/10] batch  3200/10458  running_loss=0.751914  251.5 samples/s  elapsed=407s
+07:37:40  INFO        [LinearGridTransformer epoch 5/10] batch  3400/10458  running_loss=0.752656  251.5 samples/s  elapsed=433s
+07:38:06  INFO        [LinearGridTransformer epoch 5/10] batch  3600/10458  running_loss=0.752248  251.5 samples/s  elapsed=458s
+07:38:31  INFO        [LinearGridTransformer epoch 5/10] batch  3800/10458  running_loss=0.751480  251.4 samples/s  elapsed=484s
+07:38:57  INFO        [LinearGridTransformer epoch 5/10] batch  4000/10458  running_loss=0.752219  251.4 samples/s  elapsed=509s
+07:39:22  INFO        [LinearGridTransformer epoch 5/10] batch  4200/10458  running_loss=0.751536  251.4 samples/s  elapsed=535s
+07:39:48  INFO        [LinearGridTransformer epoch 5/10] batch  4400/10458  running_loss=0.752039  251.4 samples/s  elapsed=560s
+07:40:13  INFO        [LinearGridTransformer epoch 5/10] batch  4600/10458  running_loss=0.752577  251.4 samples/s  elapsed=585s
+07:40:39  INFO        [LinearGridTransformer epoch 5/10] batch  4800/10458  running_loss=0.753252  251.4 samples/s  elapsed=611s
+07:41:04  INFO        [LinearGridTransformer epoch 5/10] batch  5000/10458  running_loss=0.753350  251.4 samples/s  elapsed=636s
+07:41:30  INFO        [LinearGridTransformer epoch 5/10] batch  5200/10458  running_loss=0.753297  251.5 samples/s  elapsed=662s
+07:41:55  INFO        [LinearGridTransformer epoch 5/10] batch  5400/10458  running_loss=0.753031  251.5 samples/s  elapsed=687s
+07:42:20  INFO        [LinearGridTransformer epoch 5/10] batch  5600/10458  running_loss=0.751948  251.5 samples/s  elapsed=712s
+07:42:46  INFO        [LinearGridTransformer epoch 5/10] batch  5800/10458  running_loss=0.752099  251.6 samples/s  elapsed=738s
+07:43:11  INFO        [LinearGridTransformer epoch 5/10] batch  6000/10458  running_loss=0.752833  251.6 samples/s  elapsed=763s
+07:43:36  INFO        [LinearGridTransformer epoch 5/10] batch  6200/10458  running_loss=0.752317  251.6 samples/s  elapsed=788s
+07:44:02  INFO        [LinearGridTransformer epoch 5/10] batch  6400/10458  running_loss=0.752746  251.6 samples/s  elapsed=814s
+07:44:27  INFO        [LinearGridTransformer epoch 5/10] batch  6600/10458  running_loss=0.752398  251.6 samples/s  elapsed=839s
+07:44:53  INFO        [LinearGridTransformer epoch 5/10] batch  6800/10458  running_loss=0.752410  251.6 samples/s  elapsed=865s
+07:45:18  INFO        [LinearGridTransformer epoch 5/10] batch  7000/10458  running_loss=0.752709  251.6 samples/s  elapsed=890s
+07:45:44  INFO        [LinearGridTransformer epoch 5/10] batch  7200/10458  running_loss=0.752481  251.6 samples/s  elapsed=916s
+07:46:09  INFO        [LinearGridTransformer epoch 5/10] batch  7400/10458  running_loss=0.752373  251.6 samples/s  elapsed=941s
+07:46:35  INFO        [LinearGridTransformer epoch 5/10] batch  7600/10458  running_loss=0.752849  251.6 samples/s  elapsed=967s
+07:47:00  INFO        [LinearGridTransformer epoch 5/10] batch  7800/10458  running_loss=0.752725  251.6 samples/s  elapsed=992s
+07:47:26  INFO        [LinearGridTransformer epoch 5/10] batch  8000/10458  running_loss=0.752954  251.6 samples/s  elapsed=1018s
+07:47:51  INFO        [LinearGridTransformer epoch 5/10] batch  8200/10458  running_loss=0.752670  251.6 samples/s  elapsed=1043s
+07:48:16  INFO        [LinearGridTransformer epoch 5/10] batch  8400/10458  running_loss=0.752983  251.6 samples/s  elapsed=1068s
+07:48:42  INFO        [LinearGridTransformer epoch 5/10] batch  8600/10458  running_loss=0.752356  251.6 samples/s  elapsed=1094s
+07:49:07  INFO        [LinearGridTransformer epoch 5/10] batch  8800/10458  running_loss=0.752089  251.6 samples/s  elapsed=1119s
+07:49:32  INFO        [LinearGridTransformer epoch 5/10] batch  9000/10458  running_loss=0.751872  251.6 samples/s  elapsed=1145s
+07:49:58  INFO        [LinearGridTransformer epoch 5/10] batch  9200/10458  running_loss=0.752032  251.6 samples/s  elapsed=1170s
+07:50:23  INFO        [LinearGridTransformer epoch 5/10] batch  9400/10458  running_loss=0.752406  251.7 samples/s  elapsed=1195s
+07:50:49  INFO        [LinearGridTransformer epoch 5/10] batch  9600/10458  running_loss=0.752357  251.7 samples/s  elapsed=1221s
+07:51:14  INFO        [LinearGridTransformer epoch 5/10] batch  9800/10458  running_loss=0.752883  251.7 samples/s  elapsed=1246s
+07:51:39  INFO        [LinearGridTransformer epoch 5/10] batch 10000/10458  running_loss=0.753023  251.7 samples/s  elapsed=1271s
+07:52:05  INFO        [LinearGridTransformer epoch 5/10] batch 10200/10458  running_loss=0.752856  251.7 samples/s  elapsed=1297s
+07:52:30  INFO        [LinearGridTransformer epoch 5/10] batch 10400/10458  running_loss=0.753184  251.7 samples/s  elapsed=1322s
+07:52:38  INFO        [LinearGridTransformer epoch 5/10] batch 10458/10458  running_loss=0.753017  251.7 samples/s  elapsed=1330s
+07:52:38  INFO      Starting evaluation over 432 / 432 validation batches …
+07:52:38  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+07:52:39  INFO        batch   50 / 432   samples=96000   elapsed=1.1 s
+07:52:40  INFO        batch  100 / 432   samples=192000   elapsed=2.2 s
+07:52:41  INFO        batch  150 / 432   samples=288000   elapsed=3.2 s
+07:52:42  INFO        batch  200 / 432   samples=384000   elapsed=4.2 s
+07:52:43  INFO        batch  250 / 432   samples=480000   elapsed=5.3 s
+07:52:44  INFO        batch  300 / 432   samples=576000   elapsed=6.3 s
+07:52:45  INFO        batch  350 / 432   samples=672000   elapsed=7.4 s
+07:52:46  INFO        batch  400 / 432   samples=768000   elapsed=8.4 s
+07:52:47  INFO      Evaluation complete — 828600 samples (432/432 batches) in 9.1 s
+07:52:47  INFO      [LinearGridTransformer] epoch  5/10 | train_loss=0.753017 | val_MAE=2.0269 (naive=2.4923, beats naive) | val_RMSE=3.6191 | train=1329.8s val=9.1s | RAM=1568MB
+07:53:13  INFO        [LinearGridTransformer epoch 6/10] batch   200/10458  running_loss=0.756252  249.9 samples/s  elapsed=26s
+07:53:38  INFO        [LinearGridTransformer epoch 6/10] batch   400/10458  running_loss=0.761953  250.7 samples/s  elapsed=51s
+07:54:03  INFO        [LinearGridTransformer epoch 6/10] batch   600/10458  running_loss=0.751505  250.9 samples/s  elapsed=77s
+07:54:29  INFO        [LinearGridTransformer epoch 6/10] batch   800/10458  running_loss=0.754137  251.1 samples/s  elapsed=102s
+07:54:54  INFO        [LinearGridTransformer epoch 6/10] batch  1000/10458  running_loss=0.753376  251.2 samples/s  elapsed=127s
+07:55:20  INFO        [LinearGridTransformer epoch 6/10] batch  1200/10458  running_loss=0.754714  251.3 samples/s  elapsed=153s
+07:55:45  INFO        [LinearGridTransformer epoch 6/10] batch  1400/10458  running_loss=0.752928  251.4 samples/s  elapsed=178s
+07:56:10  INFO        [LinearGridTransformer epoch 6/10] batch  1600/10458  running_loss=0.750285  251.5 samples/s  elapsed=204s
+07:56:36  INFO        [LinearGridTransformer epoch 6/10] batch  1800/10458  running_loss=0.751345  251.6 samples/s  elapsed=229s
+07:57:01  INFO        [LinearGridTransformer epoch 6/10] batch  2000/10458  running_loss=0.751175  251.7 samples/s  elapsed=254s
+07:57:27  INFO        [LinearGridTransformer epoch 6/10] batch  2200/10458  running_loss=0.750162  251.7 samples/s  elapsed=280s
+07:57:52  INFO        [LinearGridTransformer epoch 6/10] batch  2400/10458  running_loss=0.747445  251.7 samples/s  elapsed=305s
+07:58:17  INFO        [LinearGridTransformer epoch 6/10] batch  2600/10458  running_loss=0.745960  251.7 samples/s  elapsed=331s
+07:58:43  INFO        [LinearGridTransformer epoch 6/10] batch  2800/10458  running_loss=0.748305  251.7 samples/s  elapsed=356s
+07:59:08  INFO        [LinearGridTransformer epoch 6/10] batch  3000/10458  running_loss=0.748322  251.7 samples/s  elapsed=381s
+07:59:34  INFO        [LinearGridTransformer epoch 6/10] batch  3200/10458  running_loss=0.747555  251.7 samples/s  elapsed=407s
+07:59:59  INFO        [LinearGridTransformer epoch 6/10] batch  3400/10458  running_loss=0.748296  251.7 samples/s  elapsed=432s
+08:00:25  INFO        [LinearGridTransformer epoch 6/10] batch  3600/10458  running_loss=0.747781  251.6 samples/s  elapsed=458s
+08:00:50  INFO        [LinearGridTransformer epoch 6/10] batch  3800/10458  running_loss=0.747650  251.6 samples/s  elapsed=483s
+08:01:16  INFO        [LinearGridTransformer epoch 6/10] batch  4000/10458  running_loss=0.747767  251.6 samples/s  elapsed=509s
+08:01:41  INFO        [LinearGridTransformer epoch 6/10] batch  4200/10458  running_loss=0.748524  251.6 samples/s  elapsed=534s
+08:02:07  INFO        [LinearGridTransformer epoch 6/10] batch  4400/10458  running_loss=0.747525  251.6 samples/s  elapsed=560s
+08:02:32  INFO        [LinearGridTransformer epoch 6/10] batch  4600/10458  running_loss=0.747440  251.6 samples/s  elapsed=585s
+08:02:57  INFO        [LinearGridTransformer epoch 6/10] batch  4800/10458  running_loss=0.747905  251.6 samples/s  elapsed=611s
+08:03:23  INFO        [LinearGridTransformer epoch 6/10] batch  5000/10458  running_loss=0.747813  251.6 samples/s  elapsed=636s
+08:03:48  INFO        [LinearGridTransformer epoch 6/10] batch  5200/10458  running_loss=0.747573  251.5 samples/s  elapsed=662s
+08:04:14  INFO        [LinearGridTransformer epoch 6/10] batch  5400/10458  running_loss=0.746983  251.5 samples/s  elapsed=687s
+08:04:39  INFO        [LinearGridTransformer epoch 6/10] batch  5600/10458  running_loss=0.746375  251.5 samples/s  elapsed=712s
+08:05:05  INFO        [LinearGridTransformer epoch 6/10] batch  5800/10458  running_loss=0.746710  251.5 samples/s  elapsed=738s
+08:05:30  INFO        [LinearGridTransformer epoch 6/10] batch  6000/10458  running_loss=0.746944  251.5 samples/s  elapsed=764s
+08:05:56  INFO        [LinearGridTransformer epoch 6/10] batch  6200/10458  running_loss=0.746700  251.5 samples/s  elapsed=789s
+08:06:21  INFO        [LinearGridTransformer epoch 6/10] batch  6400/10458  running_loss=0.746524  251.5 samples/s  elapsed=814s
+08:06:47  INFO        [LinearGridTransformer epoch 6/10] batch  6600/10458  running_loss=0.746182  251.5 samples/s  elapsed=840s
+08:07:12  INFO        [LinearGridTransformer epoch 6/10] batch  6800/10458  running_loss=0.745858  251.5 samples/s  elapsed=865s
+08:07:38  INFO        [LinearGridTransformer epoch 6/10] batch  7000/10458  running_loss=0.746301  251.5 samples/s  elapsed=891s
+08:08:03  INFO        [LinearGridTransformer epoch 6/10] batch  7200/10458  running_loss=0.745969  251.5 samples/s  elapsed=916s
+08:08:29  INFO        [LinearGridTransformer epoch 6/10] batch  7400/10458  running_loss=0.745991  251.5 samples/s  elapsed=942s
+08:08:54  INFO        [LinearGridTransformer epoch 6/10] batch  7600/10458  running_loss=0.746049  251.5 samples/s  elapsed=967s
+08:09:20  INFO        [LinearGridTransformer epoch 6/10] batch  7800/10458  running_loss=0.745959  251.5 samples/s  elapsed=993s
+08:09:45  INFO        [LinearGridTransformer epoch 6/10] batch  8000/10458  running_loss=0.746259  251.5 samples/s  elapsed=1018s
+08:10:10  INFO        [LinearGridTransformer epoch 6/10] batch  8200/10458  running_loss=0.746686  251.4 samples/s  elapsed=1044s
+08:10:36  INFO        [LinearGridTransformer epoch 6/10] batch  8400/10458  running_loss=0.746416  251.4 samples/s  elapsed=1069s
+08:11:01  INFO        [LinearGridTransformer epoch 6/10] batch  8600/10458  running_loss=0.746691  251.4 samples/s  elapsed=1095s
+08:11:27  INFO        [LinearGridTransformer epoch 6/10] batch  8800/10458  running_loss=0.746432  251.4 samples/s  elapsed=1120s
+08:11:52  INFO        [LinearGridTransformer epoch 6/10] batch  9000/10458  running_loss=0.745939  251.5 samples/s  elapsed=1145s
+08:12:18  INFO        [LinearGridTransformer epoch 6/10] batch  9200/10458  running_loss=0.746073  251.5 samples/s  elapsed=1171s
+08:12:43  INFO        [LinearGridTransformer epoch 6/10] batch  9400/10458  running_loss=0.746286  251.5 samples/s  elapsed=1196s
+08:25:17  INFO        [LinearGridTransformer epoch 7/10] batch  4800/10458  running_loss=0.739046  251.6 samples/s  elapsed=610s
+08:25:43  INFO        [LinearGridTransformer epoch 7/10] batch  5000/10458  running_loss=0.739014  251.6 samples/s  elapsed=636s
+08:26:08  INFO        [LinearGridTransformer epoch 7/10] batch  5200/10458  running_loss=0.739000  251.6 samples/s  elapsed=661s
+08:26:34  INFO        [LinearGridTransformer epoch 7/10] batch  5400/10458  running_loss=0.738588  251.6 samples/s  elapsed=687s
+08:26:59  INFO        [LinearGridTransformer epoch 7/10] batch  5600/10458  running_loss=0.738626  251.6 samples/s  elapsed=712s
+08:27:24  INFO        [LinearGridTransformer epoch 7/10] batch  5800/10458  running_loss=0.738642  251.6 samples/s  elapsed=738s
+08:27:50  INFO        [LinearGridTransformer epoch 7/10] batch  6000/10458  running_loss=0.738043  251.6 samples/s  elapsed=763s
+08:28:15  INFO        [LinearGridTransformer epoch 7/10] batch  6200/10458  running_loss=0.737902  251.6 samples/s  elapsed=789s
+08:28:41  INFO        [LinearGridTransformer epoch 7/10] batch  6400/10458  running_loss=0.738711  251.6 samples/s  elapsed=814s
+08:29:06  INFO        [LinearGridTransformer epoch 7/10] batch  6600/10458  running_loss=0.738483  251.6 samples/s  elapsed=839s
+08:29:32  INFO        [LinearGridTransformer epoch 7/10] batch  6800/10458  running_loss=0.738416  251.6 samples/s  elapsed=865s
+08:29:57  INFO        [LinearGridTransformer epoch 7/10] batch  7000/10458  running_loss=0.738240  251.6 samples/s  elapsed=890s
+08:32:05  INFO        [LinearGridTransformer epoch 7/10] batch  8000/10458  running_loss=0.739015  251.5 samples/s  elapsed=1018s
+08:32:30  INFO        [LinearGridTransformer epoch 7/10] batch  8200/10458  running_loss=0.739396  251.5 samples/s  elapsed=1043s
+08:32:56  INFO        [LinearGridTransformer epoch 7/10] batch  8400/10458  running_loss=0.739535  251.5 samples/s  elapsed=1069s
+08:33:21  INFO        [LinearGridTransformer epoch 7/10] batch  8600/10458  running_loss=0.739459  251.5 samples/s  elapsed=1094s
+08:33:47  INFO        [LinearGridTransformer epoch 7/10] batch  8800/10458  running_loss=0.739312  251.5 samples/s  elapsed=1120s
+08:34:12  INFO        [LinearGridTransformer epoch 7/10] batch  9000/10458  running_loss=0.738578  251.5 samples/s  elapsed=1145s
+08:34:37  INFO        [LinearGridTransformer epoch 7/10] batch  9200/10458  running_loss=0.738708  251.5 samples/s  elapsed=1171s
+08:35:03  INFO        [LinearGridTransformer epoch 7/10] batch  9400/10458  running_loss=0.738472  251.5 samples/s  elapsed=1196s
+08:35:28  INFO        [LinearGridTransformer epoch 7/10] batch  9600/10458  running_loss=0.738838  251.6 samples/s  elapsed=1221s
+08:35:53  INFO        [LinearGridTransformer epoch 7/10] batch  9800/10458  running_loss=0.739287  251.6 samples/s  elapsed=1247s
+08:36:19  INFO        [LinearGridTransformer epoch 7/10] batch 10000/10458  running_loss=0.739001  251.6 samples/s  elapsed=1272s
+08:36:44  INFO        [LinearGridTransformer epoch 7/10] batch 10200/10458  running_loss=0.739239  251.6 samples/s  elapsed=1297s
+08:48:53  INFO        [LinearGridTransformer epoch 8/10] batch  5400/10458  running_loss=0.732932  251.6 samples/s  elapsed=687s
+08:49:18  INFO        [LinearGridTransformer epoch 8/10] batch  5600/10458  running_loss=0.732360  251.6 samples/s  elapsed=712s
+08:49:44  INFO        [LinearGridTransformer epoch 8/10] batch  5800/10458  running_loss=0.731827  251.6 samples/s  elapsed=738s
+08:50:09  INFO        [LinearGridTransformer epoch 8/10] batch  6000/10458  running_loss=0.731837  251.6 samples/s  elapsed=763s
+08:50:35  INFO        [LinearGridTransformer epoch 8/10] batch  6200/10458  running_loss=0.732108  251.6 samples/s  elapsed=788s
+08:51:00  INFO        [LinearGridTransformer epoch 8/10] batch  6400/10458  running_loss=0.732421  251.6 samples/s  elapsed=814s
+08:51:25  INFO        [LinearGridTransformer epoch 8/10] batch  6600/10458  running_loss=0.732077  251.7 samples/s  elapsed=839s
+08:51:51  INFO        [LinearGridTransformer epoch 8/10] batch  6800/10458  running_loss=0.731792  251.7 samples/s  elapsed=865s
+08:52:16  INFO        [LinearGridTransformer epoch 8/10] batch  7000/10458  running_loss=0.731547  251.7 samples/s  elapsed=890s
+08:52:41  INFO        [LinearGridTransformer epoch 8/10] batch  7200/10458  running_loss=0.731279  251.7 samples/s  elapsed=915s
+08:53:07  INFO        [LinearGridTransformer epoch 8/10] batch  7400/10458  running_loss=0.731571  251.7 samples/s  elapsed=941s
+08:53:32  INFO        [LinearGridTransformer epoch 8/10] batch  7600/10458  running_loss=0.731234  251.7 samples/s  elapsed=966s
+08:53:58  INFO        [LinearGridTransformer epoch 8/10] batch  7800/10458  running_loss=0.731509  251.8 samples/s  elapsed=991s
+08:54:23  INFO        [LinearGridTransformer epoch 8/10] batch  8000/10458  running_loss=0.732018  251.7 samples/s  elapsed=1017s
+08:58:37  INFO        [LinearGridTransformer epoch 8/10] batch 10000/10458  running_loss=0.731271  251.8 samples/s  elapsed=1271s
+08:59:03  INFO        [LinearGridTransformer epoch 8/10] batch 10200/10458  running_loss=0.731312  251.8 samples/s  elapsed=1296s
+08:59:28  INFO        [LinearGridTransformer epoch 8/10] batch 10400/10458  running_loss=0.731356  251.8 samples/s  elapsed=1322s
+08:59:35  INFO        [LinearGridTransformer epoch 8/10] batch 10458/10458  running_loss=0.731425  251.8 samples/s  elapsed=1329s
+08:59:35  INFO      Starting evaluation over 432 / 432 validation batches …
+08:59:36  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+08:59:37  INFO        batch   50 / 432   samples=96000   elapsed=1.1 s
+08:59:38  INFO        batch  100 / 432   samples=192000   elapsed=2.1 s
+08:59:39  INFO        batch  150 / 432   samples=288000   elapsed=3.2 s
+08:59:40  INFO        batch  200 / 432   samples=384000   elapsed=4.2 s
+08:59:41  INFO        batch  250 / 432   samples=480000   elapsed=5.3 s
+08:59:42  INFO        batch  300 / 432   samples=576000   elapsed=6.3 s
+08:59:43  INFO        batch  350 / 432   samples=672000   elapsed=7.3 s
+08:59:44  INFO        batch  400 / 432   samples=768000   elapsed=8.4 s
+08:59:45  INFO      Evaluation complete — 828600 samples (432/432 batches) in 9.1 s
+08:59:45  INFO      [LinearGridTransformer] epoch  8/10 | train_loss=0.731425 | val_MAE=1.9714 (naive=2.4923, beats naive) | val_RMSE=3.6035 | train=1329.3s val=9.1s | RAM=1571MB
+09:00:10  INFO        [LinearGridTransformer epoch 9/10] batch   200/10458  running_loss=0.735388  250.3 samples/s  elapsed=26s
+09:00:36  INFO        [LinearGridTransformer epoch 9/10] batch   400/10458  running_loss=0.735039  250.8 samples/s  elapsed=51s
+09:01:01  INFO        [LinearGridTransformer epoch 9/10] batch   600/10458  running_loss=0.736986  251.1 samples/s  elapsed=76s
+09:01:27  INFO        [LinearGridTransformer epoch 9/10] batch   800/10458  running_loss=0.732319  251.2 samples/s  elapsed=102s
+09:01:52  INFO        [LinearGridTransformer epoch 9/10] batch  1000/10458  running_loss=0.728742  251.3 samples/s  elapsed=127s
+09:02:17  INFO        [LinearGridTransformer epoch 9/10] batch  1200/10458  running_loss=0.731401  251.3 samples/s  elapsed=153s
+09:02:43  INFO        [LinearGridTransformer epoch 9/10] batch  1400/10458  running_loss=0.730467  251.3 samples/s  elapsed=178s
+09:03:08  INFO        [LinearGridTransformer epoch 9/10] batch  1600/10458  running_loss=0.730885  251.3 samples/s  elapsed=204s
+09:03:34  INFO        [LinearGridTransformer epoch 9/10] batch  1800/10458  running_loss=0.731889  251.3 samples/s  elapsed=229s
+09:08:13  INFO        [LinearGridTransformer epoch 9/10] batch  4000/10458  running_loss=0.726084  251.7 samples/s  elapsed=509s
+09:08:39  INFO        [LinearGridTransformer epoch 9/10] batch  4200/10458  running_loss=0.726434  251.7 samples/s  elapsed=534s
+09:09:04  INFO        [LinearGridTransformer epoch 9/10] batch  4400/10458  running_loss=0.727004  251.7 samples/s  elapsed=559s
+09:09:29  INFO        [LinearGridTransformer epoch 9/10] batch  4600/10458  running_loss=0.725985  251.7 samples/s  elapsed=585s
+09:09:55  INFO        [LinearGridTransformer epoch 9/10] batch  4800/10458  running_loss=0.726060  251.8 samples/s  elapsed=610s
+09:10:20  INFO        [LinearGridTransformer epoch 9/10] batch  5000/10458  running_loss=0.726359  251.7 samples/s  elapsed=636s
+09:10:46  INFO        [LinearGridTransformer epoch 9/10] batch  5200/10458  running_loss=0.727009  251.7 samples/s  elapsed=661s
+09:11:11  INFO        [LinearGridTransformer epoch 9/10] batch  5400/10458  running_loss=0.727231  251.7 samples/s  elapsed=686s
+09:11:37  INFO        [LinearGridTransformer epoch 9/10] batch  5600/10458  running_loss=0.727469  251.7 samples/s  elapsed=712s
+09:12:02  INFO        [LinearGridTransformer epoch 9/10] batch  5800/10458  running_loss=0.727025  251.7 samples/s  elapsed=737s
+09:12:27  INFO        [LinearGridTransformer epoch 9/10] batch  6000/10458  running_loss=0.726873  251.7 samples/s  elapsed=763s
+09:12:53  INFO        [LinearGridTransformer epoch 9/10] batch  6200/10458  running_loss=0.726753  251.7 samples/s  elapsed=788s
+09:15:51  INFO        [LinearGridTransformer epoch 9/10] batch  7600/10458  running_loss=0.726957  251.6 samples/s  elapsed=966s
+09:16:17  INFO        [LinearGridTransformer epoch 9/10] batch  7800/10458  running_loss=0.726444  251.6 samples/s  elapsed=992s
+09:16:42  INFO        [LinearGridTransformer epoch 9/10] batch  8000/10458  running_loss=0.726174  251.6 samples/s  elapsed=1017s
+09:17:07  INFO        [LinearGridTransformer epoch 9/10] batch  8200/10458  running_loss=0.726250  251.6 samples/s  elapsed=1043s
+09:17:33  INFO        [LinearGridTransformer epoch 9/10] batch  8400/10458  running_loss=0.725833  251.6 samples/s  elapsed=1068s
+09:17:58  INFO        [LinearGridTransformer epoch 9/10] batch  8600/10458  running_loss=0.725892  251.7 samples/s  elapsed=1094s
+09:18:24  INFO        [LinearGridTransformer epoch 9/10] batch  8800/10458  running_loss=0.725635  251.7 samples/s  elapsed=1119s
+09:18:49  INFO        [LinearGridTransformer epoch 9/10] batch  9000/10458  running_loss=0.724907  251.7 samples/s  elapsed=1144s
+09:19:14  INFO        [LinearGridTransformer epoch 9/10] batch  9200/10458  running_loss=0.724689  251.7 samples/s  elapsed=1170s
+09:19:40  INFO        [LinearGridTransformer epoch 9/10] batch  9400/10458  running_loss=0.724450  251.7 samples/s  elapsed=1195s
+09:20:05  INFO        [LinearGridTransformer epoch 9/10] batch  9600/10458  running_loss=0.724301  251.7 samples/s  elapsed=1221s
+09:20:31  INFO        [LinearGridTransformer epoch 9/10] batch  9800/10458  running_loss=0.724346  251.7 samples/s  elapsed=1246s
+09:23:20  INFO        [LinearGridTransformer epoch 10/10] batch   600/10458  running_loss=0.731316  250.6 samples/s  elapsed=77s
+09:23:46  INFO        [LinearGridTransformer epoch 10/10] batch   800/10458  running_loss=0.725791  250.9 samples/s  elapsed=102s
+09:24:11  INFO        [LinearGridTransformer epoch 10/10] batch  1000/10458  running_loss=0.727108  250.9 samples/s  elapsed=128s
+09:24:37  INFO        [LinearGridTransformer epoch 10/10] batch  1200/10458  running_loss=0.725663  250.9 samples/s  elapsed=153s
+09:25:02  INFO        [LinearGridTransformer epoch 10/10] batch  1400/10458  running_loss=0.719937  251.0 samples/s  elapsed=179s
+09:25:28  INFO        [LinearGridTransformer epoch 10/10] batch  1600/10458  running_loss=0.718524  251.0 samples/s  elapsed=204s
+09:25:53  INFO        [LinearGridTransformer epoch 10/10] batch  1800/10458  running_loss=0.717376  251.0 samples/s  elapsed=230s
+09:26:19  INFO        [LinearGridTransformer epoch 10/10] batch  2000/10458  running_loss=0.717630  251.0 samples/s  elapsed=255s
+09:26:44  INFO        [LinearGridTransformer epoch 10/10] batch  2200/10458  running_loss=0.717266  251.0 samples/s  elapsed=280s
+09:27:10  INFO        [LinearGridTransformer epoch 10/10] batch  2400/10458  running_loss=0.717565  251.0 samples/s  elapsed=306s
+09:27:35  INFO        [LinearGridTransformer epoch 10/10] batch  2600/10458  running_loss=0.718114  251.0 samples/s  elapsed=331s
+09:28:01  INFO        [LinearGridTransformer epoch 10/10] batch  2800/10458  running_loss=0.717527  251.0 samples/s  elapsed=357s
+09:29:17  INFO        [LinearGridTransformer epoch 10/10] batch  3400/10458  running_loss=0.717075  251.1 samples/s  elapsed=433s
+09:29:43  INFO        [LinearGridTransformer epoch 10/10] batch  3600/10458  running_loss=0.717089  251.1 samples/s  elapsed=459s
+09:30:08  INFO        [LinearGridTransformer epoch 10/10] batch  3800/10458  running_loss=0.717311  251.1 samples/s  elapsed=484s
+09:30:34  INFO        [LinearGridTransformer epoch 10/10] batch  4000/10458  running_loss=0.717016  251.1 samples/s  elapsed=510s
+09:30:59  INFO        [LinearGridTransformer epoch 10/10] batch  4200/10458  running_loss=0.717200  251.1 samples/s  elapsed=535s
+09:31:25  INFO        [LinearGridTransformer epoch 10/10] batch  4400/10458  running_loss=0.716559  251.1 samples/s  elapsed=561s
+09:31:50  INFO        [LinearGridTransformer epoch 10/10] batch  4600/10458  running_loss=0.716334  251.1 samples/s  elapsed=586s
+09:32:15  INFO        [LinearGridTransformer epoch 10/10] batch  4800/10458  running_loss=0.716009  251.1 samples/s  elapsed=612s
+09:32:41  INFO        [LinearGridTransformer epoch 10/10] batch  5000/10458  running_loss=0.717017  251.2 samples/s  elapsed=637s
+09:33:06  INFO        [LinearGridTransformer epoch 10/10] batch  5200/10458  running_loss=0.716697  251.2 samples/s  elapsed=663s
+09:33:32  INFO        [LinearGridTransformer epoch 10/10] batch  5400/10458  running_loss=0.716927  251.2 samples/s  elapsed=688s
+09:33:57  INFO        [LinearGridTransformer epoch 10/10] batch  5600/10458  running_loss=0.717356  251.2 samples/s  elapsed=713s
+09:34:23  INFO        [LinearGridTransformer epoch 10/10] batch  5800/10458  running_loss=0.717256  251.2 samples/s  elapsed=739s
+09:38:12  INFO        [LinearGridTransformer epoch 10/10] batch  7600/10458  running_loss=0.717250  251.2 samples/s  elapsed=968s
+09:38:38  INFO        [LinearGridTransformer epoch 10/10] batch  7800/10458  running_loss=0.717269  251.2 samples/s  elapsed=994s
+09:39:03  INFO        [LinearGridTransformer epoch 10/10] batch  8000/10458  running_loss=0.717077  251.2 samples/s  elapsed=1019s
+09:39:29  INFO        [LinearGridTransformer epoch 10/10] batch  8200/10458  running_loss=0.716916  251.2 samples/s  elapsed=1045s
+09:39:54  INFO        [LinearGridTransformer epoch 10/10] batch  8400/10458  running_loss=0.716958  251.2 samples/s  elapsed=1070s
+09:40:19  INFO        [LinearGridTransformer epoch 10/10] batch  8600/10458  running_loss=0.717293  251.2 samples/s  elapsed=1096s
+09:40:45  INFO        [LinearGridTransformer epoch 10/10] batch  8800/10458  running_loss=0.716795  251.2 samples/s  elapsed=1121s
+09:41:10  INFO        [LinearGridTransformer epoch 10/10] batch  9000/10458  running_loss=0.716753  251.2 samples/s  elapsed=1147s
+09:41:36  INFO        [LinearGridTransformer epoch 10/10] batch  9200/10458  running_loss=0.716973  251.2 samples/s  elapsed=1172s
+09:42:01  INFO        [LinearGridTransformer epoch 10/10] batch  9400/10458  running_loss=0.717060  251.2 samples/s  elapsed=1198s
+09:42:27  INFO        [LinearGridTransformer epoch 10/10] batch  9600/10458  running_loss=0.717168  251.2 samples/s  elapsed=1223s
+09:42:52  INFO        [LinearGridTransformer epoch 10/10] batch  9800/10458  running_loss=0.716984  251.2 samples/s  elapsed=1249s
+09:43:18  INFO        [LinearGridTransformer epoch 10/10] batch 10000/10458  running_loss=0.716782  251.2 samples/s  elapsed=1274s
+09:43:43  INFO        [LinearGridTransformer epoch 10/10] batch 10200/10458  running_loss=0.716620  251.2 samples/s  elapsed=1299s
+09:44:09  INFO        [LinearGridTransformer epoch 10/10] batch 10400/10458  running_loss=0.716964  251.2 samples/s  elapsed=1325s
+09:44:16  INFO        [LinearGridTransformer epoch 10/10] batch 10458/10458  running_loss=0.716946  251.2 samples/s  elapsed=1332s
+09:44:16  INFO      Starting evaluation over 432 / 432 validation batches …
+09:44:16  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:44:17  INFO        batch   50 / 432   samples=96000   elapsed=1.1 s
+09:44:18  INFO        batch  100 / 432   samples=192000   elapsed=2.2 s
+09:44:19  INFO        batch  150 / 432   samples=288000   elapsed=3.2 s
+09:44:21  INFO        batch  200 / 432   samples=384000   elapsed=4.2 s
+09:44:22  INFO        batch  250 / 432   samples=480000   elapsed=5.3 s
+09:44:23  INFO        batch  300 / 432   samples=576000   elapsed=6.3 s
+09:44:24  INFO        batch  350 / 432   samples=672000   elapsed=7.4 s
+09:44:25  INFO        batch  400 / 432   samples=768000   elapsed=8.4 s
+09:44:25  INFO      Evaluation complete — 828600 samples (432/432 batches) in 9.1 s
+09:44:25  INFO      [LinearGridTransformer] epoch 10/10 | train_loss=0.716946 | val_MAE=2.0027 (naive=2.4923, beats naive) | val_RMSE=3.6370 | train=1332.4s val=9.1s | RAM=1572MB
+09:44:26  INFO      Saved checkpoint → /kaggle/working/LinearGridTransformer/checkpoints/comparative_lgt.pt
+09:44:26  INFO      ======================================================================
+09:44:26  INFO      Training CDLinearBaseline …
+09:44:26  INFO      ======================================================================
+09:44:27  INFO        [CDLinearBaseline epoch 1/10] batch   200/10458  running_loss=1.389956  6678.5 samples/s  elapsed=1s
+09:44:27  INFO        [CDLinearBaseline epoch 1/10] batch   400/10458  running_loss=1.186502  7282.2 samples/s  elapsed=2s
+09:44:28  INFO        [CDLinearBaseline epoch 1/10] batch   600/10458  running_loss=1.085538  7505.0 samples/s  elapsed=3s
+09:44:29  INFO        [CDLinearBaseline epoch 1/10] batch   800/10458  running_loss=1.017588  7546.5 samples/s  elapsed=3s
+09:44:30  INFO        [CDLinearBaseline epoch 1/10] batch  1000/10458  running_loss=0.979118  7562.5 samples/s  elapsed=4s
+09:44:31  INFO        [CDLinearBaseline epoch 1/10] batch  1200/10458  running_loss=0.953545  7628.3 samples/s  elapsed=5s
+09:44:31  INFO        [CDLinearBaseline epoch 1/10] batch  1400/10458  running_loss=0.930381  7675.9 samples/s  elapsed=6s
+09:44:32  INFO        [CDLinearBaseline epoch 1/10] batch  1600/10458  running_loss=0.908813  7716.2 samples/s  elapsed=7s
+09:44:33  INFO        [CDLinearBaseline epoch 1/10] batch  1800/10458  running_loss=0.889949  7728.0 samples/s  elapsed=7s
+09:44:34  INFO        [CDLinearBaseline epoch 1/10] batch  2000/10458  running_loss=0.876481  7739.3 samples/s  elapsed=8s
+09:44:35  INFO        [CDLinearBaseline epoch 1/10] batch  2200/10458  running_loss=0.866238  7744.0 samples/s  elapsed=9s
+09:44:36  INFO        [CDLinearBaseline epoch 1/10] batch  2400/10458  running_loss=0.854716  7748.1 samples/s  elapsed=10s
+09:44:36  INFO        [CDLinearBaseline epoch 1/10] batch  2600/10458  running_loss=0.845227  7759.5 samples/s  elapsed=11s
+09:44:37  INFO        [CDLinearBaseline epoch 1/10] batch  2800/10458  running_loss=0.835923  7769.2 samples/s  elapsed=12s
+09:44:38  INFO        [CDLinearBaseline epoch 1/10] batch  3000/10458  running_loss=0.829716  7784.2 samples/s  elapsed=12s
+09:44:39  INFO        [CDLinearBaseline epoch 1/10] batch  3200/10458  running_loss=0.822805  7793.8 samples/s  elapsed=13s
+09:44:40  INFO        [CDLinearBaseline epoch 1/10] batch  3400/10458  running_loss=0.817178  7781.4 samples/s  elapsed=14s
+09:44:40  INFO        [CDLinearBaseline epoch 1/10] batch  3600/10458  running_loss=0.810480  7778.9 samples/s  elapsed=15s
+09:44:41  INFO        [CDLinearBaseline epoch 1/10] batch  3800/10458  running_loss=0.804827  7780.8 samples/s  elapsed=16s
+09:44:42  INFO        [CDLinearBaseline epoch 1/10] batch  4000/10458  running_loss=0.798707  7778.5 samples/s  elapsed=16s
+09:44:43  INFO        [CDLinearBaseline epoch 1/10] batch  4200/10458  running_loss=0.794080  7778.9 samples/s  elapsed=17s
+09:44:44  INFO        [CDLinearBaseline epoch 1/10] batch  4400/10458  running_loss=0.789004  7785.6 samples/s  elapsed=18s
+09:44:45  INFO        [CDLinearBaseline epoch 1/10] batch  4600/10458  running_loss=0.785259  7787.6 samples/s  elapsed=19s
+09:44:45  INFO        [CDLinearBaseline epoch 1/10] batch  4800/10458  running_loss=0.780801  7790.6 samples/s  elapsed=20s
+09:44:46  INFO        [CDLinearBaseline epoch 1/10] batch  5000/10458  running_loss=0.777028  7787.2 samples/s  elapsed=21s
+09:44:47  INFO        [CDLinearBaseline epoch 1/10] batch  5200/10458  running_loss=0.774445  7787.8 samples/s  elapsed=21s
+09:44:48  INFO        [CDLinearBaseline epoch 1/10] batch  5400/10458  running_loss=0.771640  7789.5 samples/s  elapsed=22s
+09:44:49  INFO        [CDLinearBaseline epoch 1/10] batch  5600/10458  running_loss=0.768932  7790.3 samples/s  elapsed=23s
+09:44:49  INFO        [CDLinearBaseline epoch 1/10] batch  5800/10458  running_loss=0.766391  7787.9 samples/s  elapsed=24s
+09:44:50  INFO        [CDLinearBaseline epoch 1/10] batch  6000/10458  running_loss=0.763290  7789.3 samples/s  elapsed=25s
+09:44:51  INFO        [CDLinearBaseline epoch 1/10] batch  6200/10458  running_loss=0.761862  7792.5 samples/s  elapsed=25s
+09:44:52  INFO        [CDLinearBaseline epoch 1/10] batch  6400/10458  running_loss=0.760266  7796.6 samples/s  elapsed=26s
+09:44:53  INFO        [CDLinearBaseline epoch 1/10] batch  6600/10458  running_loss=0.757764  7800.5 samples/s  elapsed=27s
+09:44:54  INFO        [CDLinearBaseline epoch 1/10] batch  6800/10458  running_loss=0.755790  7804.9 samples/s  elapsed=28s
+09:44:54  INFO        [CDLinearBaseline epoch 1/10] batch  7000/10458  running_loss=0.753735  7807.5 samples/s  elapsed=29s
+09:44:55  INFO        [CDLinearBaseline epoch 1/10] batch  7200/10458  running_loss=0.751753  7803.5 samples/s  elapsed=30s
+09:44:56  INFO        [CDLinearBaseline epoch 1/10] batch  7400/10458  running_loss=0.750142  7804.1 samples/s  elapsed=30s
+09:44:57  INFO        [CDLinearBaseline epoch 1/10] batch  7600/10458  running_loss=0.747393  7804.7 samples/s  elapsed=31s
+09:44:58  INFO        [CDLinearBaseline epoch 1/10] batch  7800/10458  running_loss=0.745674  7805.5 samples/s  elapsed=32s
+09:44:58  INFO        [CDLinearBaseline epoch 1/10] batch  8000/10458  running_loss=0.743581  7808.8 samples/s  elapsed=33s
+09:44:59  INFO        [CDLinearBaseline epoch 1/10] batch  8200/10458  running_loss=0.741763  7804.7 samples/s  elapsed=34s
+09:45:00  INFO        [CDLinearBaseline epoch 1/10] batch  8400/10458  running_loss=0.740463  7808.8 samples/s  elapsed=34s
+09:45:01  INFO        [CDLinearBaseline epoch 1/10] batch  8600/10458  running_loss=0.738994  7812.9 samples/s  elapsed=35s
+09:45:02  INFO        [CDLinearBaseline epoch 1/10] batch  8800/10458  running_loss=0.737642  7813.6 samples/s  elapsed=36s
+09:45:03  INFO        [CDLinearBaseline epoch 1/10] batch  9000/10458  running_loss=0.736157  7811.6 samples/s  elapsed=37s
+09:45:03  INFO        [CDLinearBaseline epoch 1/10] batch  9200/10458  running_loss=0.734335  7810.9 samples/s  elapsed=38s
+09:45:04  INFO        [CDLinearBaseline epoch 1/10] batch  9400/10458  running_loss=0.733610  7812.3 samples/s  elapsed=39s
+09:45:05  INFO        [CDLinearBaseline epoch 1/10] batch  9600/10458  running_loss=0.732304  7814.0 samples/s  elapsed=39s
+09:45:06  INFO        [CDLinearBaseline epoch 1/10] batch  9800/10458  running_loss=0.731110  7815.1 samples/s  elapsed=40s
+09:45:07  INFO        [CDLinearBaseline epoch 1/10] batch 10000/10458  running_loss=0.730083  7815.4 samples/s  elapsed=41s
+09:45:07  INFO        [CDLinearBaseline epoch 1/10] batch 10200/10458  running_loss=0.729305  7817.3 samples/s  elapsed=42s
+09:45:08  INFO        [CDLinearBaseline epoch 1/10] batch 10400/10458  running_loss=0.728095  7818.3 samples/s  elapsed=43s
+09:45:08  INFO        [CDLinearBaseline epoch 1/10] batch 10458/10458  running_loss=0.727583  7815.1 samples/s  elapsed=43s
+09:45:09  INFO      Starting evaluation over 432 / 432 validation batches …
+09:45:09  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:45:09  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:45:09  INFO        batch  100 / 432   samples=192000   elapsed=0.5 s
+09:45:09  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:45:09  INFO        batch  200 / 432   samples=384000   elapsed=0.8 s
+09:45:09  INFO        batch  250 / 432   samples=480000   elapsed=1.0 s
+09:45:10  INFO        batch  300 / 432   samples=576000   elapsed=1.1 s
+09:45:10  INFO        batch  350 / 432   samples=672000   elapsed=1.3 s
+09:45:10  INFO        batch  400 / 432   samples=768000   elapsed=1.4 s
+09:45:10  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.6 s
+09:45:10  INFO      [CDLinearBaseline] epoch  1/10 | train_loss=0.727583 | val_MAE=1.9182 (naive=2.4923, beats naive) | val_RMSE=3.3048 | train=42.8s val=1.6s | RAM=1584MB
+09:45:11  INFO        [CDLinearBaseline epoch 2/10] batch   200/10458  running_loss=0.647753  6674.6 samples/s  elapsed=1s
+09:45:12  INFO        [CDLinearBaseline epoch 2/10] batch   400/10458  running_loss=0.650037  7210.4 samples/s  elapsed=2s
+09:45:13  INFO        [CDLinearBaseline epoch 2/10] batch   600/10458  running_loss=0.655558  7398.7 samples/s  elapsed=3s
+09:45:14  INFO        [CDLinearBaseline epoch 2/10] batch   800/10458  running_loss=0.659028  7522.0 samples/s  elapsed=3s
+09:45:14  INFO        [CDLinearBaseline epoch 2/10] batch  1000/10458  running_loss=0.660038  7617.9 samples/s  elapsed=4s
+09:45:15  INFO        [CDLinearBaseline epoch 2/10] batch  1200/10458  running_loss=0.661265  7631.0 samples/s  elapsed=5s
+09:45:16  INFO        [CDLinearBaseline epoch 2/10] batch  1400/10458  running_loss=0.659323  7650.1 samples/s  elapsed=6s
+09:45:17  INFO        [CDLinearBaseline epoch 2/10] batch  1600/10458  running_loss=0.658202  7663.4 samples/s  elapsed=7s
+09:45:18  INFO        [CDLinearBaseline epoch 2/10] batch  1800/10458  running_loss=0.658977  7667.7 samples/s  elapsed=8s
+09:45:19  INFO        [CDLinearBaseline epoch 2/10] batch  2000/10458  running_loss=0.658745  7662.7 samples/s  elapsed=8s
+09:45:19  INFO        [CDLinearBaseline epoch 2/10] batch  2200/10458  running_loss=0.657636  7626.1 samples/s  elapsed=9s
+09:45:20  INFO        [CDLinearBaseline epoch 2/10] batch  2400/10458  running_loss=0.658204  7620.4 samples/s  elapsed=10s
+09:45:21  INFO        [CDLinearBaseline epoch 2/10] batch  2600/10458  running_loss=0.657648  7617.1 samples/s  elapsed=11s
+09:45:22  INFO        [CDLinearBaseline epoch 2/10] batch  2800/10458  running_loss=0.660184  7625.4 samples/s  elapsed=12s
+09:45:23  INFO        [CDLinearBaseline epoch 2/10] batch  3000/10458  running_loss=0.660626  7630.6 samples/s  elapsed=13s
+09:45:24  INFO        [CDLinearBaseline epoch 2/10] batch  3200/10458  running_loss=0.661142  7642.8 samples/s  elapsed=13s
+09:45:24  INFO        [CDLinearBaseline epoch 2/10] batch  3400/10458  running_loss=0.661839  7649.1 samples/s  elapsed=14s
+09:45:25  INFO        [CDLinearBaseline epoch 2/10] batch  3600/10458  running_loss=0.661232  7664.1 samples/s  elapsed=15s
+09:45:26  INFO        [CDLinearBaseline epoch 2/10] batch  3800/10458  running_loss=0.662204  7674.6 samples/s  elapsed=16s
+09:45:27  INFO        [CDLinearBaseline epoch 2/10] batch  4000/10458  running_loss=0.661579  7687.7 samples/s  elapsed=17s
+09:45:28  INFO        [CDLinearBaseline epoch 2/10] batch  4200/10458  running_loss=0.660574  7697.8 samples/s  elapsed=17s
+09:45:28  INFO        [CDLinearBaseline epoch 2/10] batch  4400/10458  running_loss=0.660412  7710.8 samples/s  elapsed=18s
+09:45:29  INFO        [CDLinearBaseline epoch 2/10] batch  4600/10458  running_loss=0.660170  7704.9 samples/s  elapsed=19s
+09:45:30  INFO        [CDLinearBaseline epoch 2/10] batch  4800/10458  running_loss=0.660556  7716.7 samples/s  elapsed=20s
+09:45:31  INFO        [CDLinearBaseline epoch 2/10] batch  5000/10458  running_loss=0.660734  7724.5 samples/s  elapsed=21s
+09:45:32  INFO        [CDLinearBaseline epoch 2/10] batch  5200/10458  running_loss=0.659755  7722.1 samples/s  elapsed=22s
+09:45:33  INFO        [CDLinearBaseline epoch 2/10] batch  5400/10458  running_loss=0.659646  7726.9 samples/s  elapsed=22s
+09:45:33  INFO        [CDLinearBaseline epoch 2/10] batch  5600/10458  running_loss=0.659042  7730.5 samples/s  elapsed=23s
+09:45:34  INFO        [CDLinearBaseline epoch 2/10] batch  5800/10458  running_loss=0.659195  7731.1 samples/s  elapsed=24s
+09:45:35  INFO        [CDLinearBaseline epoch 2/10] batch  6000/10458  running_loss=0.659031  7736.3 samples/s  elapsed=25s
+09:45:36  INFO        [CDLinearBaseline epoch 2/10] batch  6200/10458  running_loss=0.659458  7743.0 samples/s  elapsed=26s
+09:45:37  INFO        [CDLinearBaseline epoch 2/10] batch  6400/10458  running_loss=0.659475  7745.8 samples/s  elapsed=26s
+09:45:37  INFO        [CDLinearBaseline epoch 2/10] batch  6600/10458  running_loss=0.659387  7750.2 samples/s  elapsed=27s
+09:45:38  INFO        [CDLinearBaseline epoch 2/10] batch  6800/10458  running_loss=0.659654  7754.5 samples/s  elapsed=28s
+09:45:39  INFO        [CDLinearBaseline epoch 2/10] batch  7000/10458  running_loss=0.660038  7759.0 samples/s  elapsed=29s
+09:45:40  INFO        [CDLinearBaseline epoch 2/10] batch  7200/10458  running_loss=0.660745  7753.0 samples/s  elapsed=30s
+09:45:41  INFO        [CDLinearBaseline epoch 2/10] batch  7400/10458  running_loss=0.660620  7755.1 samples/s  elapsed=31s
+09:45:42  INFO        [CDLinearBaseline epoch 2/10] batch  7600/10458  running_loss=0.660672  7758.7 samples/s  elapsed=31s
+09:45:42  INFO        [CDLinearBaseline epoch 2/10] batch  7800/10458  running_loss=0.660680  7757.7 samples/s  elapsed=32s
+09:45:43  INFO        [CDLinearBaseline epoch 2/10] batch  8000/10458  running_loss=0.660714  7760.5 samples/s  elapsed=33s
+09:45:44  INFO        [CDLinearBaseline epoch 2/10] batch  8200/10458  running_loss=0.661126  7764.3 samples/s  elapsed=34s
+09:45:45  INFO        [CDLinearBaseline epoch 2/10] batch  8400/10458  running_loss=0.661062  7766.9 samples/s  elapsed=35s
+09:45:46  INFO        [CDLinearBaseline epoch 2/10] batch  8600/10458  running_loss=0.660854  7762.9 samples/s  elapsed=35s
+09:45:46  INFO        [CDLinearBaseline epoch 2/10] batch  8800/10458  running_loss=0.660924  7764.8 samples/s  elapsed=36s
+09:45:47  INFO        [CDLinearBaseline epoch 2/10] batch  9000/10458  running_loss=0.661247  7765.6 samples/s  elapsed=37s
+09:45:48  INFO        [CDLinearBaseline epoch 2/10] batch  9200/10458  running_loss=0.660846  7764.3 samples/s  elapsed=38s
+09:45:49  INFO        [CDLinearBaseline epoch 2/10] batch  9400/10458  running_loss=0.660604  7764.7 samples/s  elapsed=39s
+09:45:50  INFO        [CDLinearBaseline epoch 2/10] batch  9600/10458  running_loss=0.660270  7761.9 samples/s  elapsed=40s
+09:45:51  INFO        [CDLinearBaseline epoch 2/10] batch  9800/10458  running_loss=0.660199  7767.4 samples/s  elapsed=40s
+09:45:51  INFO        [CDLinearBaseline epoch 2/10] batch 10000/10458  running_loss=0.660042  7771.7 samples/s  elapsed=41s
+09:45:52  INFO        [CDLinearBaseline epoch 2/10] batch 10200/10458  running_loss=0.659932  7773.2 samples/s  elapsed=42s
+09:45:53  INFO        [CDLinearBaseline epoch 2/10] batch 10400/10458  running_loss=0.660067  7775.5 samples/s  elapsed=43s
+09:45:53  INFO        [CDLinearBaseline epoch 2/10] batch 10458/10458  running_loss=0.660040  7772.0 samples/s  elapsed=43s
+09:45:53  INFO      Starting evaluation over 432 / 432 validation batches …
+09:45:53  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:45:54  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:45:54  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:45:54  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:45:54  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:45:54  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:45:54  INFO        batch  300 / 432   samples=576000   elapsed=1.0 s
+09:45:54  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:45:55  INFO        batch  400 / 432   samples=768000   elapsed=1.4 s
+09:45:55  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:45:55  INFO      [CDLinearBaseline] epoch  2/10 | train_loss=0.660040 | val_MAE=1.8797 (naive=2.4923, beats naive) | val_RMSE=3.2696 | train=43.1s val=1.5s | RAM=1584MB
+09:45:56  INFO        [CDLinearBaseline epoch 3/10] batch   200/10458  running_loss=0.662936  6732.3 samples/s  elapsed=1s
+09:45:57  INFO        [CDLinearBaseline epoch 3/10] batch   400/10458  running_loss=0.657319  7344.8 samples/s  elapsed=2s
+09:45:57  INFO        [CDLinearBaseline epoch 3/10] batch   600/10458  running_loss=0.653310  7475.6 samples/s  elapsed=3s
+09:45:58  INFO        [CDLinearBaseline epoch 3/10] batch   800/10458  running_loss=0.647847  7566.0 samples/s  elapsed=3s
+09:45:59  INFO        [CDLinearBaseline epoch 3/10] batch  1000/10458  running_loss=0.650844  7560.1 samples/s  elapsed=4s
+09:46:00  INFO        [CDLinearBaseline epoch 3/10] batch  1200/10458  running_loss=0.652729  7601.6 samples/s  elapsed=5s
+09:46:01  INFO        [CDLinearBaseline epoch 3/10] batch  1400/10458  running_loss=0.649423  7633.7 samples/s  elapsed=6s
+09:46:02  INFO        [CDLinearBaseline epoch 3/10] batch  1600/10458  running_loss=0.648420  7635.6 samples/s  elapsed=7s
+09:46:02  INFO        [CDLinearBaseline epoch 3/10] batch  1800/10458  running_loss=0.647977  7651.8 samples/s  elapsed=8s
+09:46:03  INFO        [CDLinearBaseline epoch 3/10] batch  2000/10458  running_loss=0.650220  7663.0 samples/s  elapsed=8s
+09:46:04  INFO        [CDLinearBaseline epoch 3/10] batch  2200/10458  running_loss=0.650501  7681.3 samples/s  elapsed=9s
+09:46:05  INFO        [CDLinearBaseline epoch 3/10] batch  2400/10458  running_loss=0.650322  7694.4 samples/s  elapsed=10s
+09:46:06  INFO        [CDLinearBaseline epoch 3/10] batch  2600/10458  running_loss=0.650283  7712.4 samples/s  elapsed=11s
+09:46:06  INFO        [CDLinearBaseline epoch 3/10] batch  2800/10458  running_loss=0.649677  7727.2 samples/s  elapsed=12s
+09:46:07  INFO        [CDLinearBaseline epoch 3/10] batch  3000/10458  running_loss=0.650508  7733.5 samples/s  elapsed=12s
+09:46:08  INFO        [CDLinearBaseline epoch 3/10] batch  3200/10458  running_loss=0.649129  7741.9 samples/s  elapsed=13s
+09:46:09  INFO        [CDLinearBaseline epoch 3/10] batch  3400/10458  running_loss=0.649440  7738.0 samples/s  elapsed=14s
+09:46:10  INFO        [CDLinearBaseline epoch 3/10] batch  3600/10458  running_loss=0.650073  7733.4 samples/s  elapsed=15s
+09:46:11  INFO        [CDLinearBaseline epoch 3/10] batch  3800/10458  running_loss=0.649987  7737.7 samples/s  elapsed=16s
+09:46:11  INFO        [CDLinearBaseline epoch 3/10] batch  4000/10458  running_loss=0.650467  7742.6 samples/s  elapsed=17s
+09:46:12  INFO        [CDLinearBaseline epoch 3/10] batch  4200/10458  running_loss=0.650509  7748.4 samples/s  elapsed=17s
+09:46:13  INFO        [CDLinearBaseline epoch 3/10] batch  4400/10458  running_loss=0.649307  7737.3 samples/s  elapsed=18s
+09:46:14  INFO        [CDLinearBaseline epoch 3/10] batch  4600/10458  running_loss=0.649137  7737.3 samples/s  elapsed=19s
+09:46:15  INFO        [CDLinearBaseline epoch 3/10] batch  4800/10458  running_loss=0.649253  7739.2 samples/s  elapsed=20s
+09:46:16  INFO        [CDLinearBaseline epoch 3/10] batch  5000/10458  running_loss=0.648607  7743.2 samples/s  elapsed=21s
+09:46:16  INFO        [CDLinearBaseline epoch 3/10] batch  5200/10458  running_loss=0.648707  7748.9 samples/s  elapsed=21s
+09:46:17  INFO        [CDLinearBaseline epoch 3/10] batch  5400/10458  running_loss=0.647592  7746.1 samples/s  elapsed=22s
+09:46:18  INFO        [CDLinearBaseline epoch 3/10] batch  5600/10458  running_loss=0.647653  7745.0 samples/s  elapsed=23s
+09:46:19  INFO        [CDLinearBaseline epoch 3/10] batch  5800/10458  running_loss=0.647286  7736.4 samples/s  elapsed=24s
+09:46:20  INFO        [CDLinearBaseline epoch 3/10] batch  6000/10458  running_loss=0.647568  7723.0 samples/s  elapsed=25s
+09:46:21  INFO        [CDLinearBaseline epoch 3/10] batch  6200/10458  running_loss=0.648128  7720.9 samples/s  elapsed=26s
+09:46:21  INFO        [CDLinearBaseline epoch 3/10] batch  6400/10458  running_loss=0.647840  7718.9 samples/s  elapsed=27s
+09:46:22  INFO        [CDLinearBaseline epoch 3/10] batch  6600/10458  running_loss=0.648173  7723.0 samples/s  elapsed=27s
+09:46:23  INFO        [CDLinearBaseline epoch 3/10] batch  6800/10458  running_loss=0.648314  7724.7 samples/s  elapsed=28s
+09:46:24  INFO        [CDLinearBaseline epoch 3/10] batch  7000/10458  running_loss=0.649360  7729.4 samples/s  elapsed=29s
+09:46:25  INFO        [CDLinearBaseline epoch 3/10] batch  7200/10458  running_loss=0.649354  7732.3 samples/s  elapsed=30s
+09:46:26  INFO        [CDLinearBaseline epoch 3/10] batch  7400/10458  running_loss=0.649712  7732.1 samples/s  elapsed=31s
+09:46:26  INFO        [CDLinearBaseline epoch 3/10] batch  7600/10458  running_loss=0.649966  7733.7 samples/s  elapsed=31s
+09:46:27  INFO        [CDLinearBaseline epoch 3/10] batch  7800/10458  running_loss=0.649702  7733.8 samples/s  elapsed=32s
+09:46:28  INFO        [CDLinearBaseline epoch 3/10] batch  8000/10458  running_loss=0.649767  7739.5 samples/s  elapsed=33s
+09:46:29  INFO        [CDLinearBaseline epoch 3/10] batch  8200/10458  running_loss=0.649756  7731.4 samples/s  elapsed=34s
+09:46:30  INFO        [CDLinearBaseline epoch 3/10] batch  8400/10458  running_loss=0.649890  7728.6 samples/s  elapsed=35s
+09:46:30  INFO        [CDLinearBaseline epoch 3/10] batch  8600/10458  running_loss=0.649763  7732.1 samples/s  elapsed=36s
+09:46:31  INFO        [CDLinearBaseline epoch 3/10] batch  8800/10458  running_loss=0.649501  7735.4 samples/s  elapsed=36s
+09:46:32  INFO        [CDLinearBaseline epoch 3/10] batch  9000/10458  running_loss=0.649275  7739.5 samples/s  elapsed=37s
+09:46:33  INFO        [CDLinearBaseline epoch 3/10] batch  9200/10458  running_loss=0.649300  7740.0 samples/s  elapsed=38s
+09:46:34  INFO        [CDLinearBaseline epoch 3/10] batch  9400/10458  running_loss=0.649397  7736.4 samples/s  elapsed=39s
+09:46:35  INFO        [CDLinearBaseline epoch 3/10] batch  9600/10458  running_loss=0.649316  7736.0 samples/s  elapsed=40s
+09:46:35  INFO        [CDLinearBaseline epoch 3/10] batch  9800/10458  running_loss=0.649494  7734.7 samples/s  elapsed=41s
+09:46:36  INFO        [CDLinearBaseline epoch 3/10] batch 10000/10458  running_loss=0.649780  7736.8 samples/s  elapsed=41s
+09:46:37  INFO        [CDLinearBaseline epoch 3/10] batch 10200/10458  running_loss=0.650028  7739.9 samples/s  elapsed=42s
+09:46:38  INFO        [CDLinearBaseline epoch 3/10] batch 10400/10458  running_loss=0.650204  7743.7 samples/s  elapsed=43s
+09:46:38  INFO        [CDLinearBaseline epoch 3/10] batch 10458/10458  running_loss=0.650315  7741.1 samples/s  elapsed=43s
+09:46:38  INFO      Starting evaluation over 432 / 432 validation batches …
+09:46:38  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:46:38  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:46:39  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:46:39  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:46:39  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:46:39  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:46:39  INFO        batch  300 / 432   samples=576000   elapsed=1.1 s
+09:46:39  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:46:40  INFO        batch  400 / 432   samples=768000   elapsed=1.4 s
+09:46:40  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:46:40  INFO      [CDLinearBaseline] epoch  3/10 | train_loss=0.650315 | val_MAE=1.8817 (naive=2.4923, beats naive) | val_RMSE=3.2852 | train=43.3s val=1.5s | RAM=1584MB
+09:46:41  INFO        [CDLinearBaseline epoch 4/10] batch   200/10458  running_loss=0.634418  6785.9 samples/s  elapsed=1s
+09:46:42  INFO        [CDLinearBaseline epoch 4/10] batch   400/10458  running_loss=0.638815  7347.8 samples/s  elapsed=2s
+09:46:42  INFO        [CDLinearBaseline epoch 4/10] batch   600/10458  running_loss=0.641973  7302.6 samples/s  elapsed=3s
+09:46:43  INFO        [CDLinearBaseline epoch 4/10] batch   800/10458  running_loss=0.644604  7407.4 samples/s  elapsed=3s
+09:46:44  INFO        [CDLinearBaseline epoch 4/10] batch  1000/10458  running_loss=0.644070  7517.8 samples/s  elapsed=4s
+09:46:45  INFO        [CDLinearBaseline epoch 4/10] batch  1200/10458  running_loss=0.642507  7589.3 samples/s  elapsed=5s
+09:46:46  INFO        [CDLinearBaseline epoch 4/10] batch  1400/10458  running_loss=0.641677  7640.8 samples/s  elapsed=6s
+09:46:46  INFO        [CDLinearBaseline epoch 4/10] batch  1600/10458  running_loss=0.641168  7691.8 samples/s  elapsed=7s
+09:46:47  INFO        [CDLinearBaseline epoch 4/10] batch  1800/10458  running_loss=0.641678  7719.0 samples/s  elapsed=7s
+09:46:48  INFO        [CDLinearBaseline epoch 4/10] batch  2000/10458  running_loss=0.644890  7743.2 samples/s  elapsed=8s
+09:46:49  INFO        [CDLinearBaseline epoch 4/10] batch  2200/10458  running_loss=0.644195  7737.3 samples/s  elapsed=9s
+09:46:50  INFO        [CDLinearBaseline epoch 4/10] batch  2400/10458  running_loss=0.644115  7724.0 samples/s  elapsed=10s
+09:46:51  INFO        [CDLinearBaseline epoch 4/10] batch  2600/10458  running_loss=0.645677  7745.9 samples/s  elapsed=11s
+09:46:51  INFO        [CDLinearBaseline epoch 4/10] batch  2800/10458  running_loss=0.645713  7756.7 samples/s  elapsed=12s
+09:46:52  INFO        [CDLinearBaseline epoch 4/10] batch  3000/10458  running_loss=0.644383  7761.1 samples/s  elapsed=12s
+09:46:53  INFO        [CDLinearBaseline epoch 4/10] batch  3200/10458  running_loss=0.643819  7759.8 samples/s  elapsed=13s
+09:46:54  INFO        [CDLinearBaseline epoch 4/10] batch  3400/10458  running_loss=0.643985  7747.3 samples/s  elapsed=14s
+09:46:55  INFO        [CDLinearBaseline epoch 4/10] batch  3600/10458  running_loss=0.642978  7744.4 samples/s  elapsed=15s
+09:46:56  INFO        [CDLinearBaseline epoch 4/10] batch  3800/10458  running_loss=0.642129  7738.4 samples/s  elapsed=16s
+09:46:56  INFO        [CDLinearBaseline epoch 4/10] batch  4000/10458  running_loss=0.643599  7744.7 samples/s  elapsed=17s
+09:46:57  INFO        [CDLinearBaseline epoch 4/10] batch  4200/10458  running_loss=0.643115  7760.1 samples/s  elapsed=17s
+09:46:58  INFO        [CDLinearBaseline epoch 4/10] batch  4400/10458  running_loss=0.643403  7770.7 samples/s  elapsed=18s
+09:46:59  INFO        [CDLinearBaseline epoch 4/10] batch  4600/10458  running_loss=0.643739  7783.3 samples/s  elapsed=19s
+09:47:00  INFO        [CDLinearBaseline epoch 4/10] batch  4800/10458  running_loss=0.644530  7780.3 samples/s  elapsed=20s
+09:47:00  INFO        [CDLinearBaseline epoch 4/10] batch  5000/10458  running_loss=0.645507  7793.9 samples/s  elapsed=21s
+09:47:01  INFO        [CDLinearBaseline epoch 4/10] batch  5200/10458  running_loss=0.645877  7798.8 samples/s  elapsed=21s
+09:47:02  INFO        [CDLinearBaseline epoch 4/10] batch  5400/10458  running_loss=0.645714  7806.1 samples/s  elapsed=22s
+09:47:03  INFO        [CDLinearBaseline epoch 4/10] batch  5600/10458  running_loss=0.645678  7809.5 samples/s  elapsed=23s
+09:47:04  INFO        [CDLinearBaseline epoch 4/10] batch  5800/10458  running_loss=0.645912  7814.9 samples/s  elapsed=24s
+09:47:04  INFO        [CDLinearBaseline epoch 4/10] batch  6000/10458  running_loss=0.645982  7823.5 samples/s  elapsed=25s
+09:47:05  INFO        [CDLinearBaseline epoch 4/10] batch  6200/10458  running_loss=0.645733  7825.9 samples/s  elapsed=25s
+09:47:06  INFO        [CDLinearBaseline epoch 4/10] batch  6400/10458  running_loss=0.645057  7831.3 samples/s  elapsed=26s
+09:47:07  INFO        [CDLinearBaseline epoch 4/10] batch  6600/10458  running_loss=0.645552  7836.3 samples/s  elapsed=27s
+09:47:08  INFO        [CDLinearBaseline epoch 4/10] batch  6800/10458  running_loss=0.644600  7837.9 samples/s  elapsed=28s
+09:47:08  INFO        [CDLinearBaseline epoch 4/10] batch  7000/10458  running_loss=0.645151  7834.9 samples/s  elapsed=29s
+09:47:09  INFO        [CDLinearBaseline epoch 4/10] batch  7200/10458  running_loss=0.644905  7827.1 samples/s  elapsed=29s
+09:47:10  INFO        [CDLinearBaseline epoch 4/10] batch  7400/10458  running_loss=0.645356  7834.6 samples/s  elapsed=30s
+09:47:11  INFO        [CDLinearBaseline epoch 4/10] batch  7600/10458  running_loss=0.645670  7834.5 samples/s  elapsed=31s
+09:47:12  INFO        [CDLinearBaseline epoch 4/10] batch  7800/10458  running_loss=0.646112  7840.2 samples/s  elapsed=32s
+09:47:12  INFO        [CDLinearBaseline epoch 4/10] batch  8000/10458  running_loss=0.646654  7840.5 samples/s  elapsed=33s
+09:47:13  INFO        [CDLinearBaseline epoch 4/10] batch  8200/10458  running_loss=0.646727  7834.1 samples/s  elapsed=33s
+09:47:14  INFO        [CDLinearBaseline epoch 4/10] batch  8400/10458  running_loss=0.646184  7836.4 samples/s  elapsed=34s
+09:47:15  INFO        [CDLinearBaseline epoch 4/10] batch  8600/10458  running_loss=0.646479  7839.6 samples/s  elapsed=35s
+09:47:16  INFO        [CDLinearBaseline epoch 4/10] batch  8800/10458  running_loss=0.646304  7843.0 samples/s  elapsed=36s
+09:47:17  INFO        [CDLinearBaseline epoch 4/10] batch  9000/10458  running_loss=0.646177  7840.4 samples/s  elapsed=37s
+09:47:17  INFO        [CDLinearBaseline epoch 4/10] batch  9200/10458  running_loss=0.646734  7841.5 samples/s  elapsed=38s
+09:47:18  INFO        [CDLinearBaseline epoch 4/10] batch  9400/10458  running_loss=0.646752  7842.2 samples/s  elapsed=38s
+09:47:19  INFO        [CDLinearBaseline epoch 4/10] batch  9600/10458  running_loss=0.646734  7843.9 samples/s  elapsed=39s
+09:47:20  INFO        [CDLinearBaseline epoch 4/10] batch  9800/10458  running_loss=0.646273  7838.0 samples/s  elapsed=40s
+09:47:21  INFO        [CDLinearBaseline epoch 4/10] batch 10000/10458  running_loss=0.646217  7837.3 samples/s  elapsed=41s
+09:47:21  INFO        [CDLinearBaseline epoch 4/10] batch 10200/10458  running_loss=0.646234  7840.7 samples/s  elapsed=42s
+09:47:22  INFO        [CDLinearBaseline epoch 4/10] batch 10400/10458  running_loss=0.646004  7842.9 samples/s  elapsed=42s
+09:47:22  INFO        [CDLinearBaseline epoch 4/10] batch 10458/10458  running_loss=0.645910  7838.3 samples/s  elapsed=43s
+09:47:23  INFO      Starting evaluation over 432 / 432 validation batches …
+09:47:23  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:47:23  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:47:23  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:47:23  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:47:23  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:47:23  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:47:24  INFO        batch  300 / 432   samples=576000   elapsed=1.0 s
+09:47:24  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:47:24  INFO        batch  400 / 432   samples=768000   elapsed=1.4 s
+09:47:24  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:47:24  INFO      [CDLinearBaseline] epoch  4/10 | train_loss=0.645910 | val_MAE=1.8196 (naive=2.4923, beats naive) | val_RMSE=3.2478 | train=42.7s val=1.5s | RAM=1584MB
+09:47:25  INFO        [CDLinearBaseline epoch 5/10] batch   200/10458  running_loss=0.623262  6529.4 samples/s  elapsed=1s
+09:47:26  INFO        [CDLinearBaseline epoch 5/10] batch   400/10458  running_loss=0.639283  7185.0 samples/s  elapsed=2s
+09:47:27  INFO        [CDLinearBaseline epoch 5/10] batch   600/10458  running_loss=0.639143  7449.8 samples/s  elapsed=3s
+09:47:28  INFO        [CDLinearBaseline epoch 5/10] batch   800/10458  running_loss=0.643625  7544.8 samples/s  elapsed=3s
+09:47:28  INFO        [CDLinearBaseline epoch 5/10] batch  1000/10458  running_loss=0.644152  7590.9 samples/s  elapsed=4s
+09:47:29  INFO        [CDLinearBaseline epoch 5/10] batch  1200/10458  running_loss=0.646713  7558.8 samples/s  elapsed=5s
+09:47:30  INFO        [CDLinearBaseline epoch 5/10] batch  1400/10458  running_loss=0.647171  7609.1 samples/s  elapsed=6s
+09:47:31  INFO        [CDLinearBaseline epoch 5/10] batch  1600/10458  running_loss=0.645261  7637.0 samples/s  elapsed=7s
+09:47:32  INFO        [CDLinearBaseline epoch 5/10] batch  1800/10458  running_loss=0.644665  7638.1 samples/s  elapsed=8s
+09:47:33  INFO        [CDLinearBaseline epoch 5/10] batch  2000/10458  running_loss=0.644612  7657.1 samples/s  elapsed=8s
+09:47:33  INFO        [CDLinearBaseline epoch 5/10] batch  2200/10458  running_loss=0.644415  7688.2 samples/s  elapsed=9s
+09:47:34  INFO        [CDLinearBaseline epoch 5/10] batch  2400/10458  running_loss=0.643931  7710.4 samples/s  elapsed=10s
+09:47:35  INFO        [CDLinearBaseline epoch 5/10] batch  2600/10458  running_loss=0.644529  7720.8 samples/s  elapsed=11s
+09:47:36  INFO        [CDLinearBaseline epoch 5/10] batch  2800/10458  running_loss=0.645888  7731.0 samples/s  elapsed=12s
+09:47:37  INFO        [CDLinearBaseline epoch 5/10] batch  3000/10458  running_loss=0.645931  7748.0 samples/s  elapsed=12s
+09:47:37  INFO        [CDLinearBaseline epoch 5/10] batch  3200/10458  running_loss=0.646253  7760.4 samples/s  elapsed=13s
+09:47:38  INFO        [CDLinearBaseline epoch 5/10] batch  3400/10458  running_loss=0.646979  7768.8 samples/s  elapsed=14s
+09:47:39  INFO        [CDLinearBaseline epoch 5/10] batch  3600/10458  running_loss=0.645089  7758.8 samples/s  elapsed=15s
+09:47:40  INFO        [CDLinearBaseline epoch 5/10] batch  3800/10458  running_loss=0.644588  7753.2 samples/s  elapsed=16s
+09:47:41  INFO        [CDLinearBaseline epoch 5/10] batch  4000/10458  running_loss=0.644655  7770.3 samples/s  elapsed=16s
+09:47:41  INFO        [CDLinearBaseline epoch 5/10] batch  4200/10458  running_loss=0.643677  7780.0 samples/s  elapsed=17s
+09:47:42  INFO        [CDLinearBaseline epoch 5/10] batch  4400/10458  running_loss=0.643502  7777.6 samples/s  elapsed=18s
+09:47:43  INFO        [CDLinearBaseline epoch 5/10] batch  4600/10458  running_loss=0.643264  7777.4 samples/s  elapsed=19s
+09:47:44  INFO        [CDLinearBaseline epoch 5/10] batch  4800/10458  running_loss=0.643111  7786.5 samples/s  elapsed=20s
+09:47:45  INFO        [CDLinearBaseline epoch 5/10] batch  5000/10458  running_loss=0.643818  7787.6 samples/s  elapsed=21s
+09:47:46  INFO        [CDLinearBaseline epoch 5/10] batch  5200/10458  running_loss=0.643961  7781.7 samples/s  elapsed=21s
+09:47:46  INFO        [CDLinearBaseline epoch 5/10] batch  5400/10458  running_loss=0.643516  7778.0 samples/s  elapsed=22s
+09:47:47  INFO        [CDLinearBaseline epoch 5/10] batch  5600/10458  running_loss=0.643358  7784.0 samples/s  elapsed=23s
+09:47:48  INFO        [CDLinearBaseline epoch 5/10] batch  5800/10458  running_loss=0.642820  7787.7 samples/s  elapsed=24s
+09:47:49  INFO        [CDLinearBaseline epoch 5/10] batch  6000/10458  running_loss=0.642719  7789.0 samples/s  elapsed=25s
+09:47:50  INFO        [CDLinearBaseline epoch 5/10] batch  6200/10458  running_loss=0.643499  7785.5 samples/s  elapsed=25s
+09:47:50  INFO        [CDLinearBaseline epoch 5/10] batch  6400/10458  running_loss=0.643783  7797.5 samples/s  elapsed=26s
+09:47:51  INFO        [CDLinearBaseline epoch 5/10] batch  6600/10458  running_loss=0.643096  7802.0 samples/s  elapsed=27s
+09:47:52  INFO        [CDLinearBaseline epoch 5/10] batch  6800/10458  running_loss=0.643757  7806.6 samples/s  elapsed=28s
+09:47:53  INFO        [CDLinearBaseline epoch 5/10] batch  7000/10458  running_loss=0.644060  7802.9 samples/s  elapsed=29s
+09:47:54  INFO        [CDLinearBaseline epoch 5/10] batch  7200/10458  running_loss=0.643917  7807.1 samples/s  elapsed=30s
+09:47:54  INFO        [CDLinearBaseline epoch 5/10] batch  7400/10458  running_loss=0.643554  7814.0 samples/s  elapsed=30s
+09:47:55  INFO        [CDLinearBaseline epoch 5/10] batch  7600/10458  running_loss=0.643287  7819.0 samples/s  elapsed=31s
+09:47:56  INFO        [CDLinearBaseline epoch 5/10] batch  7800/10458  running_loss=0.642786  7816.4 samples/s  elapsed=32s
+09:47:57  INFO        [CDLinearBaseline epoch 5/10] batch  8000/10458  running_loss=0.643026  7814.5 samples/s  elapsed=33s
+09:47:58  INFO        [CDLinearBaseline epoch 5/10] batch  8200/10458  running_loss=0.643147  7813.9 samples/s  elapsed=34s
+09:47:59  INFO        [CDLinearBaseline epoch 5/10] batch  8400/10458  running_loss=0.643233  7818.4 samples/s  elapsed=34s
+09:47:59  INFO        [CDLinearBaseline epoch 5/10] batch  8600/10458  running_loss=0.643658  7806.4 samples/s  elapsed=35s
+09:48:00  INFO        [CDLinearBaseline epoch 5/10] batch  8800/10458  running_loss=0.644086  7804.1 samples/s  elapsed=36s
+09:48:01  INFO        [CDLinearBaseline epoch 5/10] batch  9000/10458  running_loss=0.644302  7805.2 samples/s  elapsed=37s
+09:48:02  INFO        [CDLinearBaseline epoch 5/10] batch  9200/10458  running_loss=0.644352  7808.7 samples/s  elapsed=38s
+09:48:03  INFO        [CDLinearBaseline epoch 5/10] batch  9400/10458  running_loss=0.643867  7809.3 samples/s  elapsed=39s
+09:48:04  INFO        [CDLinearBaseline epoch 5/10] batch  9600/10458  running_loss=0.643920  7809.2 samples/s  elapsed=39s
+09:48:04  INFO        [CDLinearBaseline epoch 5/10] batch  9800/10458  running_loss=0.643999  7810.6 samples/s  elapsed=40s
+09:48:05  INFO        [CDLinearBaseline epoch 5/10] batch 10000/10458  running_loss=0.644038  7812.2 samples/s  elapsed=41s
+09:48:06  INFO        [CDLinearBaseline epoch 5/10] batch 10200/10458  running_loss=0.644227  7814.4 samples/s  elapsed=42s
+09:48:07  INFO        [CDLinearBaseline epoch 5/10] batch 10400/10458  running_loss=0.644047  7812.5 samples/s  elapsed=43s
+09:48:07  INFO        [CDLinearBaseline epoch 5/10] batch 10458/10458  running_loss=0.644109  7808.8 samples/s  elapsed=43s
+09:48:07  INFO      Starting evaluation over 432 / 432 validation batches …
+09:48:07  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:48:07  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:48:07  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:48:08  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:48:08  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:48:08  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:48:08  INFO        batch  300 / 432   samples=576000   elapsed=1.0 s
+09:48:08  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:48:08  INFO        batch  400 / 432   samples=768000   elapsed=1.3 s
+09:48:09  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:48:09  INFO      [CDLinearBaseline] epoch  5/10 | train_loss=0.644109 | val_MAE=1.8685 (naive=2.4923, beats naive) | val_RMSE=3.2809 | train=42.9s val=1.5s | RAM=1584MB
+09:48:10  INFO        [CDLinearBaseline epoch 6/10] batch   200/10458  running_loss=0.655015  6356.0 samples/s  elapsed=1s
+09:48:10  INFO        [CDLinearBaseline epoch 6/10] batch   400/10458  running_loss=0.650457  7036.7 samples/s  elapsed=2s
+09:48:11  INFO        [CDLinearBaseline epoch 6/10] batch   600/10458  running_loss=0.650082  7310.2 samples/s  elapsed=3s
+09:48:12  INFO        [CDLinearBaseline epoch 6/10] batch   800/10458  running_loss=0.646838  7465.6 samples/s  elapsed=3s
+09:48:13  INFO        [CDLinearBaseline epoch 6/10] batch  1000/10458  running_loss=0.644267  7500.2 samples/s  elapsed=4s
+09:48:14  INFO        [CDLinearBaseline epoch 6/10] batch  1200/10458  running_loss=0.643657  7492.6 samples/s  elapsed=5s
+09:48:15  INFO        [CDLinearBaseline epoch 6/10] batch  1400/10458  running_loss=0.644549  7539.1 samples/s  elapsed=6s
+09:48:15  INFO        [CDLinearBaseline epoch 6/10] batch  1600/10458  running_loss=0.642376  7587.6 samples/s  elapsed=7s
+09:48:16  INFO        [CDLinearBaseline epoch 6/10] batch  1800/10458  running_loss=0.641894  7615.9 samples/s  elapsed=8s
+09:48:17  INFO        [CDLinearBaseline epoch 6/10] batch  2000/10458  running_loss=0.641259  7623.3 samples/s  elapsed=8s
+09:48:18  INFO        [CDLinearBaseline epoch 6/10] batch  2200/10458  running_loss=0.641594  7626.4 samples/s  elapsed=9s
+09:48:19  INFO        [CDLinearBaseline epoch 6/10] batch  2400/10458  running_loss=0.641220  7643.7 samples/s  elapsed=10s
+09:48:20  INFO        [CDLinearBaseline epoch 6/10] batch  2600/10458  running_loss=0.641953  7639.9 samples/s  elapsed=11s
+09:48:20  INFO        [CDLinearBaseline epoch 6/10] batch  2800/10458  running_loss=0.643586  7661.8 samples/s  elapsed=12s
+09:48:21  INFO        [CDLinearBaseline epoch 6/10] batch  3000/10458  running_loss=0.643694  7659.6 samples/s  elapsed=13s
+09:48:22  INFO        [CDLinearBaseline epoch 6/10] batch  3200/10458  running_loss=0.644371  7678.8 samples/s  elapsed=13s
+09:48:23  INFO        [CDLinearBaseline epoch 6/10] batch  3400/10458  running_loss=0.644195  7695.9 samples/s  elapsed=14s
+09:48:24  INFO        [CDLinearBaseline epoch 6/10] batch  3600/10458  running_loss=0.643788  7709.3 samples/s  elapsed=15s
+09:48:24  INFO        [CDLinearBaseline epoch 6/10] batch  3800/10458  running_loss=0.642935  7713.8 samples/s  elapsed=16s
+09:48:25  INFO        [CDLinearBaseline epoch 6/10] batch  4000/10458  running_loss=0.642427  7717.2 samples/s  elapsed=17s
+09:48:26  INFO        [CDLinearBaseline epoch 6/10] batch  4200/10458  running_loss=0.642716  7735.2 samples/s  elapsed=17s
+09:48:27  INFO        [CDLinearBaseline epoch 6/10] batch  4400/10458  running_loss=0.642909  7742.4 samples/s  elapsed=18s
+09:48:28  INFO        [CDLinearBaseline epoch 6/10] batch  4600/10458  running_loss=0.642774  7750.3 samples/s  elapsed=19s
+09:48:28  INFO        [CDLinearBaseline epoch 6/10] batch  4800/10458  running_loss=0.642404  7757.9 samples/s  elapsed=20s
+09:48:29  INFO        [CDLinearBaseline epoch 6/10] batch  5000/10458  running_loss=0.641897  7759.2 samples/s  elapsed=21s
+09:48:30  INFO        [CDLinearBaseline epoch 6/10] batch  5200/10458  running_loss=0.641929  7766.2 samples/s  elapsed=21s
+09:48:31  INFO        [CDLinearBaseline epoch 6/10] batch  5400/10458  running_loss=0.641979  7771.3 samples/s  elapsed=22s
+09:48:32  INFO        [CDLinearBaseline epoch 6/10] batch  5600/10458  running_loss=0.641975  7769.4 samples/s  elapsed=23s
+09:48:33  INFO        [CDLinearBaseline epoch 6/10] batch  5800/10458  running_loss=0.641586  7777.6 samples/s  elapsed=24s
+09:48:33  INFO        [CDLinearBaseline epoch 6/10] batch  6000/10458  running_loss=0.641414  7781.4 samples/s  elapsed=25s
+09:48:34  INFO        [CDLinearBaseline epoch 6/10] batch  6200/10458  running_loss=0.641667  7779.2 samples/s  elapsed=26s
+09:48:35  INFO        [CDLinearBaseline epoch 6/10] batch  6400/10458  running_loss=0.641133  7775.8 samples/s  elapsed=26s
+09:48:36  INFO        [CDLinearBaseline epoch 6/10] batch  6600/10458  running_loss=0.640849  7777.3 samples/s  elapsed=27s
+09:48:37  INFO        [CDLinearBaseline epoch 6/10] batch  6800/10458  running_loss=0.640977  7779.3 samples/s  elapsed=28s
+09:48:37  INFO        [CDLinearBaseline epoch 6/10] batch  7000/10458  running_loss=0.640577  7784.4 samples/s  elapsed=29s
+09:48:38  INFO        [CDLinearBaseline epoch 6/10] batch  7200/10458  running_loss=0.640576  7782.4 samples/s  elapsed=30s
+09:48:39  INFO        [CDLinearBaseline epoch 6/10] batch  7400/10458  running_loss=0.641034  7784.8 samples/s  elapsed=30s
+09:48:40  INFO        [CDLinearBaseline epoch 6/10] batch  7600/10458  running_loss=0.641653  7782.3 samples/s  elapsed=31s
+09:48:41  INFO        [CDLinearBaseline epoch 6/10] batch  7800/10458  running_loss=0.641573  7785.6 samples/s  elapsed=32s
+09:48:42  INFO        [CDLinearBaseline epoch 6/10] batch  8000/10458  running_loss=0.641664  7791.8 samples/s  elapsed=33s
+09:48:42  INFO        [CDLinearBaseline epoch 6/10] batch  8200/10458  running_loss=0.642292  7793.9 samples/s  elapsed=34s
+09:48:43  INFO        [CDLinearBaseline epoch 6/10] batch  8400/10458  running_loss=0.642384  7799.4 samples/s  elapsed=34s
+09:48:44  INFO        [CDLinearBaseline epoch 6/10] batch  8600/10458  running_loss=0.642285  7797.7 samples/s  elapsed=35s
+09:48:45  INFO        [CDLinearBaseline epoch 6/10] batch  8800/10458  running_loss=0.642725  7801.3 samples/s  elapsed=36s
+09:48:46  INFO        [CDLinearBaseline epoch 6/10] batch  9000/10458  running_loss=0.643101  7804.8 samples/s  elapsed=37s
+09:48:46  INFO        [CDLinearBaseline epoch 6/10] batch  9200/10458  running_loss=0.642897  7809.0 samples/s  elapsed=38s
+09:48:47  INFO        [CDLinearBaseline epoch 6/10] batch  9400/10458  running_loss=0.643153  7813.4 samples/s  elapsed=38s
+09:48:48  INFO        [CDLinearBaseline epoch 6/10] batch  9600/10458  running_loss=0.643338  7816.8 samples/s  elapsed=39s
+09:48:49  INFO        [CDLinearBaseline epoch 6/10] batch  9800/10458  running_loss=0.643208  7820.3 samples/s  elapsed=40s
+09:48:50  INFO        [CDLinearBaseline epoch 6/10] batch 10000/10458  running_loss=0.642959  7821.8 samples/s  elapsed=41s
+09:48:50  INFO        [CDLinearBaseline epoch 6/10] batch 10200/10458  running_loss=0.643154  7825.4 samples/s  elapsed=42s
+09:48:51  INFO        [CDLinearBaseline epoch 6/10] batch 10400/10458  running_loss=0.642823  7828.8 samples/s  elapsed=43s
+09:48:51  INFO        [CDLinearBaseline epoch 6/10] batch 10458/10458  running_loss=0.642900  7825.3 samples/s  elapsed=43s
+09:48:51  INFO      Starting evaluation over 432 / 432 validation batches …
+09:48:52  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:48:52  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:48:52  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:48:52  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:48:52  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:48:52  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:48:52  INFO        batch  300 / 432   samples=576000   elapsed=1.0 s
+09:48:53  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:48:53  INFO        batch  400 / 432   samples=768000   elapsed=1.3 s
+09:48:53  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:48:53  INFO      [CDLinearBaseline] epoch  6/10 | train_loss=0.642900 | val_MAE=1.8568 (naive=2.4923, beats naive) | val_RMSE=3.2399 | train=42.8s val=1.5s | RAM=1584MB
+09:48:54  INFO        [CDLinearBaseline epoch 7/10] batch   200/10458  running_loss=0.634723  6844.0 samples/s  elapsed=1s
+09:48:55  INFO        [CDLinearBaseline epoch 7/10] batch   400/10458  running_loss=0.633515  7344.6 samples/s  elapsed=2s
+09:48:56  INFO        [CDLinearBaseline epoch 7/10] batch   600/10458  running_loss=0.631741  7554.5 samples/s  elapsed=3s
+09:48:56  INFO        [CDLinearBaseline epoch 7/10] batch   800/10458  running_loss=0.635124  7652.8 samples/s  elapsed=3s
+09:48:57  INFO        [CDLinearBaseline epoch 7/10] batch  1000/10458  running_loss=0.632967  7713.2 samples/s  elapsed=4s
+09:48:58  INFO        [CDLinearBaseline epoch 7/10] batch  1200/10458  running_loss=0.631120  7748.4 samples/s  elapsed=5s
+09:48:59  INFO        [CDLinearBaseline epoch 7/10] batch  1400/10458  running_loss=0.631757  7755.2 samples/s  elapsed=6s
+09:49:00  INFO        [CDLinearBaseline epoch 7/10] batch  1600/10458  running_loss=0.631220  7713.4 samples/s  elapsed=7s
+09:49:00  INFO        [CDLinearBaseline epoch 7/10] batch  1800/10458  running_loss=0.631817  7732.8 samples/s  elapsed=7s
+09:49:01  INFO        [CDLinearBaseline epoch 7/10] batch  2000/10458  running_loss=0.632375  7743.7 samples/s  elapsed=8s
+09:49:02  INFO        [CDLinearBaseline epoch 7/10] batch  2200/10458  running_loss=0.632265  7763.9 samples/s  elapsed=9s
+09:49:03  INFO        [CDLinearBaseline epoch 7/10] batch  2400/10458  running_loss=0.632956  7769.9 samples/s  elapsed=10s
+09:49:04  INFO        [CDLinearBaseline epoch 7/10] batch  2600/10458  running_loss=0.634373  7783.1 samples/s  elapsed=11s
+09:49:05  INFO        [CDLinearBaseline epoch 7/10] batch  2800/10458  running_loss=0.636105  7794.3 samples/s  elapsed=11s
+09:49:05  INFO        [CDLinearBaseline epoch 7/10] batch  3000/10458  running_loss=0.635276  7806.0 samples/s  elapsed=12s
+09:49:06  INFO        [CDLinearBaseline epoch 7/10] batch  3200/10458  running_loss=0.635791  7809.3 samples/s  elapsed=13s
+09:49:07  INFO        [CDLinearBaseline epoch 7/10] batch  3400/10458  running_loss=0.634353  7815.4 samples/s  elapsed=14s
+09:49:08  INFO        [CDLinearBaseline epoch 7/10] batch  3600/10458  running_loss=0.632706  7820.8 samples/s  elapsed=15s
+09:49:09  INFO        [CDLinearBaseline epoch 7/10] batch  3800/10458  running_loss=0.632395  7830.5 samples/s  elapsed=16s
+09:49:09  INFO        [CDLinearBaseline epoch 7/10] batch  4000/10458  running_loss=0.632783  7822.1 samples/s  elapsed=16s
+09:49:10  INFO        [CDLinearBaseline epoch 7/10] batch  4200/10458  running_loss=0.632638  7832.0 samples/s  elapsed=17s
+09:49:11  INFO        [CDLinearBaseline epoch 7/10] batch  4400/10458  running_loss=0.633858  7839.0 samples/s  elapsed=18s
+09:49:12  INFO        [CDLinearBaseline epoch 7/10] batch  4600/10458  running_loss=0.632875  7845.9 samples/s  elapsed=19s
+09:49:13  INFO        [CDLinearBaseline epoch 7/10] batch  4800/10458  running_loss=0.633100  7847.7 samples/s  elapsed=20s
+09:49:13  INFO        [CDLinearBaseline epoch 7/10] batch  5000/10458  running_loss=0.634125  7852.1 samples/s  elapsed=20s
+09:49:14  INFO        [CDLinearBaseline epoch 7/10] batch  5200/10458  running_loss=0.634724  7848.2 samples/s  elapsed=21s
+09:49:15  INFO        [CDLinearBaseline epoch 7/10] batch  5400/10458  running_loss=0.634393  7837.0 samples/s  elapsed=22s
+09:49:16  INFO        [CDLinearBaseline epoch 7/10] batch  5600/10458  running_loss=0.634982  7840.2 samples/s  elapsed=23s
+09:49:17  INFO        [CDLinearBaseline epoch 7/10] batch  5800/10458  running_loss=0.635103  7839.8 samples/s  elapsed=24s
+09:49:17  INFO        [CDLinearBaseline epoch 7/10] batch  6000/10458  running_loss=0.635158  7847.8 samples/s  elapsed=24s
+09:49:18  INFO        [CDLinearBaseline epoch 7/10] batch  6200/10458  running_loss=0.635657  7851.2 samples/s  elapsed=25s
+09:49:19  INFO        [CDLinearBaseline epoch 7/10] batch  6400/10458  running_loss=0.635652  7850.1 samples/s  elapsed=26s
+09:49:20  INFO        [CDLinearBaseline epoch 7/10] batch  6600/10458  running_loss=0.636155  7855.1 samples/s  elapsed=27s
+09:49:21  INFO        [CDLinearBaseline epoch 7/10] batch  6800/10458  running_loss=0.636792  7860.0 samples/s  elapsed=28s
+09:49:22  INFO        [CDLinearBaseline epoch 7/10] batch  7000/10458  running_loss=0.637396  7865.6 samples/s  elapsed=28s
+09:49:22  INFO        [CDLinearBaseline epoch 7/10] batch  7200/10458  running_loss=0.637509  7871.1 samples/s  elapsed=29s
+09:49:23  INFO        [CDLinearBaseline epoch 7/10] batch  7400/10458  running_loss=0.636789  7870.2 samples/s  elapsed=30s
+09:49:24  INFO        [CDLinearBaseline epoch 7/10] batch  7600/10458  running_loss=0.637463  7872.0 samples/s  elapsed=31s
+09:49:25  INFO        [CDLinearBaseline epoch 7/10] batch  7800/10458  running_loss=0.637979  7872.3 samples/s  elapsed=32s
+09:49:26  INFO        [CDLinearBaseline epoch 7/10] batch  8000/10458  running_loss=0.638509  7876.1 samples/s  elapsed=33s
+09:49:26  INFO        [CDLinearBaseline epoch 7/10] batch  8200/10458  running_loss=0.638784  7877.1 samples/s  elapsed=33s
+09:49:27  INFO        [CDLinearBaseline epoch 7/10] batch  8400/10458  running_loss=0.639001  7878.2 samples/s  elapsed=34s
+09:49:28  INFO        [CDLinearBaseline epoch 7/10] batch  8600/10458  running_loss=0.639401  7880.4 samples/s  elapsed=35s
+09:49:29  INFO        [CDLinearBaseline epoch 7/10] batch  8800/10458  running_loss=0.639808  7885.0 samples/s  elapsed=36s
+09:49:30  INFO        [CDLinearBaseline epoch 7/10] batch  9000/10458  running_loss=0.640379  7880.1 samples/s  elapsed=37s
+09:49:30  INFO        [CDLinearBaseline epoch 7/10] batch  9200/10458  running_loss=0.640748  7882.2 samples/s  elapsed=37s
+09:49:31  INFO        [CDLinearBaseline epoch 7/10] batch  9400/10458  running_loss=0.640755  7886.1 samples/s  elapsed=38s
+09:49:32  INFO        [CDLinearBaseline epoch 7/10] batch  9600/10458  running_loss=0.640871  7888.0 samples/s  elapsed=39s
+09:49:33  INFO        [CDLinearBaseline epoch 7/10] batch  9800/10458  running_loss=0.641109  7888.5 samples/s  elapsed=40s
+09:49:34  INFO        [CDLinearBaseline epoch 7/10] batch 10000/10458  running_loss=0.641416  7892.1 samples/s  elapsed=41s
+09:49:34  INFO        [CDLinearBaseline epoch 7/10] batch 10200/10458  running_loss=0.641502  7894.9 samples/s  elapsed=41s
+09:49:35  INFO        [CDLinearBaseline epoch 7/10] batch 10400/10458  running_loss=0.641730  7898.0 samples/s  elapsed=42s
+09:49:35  INFO        [CDLinearBaseline epoch 7/10] batch 10458/10458  running_loss=0.641580  7894.7 samples/s  elapsed=42s
+09:49:35  INFO      Starting evaluation over 432 / 432 validation batches …
+09:49:36  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:49:36  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:49:36  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:49:36  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:49:36  INFO        batch  200 / 432   samples=384000   elapsed=0.8 s
+09:49:36  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:49:37  INFO        batch  300 / 432   samples=576000   elapsed=1.1 s
+09:49:37  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:49:37  INFO        batch  400 / 432   samples=768000   elapsed=1.4 s
+09:49:37  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:49:37  INFO      [CDLinearBaseline] epoch  7/10 | train_loss=0.641580 | val_MAE=1.8504 (naive=2.4923, beats naive) | val_RMSE=3.2471 | train=42.4s val=1.5s | RAM=1584MB
+09:49:38  INFO        [CDLinearBaseline epoch 8/10] batch   200/10458  running_loss=0.625512  6752.6 samples/s  elapsed=1s
+09:49:39  INFO        [CDLinearBaseline epoch 8/10] batch   400/10458  running_loss=0.624510  7367.1 samples/s  elapsed=2s
+09:49:40  INFO        [CDLinearBaseline epoch 8/10] batch   600/10458  running_loss=0.629819  7457.6 samples/s  elapsed=3s
+09:49:40  INFO        [CDLinearBaseline epoch 8/10] batch   800/10458  running_loss=0.636913  7602.8 samples/s  elapsed=3s
+09:49:41  INFO        [CDLinearBaseline epoch 8/10] batch  1000/10458  running_loss=0.640151  7696.2 samples/s  elapsed=4s
+09:49:42  INFO        [CDLinearBaseline epoch 8/10] batch  1200/10458  running_loss=0.640892  7750.9 samples/s  elapsed=5s
+09:49:43  INFO        [CDLinearBaseline epoch 8/10] batch  1400/10458  running_loss=0.639979  7780.7 samples/s  elapsed=6s
+09:49:44  INFO        [CDLinearBaseline epoch 8/10] batch  1600/10458  running_loss=0.640768  7801.5 samples/s  elapsed=7s
+09:49:44  INFO        [CDLinearBaseline epoch 8/10] batch  1800/10458  running_loss=0.639538  7814.3 samples/s  elapsed=7s
+09:49:45  INFO        [CDLinearBaseline epoch 8/10] batch  2000/10458  running_loss=0.638133  7834.9 samples/s  elapsed=8s
+09:49:46  INFO        [CDLinearBaseline epoch 8/10] batch  2200/10458  running_loss=0.638181  7851.0 samples/s  elapsed=9s
+09:49:47  INFO        [CDLinearBaseline epoch 8/10] batch  2400/10458  running_loss=0.637798  7873.0 samples/s  elapsed=10s
+09:49:48  INFO        [CDLinearBaseline epoch 8/10] batch  2600/10458  running_loss=0.638180  7883.1 samples/s  elapsed=11s
+09:49:48  INFO        [CDLinearBaseline epoch 8/10] batch  2800/10458  running_loss=0.639722  7885.0 samples/s  elapsed=11s
+09:49:49  INFO        [CDLinearBaseline epoch 8/10] batch  3000/10458  running_loss=0.640023  7880.2 samples/s  elapsed=12s
+09:49:50  INFO        [CDLinearBaseline epoch 8/10] batch  3200/10458  running_loss=0.639233  7889.6 samples/s  elapsed=13s
+09:49:51  INFO        [CDLinearBaseline epoch 8/10] batch  3400/10458  running_loss=0.639441  7898.9 samples/s  elapsed=14s
+09:49:52  INFO        [CDLinearBaseline epoch 8/10] batch  3600/10458  running_loss=0.640128  7906.5 samples/s  elapsed=15s
+09:49:52  INFO        [CDLinearBaseline epoch 8/10] batch  3800/10458  running_loss=0.640122  7910.1 samples/s  elapsed=15s
+09:49:53  INFO        [CDLinearBaseline epoch 8/10] batch  4000/10458  running_loss=0.639950  7915.8 samples/s  elapsed=16s
+09:49:54  INFO        [CDLinearBaseline epoch 8/10] batch  4200/10458  running_loss=0.640577  7920.3 samples/s  elapsed=17s
+09:49:55  INFO        [CDLinearBaseline epoch 8/10] batch  4400/10458  running_loss=0.641166  7918.8 samples/s  elapsed=18s
+09:49:56  INFO        [CDLinearBaseline epoch 8/10] batch  4600/10458  running_loss=0.641631  7925.4 samples/s  elapsed=19s
+09:49:56  INFO        [CDLinearBaseline epoch 8/10] batch  4800/10458  running_loss=0.641168  7928.6 samples/s  elapsed=19s
+09:49:57  INFO        [CDLinearBaseline epoch 8/10] batch  5000/10458  running_loss=0.640521  7927.2 samples/s  elapsed=20s
+09:49:58  INFO        [CDLinearBaseline epoch 8/10] batch  5200/10458  running_loss=0.640714  7931.2 samples/s  elapsed=21s
+09:49:59  INFO        [CDLinearBaseline epoch 8/10] batch  5400/10458  running_loss=0.640668  7937.0 samples/s  elapsed=22s
+09:50:00  INFO        [CDLinearBaseline epoch 8/10] batch  5600/10458  running_loss=0.640578  7929.4 samples/s  elapsed=23s
+09:50:00  INFO        [CDLinearBaseline epoch 8/10] batch  5800/10458  running_loss=0.641099  7934.7 samples/s  elapsed=23s
+09:50:01  INFO        [CDLinearBaseline epoch 8/10] batch  6000/10458  running_loss=0.641766  7936.5 samples/s  elapsed=24s
+09:50:02  INFO        [CDLinearBaseline epoch 8/10] batch  6200/10458  running_loss=0.642385  7937.4 samples/s  elapsed=25s
+09:50:03  INFO        [CDLinearBaseline epoch 8/10] batch  6400/10458  running_loss=0.642632  7940.4 samples/s  elapsed=26s
+09:50:04  INFO        [CDLinearBaseline epoch 8/10] batch  6600/10458  running_loss=0.642110  7945.4 samples/s  elapsed=27s
+09:50:04  INFO        [CDLinearBaseline epoch 8/10] batch  6800/10458  running_loss=0.641893  7949.0 samples/s  elapsed=27s
+09:50:05  INFO        [CDLinearBaseline epoch 8/10] batch  7000/10458  running_loss=0.642086  7947.0 samples/s  elapsed=28s
+09:50:06  INFO        [CDLinearBaseline epoch 8/10] batch  7200/10458  running_loss=0.642121  7947.6 samples/s  elapsed=29s
+09:50:07  INFO        [CDLinearBaseline epoch 8/10] batch  7400/10458  running_loss=0.642458  7949.3 samples/s  elapsed=30s
+09:50:08  INFO        [CDLinearBaseline epoch 8/10] batch  7600/10458  running_loss=0.642441  7948.7 samples/s  elapsed=31s
+09:50:08  INFO        [CDLinearBaseline epoch 8/10] batch  7800/10458  running_loss=0.642109  7946.9 samples/s  elapsed=31s
+09:50:09  INFO        [CDLinearBaseline epoch 8/10] batch  8000/10458  running_loss=0.641987  7931.1 samples/s  elapsed=32s
+09:50:10  INFO        [CDLinearBaseline epoch 8/10] batch  8200/10458  running_loss=0.641734  7930.2 samples/s  elapsed=33s
+09:50:11  INFO        [CDLinearBaseline epoch 8/10] batch  8400/10458  running_loss=0.641778  7931.3 samples/s  elapsed=34s
+09:50:12  INFO        [CDLinearBaseline epoch 8/10] batch  8600/10458  running_loss=0.641939  7933.0 samples/s  elapsed=35s
+09:50:13  INFO        [CDLinearBaseline epoch 8/10] batch  8800/10458  running_loss=0.641993  7929.9 samples/s  elapsed=36s
+09:50:13  INFO        [CDLinearBaseline epoch 8/10] batch  9000/10458  running_loss=0.641880  7931.5 samples/s  elapsed=36s
+09:50:14  INFO        [CDLinearBaseline epoch 8/10] batch  9200/10458  running_loss=0.641830  7933.2 samples/s  elapsed=37s
+09:50:15  INFO        [CDLinearBaseline epoch 8/10] batch  9400/10458  running_loss=0.641658  7931.7 samples/s  elapsed=38s
+09:50:16  INFO        [CDLinearBaseline epoch 8/10] batch  9600/10458  running_loss=0.641459  7929.7 samples/s  elapsed=39s
+09:50:17  INFO        [CDLinearBaseline epoch 8/10] batch  9800/10458  running_loss=0.641426  7929.4 samples/s  elapsed=40s
+09:50:17  INFO        [CDLinearBaseline epoch 8/10] batch 10000/10458  running_loss=0.641623  7929.1 samples/s  elapsed=40s
+09:50:18  INFO        [CDLinearBaseline epoch 8/10] batch 10200/10458  running_loss=0.641539  7930.8 samples/s  elapsed=41s
+09:50:19  INFO        [CDLinearBaseline epoch 8/10] batch 10400/10458  running_loss=0.641352  7929.7 samples/s  elapsed=42s
+09:50:19  INFO        [CDLinearBaseline epoch 8/10] batch 10458/10458  running_loss=0.641255  7920.3 samples/s  elapsed=42s
+09:50:19  INFO      Starting evaluation over 432 / 432 validation batches …
+09:50:19  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:50:20  INFO        batch   50 / 432   samples=96000   elapsed=0.2 s
+09:50:20  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:50:20  INFO        batch  150 / 432   samples=288000   elapsed=0.5 s
+09:50:20  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:50:20  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:50:20  INFO        batch  300 / 432   samples=576000   elapsed=1.0 s
+09:50:21  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:50:21  INFO        batch  400 / 432   samples=768000   elapsed=1.3 s
+09:50:21  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.4 s
+09:50:21  INFO      [CDLinearBaseline] epoch  8/10 | train_loss=0.641255 | val_MAE=1.8642 (naive=2.4923, beats naive) | val_RMSE=3.2950 | train=42.3s val=1.5s | RAM=1584MB
+09:50:22  INFO        [CDLinearBaseline epoch 9/10] batch   200/10458  running_loss=0.627672  6792.6 samples/s  elapsed=1s
+09:50:23  INFO        [CDLinearBaseline epoch 9/10] batch   400/10458  running_loss=0.641296  7366.3 samples/s  elapsed=2s
+09:50:23  INFO        [CDLinearBaseline epoch 9/10] batch   600/10458  running_loss=0.638420  7509.8 samples/s  elapsed=3s
+09:50:24  INFO        [CDLinearBaseline epoch 9/10] batch   800/10458  running_loss=0.639495  7630.9 samples/s  elapsed=3s
+09:50:25  INFO        [CDLinearBaseline epoch 9/10] batch  1000/10458  running_loss=0.640783  7706.2 samples/s  elapsed=4s
+09:50:26  INFO        [CDLinearBaseline epoch 9/10] batch  1200/10458  running_loss=0.641540  7745.3 samples/s  elapsed=5s
+09:50:27  INFO        [CDLinearBaseline epoch 9/10] batch  1400/10458  running_loss=0.641120  7768.9 samples/s  elapsed=6s
+09:50:28  INFO        [CDLinearBaseline epoch 9/10] batch  1600/10458  running_loss=0.638161  7783.6 samples/s  elapsed=7s
+09:50:28  INFO        [CDLinearBaseline epoch 9/10] batch  1800/10458  running_loss=0.637413  7817.4 samples/s  elapsed=7s
+09:50:29  INFO        [CDLinearBaseline epoch 9/10] batch  2000/10458  running_loss=0.638550  7811.6 samples/s  elapsed=8s
+09:50:30  INFO        [CDLinearBaseline epoch 9/10] batch  2200/10458  running_loss=0.637820  7818.4 samples/s  elapsed=9s
+09:50:31  INFO        [CDLinearBaseline epoch 9/10] batch  2400/10458  running_loss=0.637744  7832.2 samples/s  elapsed=10s
+09:50:32  INFO        [CDLinearBaseline epoch 9/10] batch  2600/10458  running_loss=0.637348  7839.1 samples/s  elapsed=11s
+09:50:32  INFO        [CDLinearBaseline epoch 9/10] batch  2800/10458  running_loss=0.638830  7846.6 samples/s  elapsed=11s
+09:50:33  INFO        [CDLinearBaseline epoch 9/10] batch  3000/10458  running_loss=0.639286  7853.0 samples/s  elapsed=12s
+09:50:34  INFO        [CDLinearBaseline epoch 9/10] batch  3200/10458  running_loss=0.638397  7859.2 samples/s  elapsed=13s
+09:50:35  INFO        [CDLinearBaseline epoch 9/10] batch  3400/10458  running_loss=0.637344  7850.1 samples/s  elapsed=14s
+09:50:36  INFO        [CDLinearBaseline epoch 9/10] batch  3600/10458  running_loss=0.637549  7847.4 samples/s  elapsed=15s
+09:50:36  INFO        [CDLinearBaseline epoch 9/10] batch  3800/10458  running_loss=0.637404  7847.3 samples/s  elapsed=15s
+09:50:37  INFO        [CDLinearBaseline epoch 9/10] batch  4000/10458  running_loss=0.637559  7850.0 samples/s  elapsed=16s
+09:50:38  INFO        [CDLinearBaseline epoch 9/10] batch  4200/10458  running_loss=0.637555  7856.5 samples/s  elapsed=17s
+09:50:39  INFO        [CDLinearBaseline epoch 9/10] batch  4400/10458  running_loss=0.638528  7865.2 samples/s  elapsed=18s
+09:50:40  INFO        [CDLinearBaseline epoch 9/10] batch  4600/10458  running_loss=0.638654  7861.9 samples/s  elapsed=19s
+09:50:40  INFO        [CDLinearBaseline epoch 9/10] batch  4800/10458  running_loss=0.638768  7867.7 samples/s  elapsed=20s
+09:50:41  INFO        [CDLinearBaseline epoch 9/10] batch  5000/10458  running_loss=0.639854  7867.6 samples/s  elapsed=20s
+09:50:42  INFO        [CDLinearBaseline epoch 9/10] batch  5200/10458  running_loss=0.639620  7864.3 samples/s  elapsed=21s
+09:50:43  INFO        [CDLinearBaseline epoch 9/10] batch  5400/10458  running_loss=0.640006  7866.5 samples/s  elapsed=22s
+09:50:44  INFO        [CDLinearBaseline epoch 9/10] batch  5600/10458  running_loss=0.639241  7865.0 samples/s  elapsed=23s
+09:50:45  INFO        [CDLinearBaseline epoch 9/10] batch  5800/10458  running_loss=0.639535  7868.4 samples/s  elapsed=24s
+09:50:45  INFO        [CDLinearBaseline epoch 9/10] batch  6000/10458  running_loss=0.639945  7870.3 samples/s  elapsed=24s
+09:50:46  INFO        [CDLinearBaseline epoch 9/10] batch  6200/10458  running_loss=0.639636  7872.9 samples/s  elapsed=25s
+09:50:47  INFO        [CDLinearBaseline epoch 9/10] batch  6400/10458  running_loss=0.639579  7873.1 samples/s  elapsed=26s
+09:50:48  INFO        [CDLinearBaseline epoch 9/10] batch  6600/10458  running_loss=0.640136  7869.3 samples/s  elapsed=27s
+09:50:49  INFO        [CDLinearBaseline epoch 9/10] batch  6800/10458  running_loss=0.639360  7876.5 samples/s  elapsed=28s
+09:50:49  INFO        [CDLinearBaseline epoch 9/10] batch  7000/10458  running_loss=0.639456  7871.9 samples/s  elapsed=28s
+09:50:50  INFO        [CDLinearBaseline epoch 9/10] batch  7200/10458  running_loss=0.640187  7879.1 samples/s  elapsed=29s
+09:50:51  INFO        [CDLinearBaseline epoch 9/10] batch  7400/10458  running_loss=0.640034  7880.5 samples/s  elapsed=30s
+09:50:52  INFO        [CDLinearBaseline epoch 9/10] batch  7600/10458  running_loss=0.639944  7882.8 samples/s  elapsed=31s
+09:50:53  INFO        [CDLinearBaseline epoch 9/10] batch  7800/10458  running_loss=0.639462  7888.3 samples/s  elapsed=32s
+09:50:53  INFO        [CDLinearBaseline epoch 9/10] batch  8000/10458  running_loss=0.639477  7892.0 samples/s  elapsed=32s
+09:50:54  INFO        [CDLinearBaseline epoch 9/10] batch  8200/10458  running_loss=0.639688  7896.3 samples/s  elapsed=33s
+09:50:55  INFO        [CDLinearBaseline epoch 9/10] batch  8400/10458  running_loss=0.639641  7895.7 samples/s  elapsed=34s
+09:50:56  INFO        [CDLinearBaseline epoch 9/10] batch  8600/10458  running_loss=0.640015  7900.3 samples/s  elapsed=35s
+09:50:57  INFO        [CDLinearBaseline epoch 9/10] batch  8800/10458  running_loss=0.640105  7902.1 samples/s  elapsed=36s
+09:50:57  INFO        [CDLinearBaseline epoch 9/10] batch  9000/10458  running_loss=0.639395  7903.6 samples/s  elapsed=36s
+09:50:58  INFO        [CDLinearBaseline epoch 9/10] batch  9200/10458  running_loss=0.639603  7906.3 samples/s  elapsed=37s
+09:50:59  INFO        [CDLinearBaseline epoch 9/10] batch  9400/10458  running_loss=0.639686  7905.8 samples/s  elapsed=38s
+09:51:00  INFO        [CDLinearBaseline epoch 9/10] batch  9600/10458  running_loss=0.639829  7898.7 samples/s  elapsed=39s
+09:51:01  INFO        [CDLinearBaseline epoch 9/10] batch  9800/10458  running_loss=0.640270  7901.8 samples/s  elapsed=40s
+09:51:01  INFO        [CDLinearBaseline epoch 9/10] batch 10000/10458  running_loss=0.640297  7903.9 samples/s  elapsed=40s
+09:51:02  INFO        [CDLinearBaseline epoch 9/10] batch 10200/10458  running_loss=0.640331  7904.1 samples/s  elapsed=41s
+09:51:03  INFO        [CDLinearBaseline epoch 9/10] batch 10400/10458  running_loss=0.640588  7905.4 samples/s  elapsed=42s
+09:51:03  INFO        [CDLinearBaseline epoch 9/10] batch 10458/10458  running_loss=0.640609  7902.3 samples/s  elapsed=42s
+09:51:03  INFO      Starting evaluation over 432 / 432 validation batches …
+09:51:03  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:51:04  INFO        batch   50 / 432   samples=96000   elapsed=0.2 s
+09:51:04  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:51:04  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:51:04  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:51:04  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:51:04  INFO        batch  300 / 432   samples=576000   elapsed=1.0 s
+09:51:04  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:51:05  INFO        batch  400 / 432   samples=768000   elapsed=1.3 s
+09:51:05  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:51:05  INFO      [CDLinearBaseline] epoch  9/10 | train_loss=0.640609 | val_MAE=1.8524 (naive=2.4923, beats naive) | val_RMSE=3.2433 | train=42.4s val=1.5s | RAM=1584MB
+09:51:06  INFO        [CDLinearBaseline epoch 10/10] batch   200/10458  running_loss=0.609985  6852.6 samples/s  elapsed=1s
+09:51:07  INFO        [CDLinearBaseline epoch 10/10] batch   400/10458  running_loss=0.622685  7366.5 samples/s  elapsed=2s
+09:51:07  INFO        [CDLinearBaseline epoch 10/10] batch   600/10458  running_loss=0.629909  7552.2 samples/s  elapsed=3s
+09:51:08  INFO        [CDLinearBaseline epoch 10/10] batch   800/10458  running_loss=0.625150  7623.2 samples/s  elapsed=3s
+09:51:09  INFO        [CDLinearBaseline epoch 10/10] batch  1000/10458  running_loss=0.630146  7621.8 samples/s  elapsed=4s
+09:51:10  INFO        [CDLinearBaseline epoch 10/10] batch  1200/10458  running_loss=0.634211  7666.6 samples/s  elapsed=5s
+09:51:11  INFO        [CDLinearBaseline epoch 10/10] batch  1400/10458  running_loss=0.633569  7675.5 samples/s  elapsed=6s
+09:51:12  INFO        [CDLinearBaseline epoch 10/10] batch  1600/10458  running_loss=0.636113  7710.7 samples/s  elapsed=7s
+09:51:12  INFO        [CDLinearBaseline epoch 10/10] batch  1800/10458  running_loss=0.635933  7734.6 samples/s  elapsed=7s
+09:51:13  INFO        [CDLinearBaseline epoch 10/10] batch  2000/10458  running_loss=0.636102  7760.8 samples/s  elapsed=8s
+09:51:14  INFO        [CDLinearBaseline epoch 10/10] batch  2200/10458  running_loss=0.637779  7781.5 samples/s  elapsed=9s
+09:51:15  INFO        [CDLinearBaseline epoch 10/10] batch  2400/10458  running_loss=0.638395  7794.5 samples/s  elapsed=10s
+09:51:16  INFO        [CDLinearBaseline epoch 10/10] batch  2600/10458  running_loss=0.638530  7793.4 samples/s  elapsed=11s
+09:51:16  INFO        [CDLinearBaseline epoch 10/10] batch  2800/10458  running_loss=0.639272  7803.3 samples/s  elapsed=11s
+09:51:17  INFO        [CDLinearBaseline epoch 10/10] batch  3000/10458  running_loss=0.639152  7804.0 samples/s  elapsed=12s
+09:51:18  INFO        [CDLinearBaseline epoch 10/10] batch  3200/10458  running_loss=0.639254  7813.5 samples/s  elapsed=13s
+09:51:19  INFO        [CDLinearBaseline epoch 10/10] batch  3400/10458  running_loss=0.639813  7817.5 samples/s  elapsed=14s
+09:51:20  INFO        [CDLinearBaseline epoch 10/10] batch  3600/10458  running_loss=0.641131  7807.5 samples/s  elapsed=15s
+09:51:20  INFO        [CDLinearBaseline epoch 10/10] batch  3800/10458  running_loss=0.641126  7814.7 samples/s  elapsed=16s
+09:51:21  INFO        [CDLinearBaseline epoch 10/10] batch  4000/10458  running_loss=0.640137  7823.8 samples/s  elapsed=16s
+09:51:22  INFO        [CDLinearBaseline epoch 10/10] batch  4200/10458  running_loss=0.639643  7831.2 samples/s  elapsed=17s
+09:51:23  INFO        [CDLinearBaseline epoch 10/10] batch  4400/10458  running_loss=0.639377  7840.4 samples/s  elapsed=18s
+09:51:24  INFO        [CDLinearBaseline epoch 10/10] batch  4600/10458  running_loss=0.639517  7845.3 samples/s  elapsed=19s
+09:51:24  INFO        [CDLinearBaseline epoch 10/10] batch  4800/10458  running_loss=0.639626  7854.5 samples/s  elapsed=20s
+09:51:25  INFO        [CDLinearBaseline epoch 10/10] batch  5000/10458  running_loss=0.638930  7853.8 samples/s  elapsed=20s
+09:51:26  INFO        [CDLinearBaseline epoch 10/10] batch  5200/10458  running_loss=0.638971  7855.9 samples/s  elapsed=21s
+09:51:27  INFO        [CDLinearBaseline epoch 10/10] batch  5400/10458  running_loss=0.639028  7859.9 samples/s  elapsed=22s
+09:51:28  INFO        [CDLinearBaseline epoch 10/10] batch  5600/10458  running_loss=0.638747  7871.6 samples/s  elapsed=23s
+09:51:28  INFO        [CDLinearBaseline epoch 10/10] batch  5800/10458  running_loss=0.638696  7876.9 samples/s  elapsed=24s
+09:51:29  INFO        [CDLinearBaseline epoch 10/10] batch  6000/10458  running_loss=0.638725  7871.2 samples/s  elapsed=24s
+09:51:30  INFO        [CDLinearBaseline epoch 10/10] batch  6200/10458  running_loss=0.638846  7874.6 samples/s  elapsed=25s
+09:51:31  INFO        [CDLinearBaseline epoch 10/10] batch  6400/10458  running_loss=0.639473  7871.8 samples/s  elapsed=26s
+09:51:32  INFO        [CDLinearBaseline epoch 10/10] batch  6600/10458  running_loss=0.639771  7868.9 samples/s  elapsed=27s
+09:51:33  INFO        [CDLinearBaseline epoch 10/10] batch  6800/10458  running_loss=0.639241  7868.1 samples/s  elapsed=28s
+09:51:33  INFO        [CDLinearBaseline epoch 10/10] batch  7000/10458  running_loss=0.639082  7867.5 samples/s  elapsed=28s
+09:51:34  INFO        [CDLinearBaseline epoch 10/10] batch  7200/10458  running_loss=0.639517  7863.0 samples/s  elapsed=29s
+09:51:35  INFO        [CDLinearBaseline epoch 10/10] batch  7400/10458  running_loss=0.639963  7863.5 samples/s  elapsed=30s
+09:51:36  INFO        [CDLinearBaseline epoch 10/10] batch  7600/10458  running_loss=0.640004  7858.2 samples/s  elapsed=31s
+09:51:37  INFO        [CDLinearBaseline epoch 10/10] batch  7800/10458  running_loss=0.640202  7858.9 samples/s  elapsed=32s
+09:51:37  INFO        [CDLinearBaseline epoch 10/10] batch  8000/10458  running_loss=0.640134  7860.2 samples/s  elapsed=33s
+09:51:38  INFO        [CDLinearBaseline epoch 10/10] batch  8200/10458  running_loss=0.640646  7863.7 samples/s  elapsed=33s
+09:51:39  INFO        [CDLinearBaseline epoch 10/10] batch  8400/10458  running_loss=0.640607  7851.7 samples/s  elapsed=34s
+09:51:40  INFO        [CDLinearBaseline epoch 10/10] batch  8600/10458  running_loss=0.640727  7851.0 samples/s  elapsed=35s
+09:51:41  INFO        [CDLinearBaseline epoch 10/10] batch  8800/10458  running_loss=0.640787  7854.4 samples/s  elapsed=36s
+09:51:42  INFO        [CDLinearBaseline epoch 10/10] batch  9000/10458  running_loss=0.640836  7855.6 samples/s  elapsed=37s
+09:51:42  INFO        [CDLinearBaseline epoch 10/10] batch  9200/10458  running_loss=0.640678  7858.0 samples/s  elapsed=37s
+09:51:43  INFO        [CDLinearBaseline epoch 10/10] batch  9400/10458  running_loss=0.640688  7856.0 samples/s  elapsed=38s
+09:51:44  INFO        [CDLinearBaseline epoch 10/10] batch  9600/10458  running_loss=0.640894  7855.1 samples/s  elapsed=39s
+09:51:45  INFO        [CDLinearBaseline epoch 10/10] batch  9800/10458  running_loss=0.640866  7854.9 samples/s  elapsed=40s
+09:51:46  INFO        [CDLinearBaseline epoch 10/10] batch 10000/10458  running_loss=0.640778  7854.5 samples/s  elapsed=41s
+09:51:46  INFO        [CDLinearBaseline epoch 10/10] batch 10200/10458  running_loss=0.640560  7858.9 samples/s  elapsed=42s
+09:51:47  INFO        [CDLinearBaseline epoch 10/10] batch 10400/10458  running_loss=0.640628  7861.6 samples/s  elapsed=42s
+09:51:47  INFO        [CDLinearBaseline epoch 10/10] batch 10458/10458  running_loss=0.640678  7860.2 samples/s  elapsed=43s
+09:51:48  INFO      Starting evaluation over 432 / 432 validation batches …
+09:51:48  INFO        batch    1 / 432   samples=1920   elapsed=0.1 s
+09:51:48  INFO        batch   50 / 432   samples=96000   elapsed=0.3 s
+09:51:48  INFO        batch  100 / 432   samples=192000   elapsed=0.4 s
+09:51:48  INFO        batch  150 / 432   samples=288000   elapsed=0.6 s
+09:51:48  INFO        batch  200 / 432   samples=384000   elapsed=0.7 s
+09:51:48  INFO        batch  250 / 432   samples=480000   elapsed=0.9 s
+09:51:49  INFO        batch  300 / 432   samples=576000   elapsed=1.0 s
+09:51:49  INFO        batch  350 / 432   samples=672000   elapsed=1.2 s
+09:51:49  INFO        batch  400 / 432   samples=768000   elapsed=1.4 s
+09:51:49  INFO      Evaluation complete — 828600 samples (432/432 batches) in 1.5 s
+09:51:49  INFO      [CDLinearBaseline] epoch 10/10 | train_loss=0.640678 | val_MAE=1.8282 (naive=2.4923, beats naive) | val_RMSE=3.2264 | train=42.6s val=1.5s | RAM=1584MB
+09:51:49  INFO      Saved checkpoint → /kaggle/working/LinearGridTransformer/checkpoints/comparative_cdlinear.pt
+09:51:49  INFO      ======================================================================
+09:51:49  INFO      Report saved → /kaggle/working/LinearGridTransformer/docs/gpu_comparative_report.json
+09:51:49  INFO      ======================================================================
+09:51:49  INFO      FINAL (epoch 10) validation MAE — LinearGridTransformer: 2.0027  |  CDLinearBaseline: 1.8282
+09:51:49  INFO      Naive baseline MAE: 2.4923
+09:51:49  INFO      ======================================================================
+

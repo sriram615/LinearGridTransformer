@@ -1,0 +1,164 @@
+{
+  "config": {
+    "epochs": 10,
+    "batch_size": 32,
+    "max_batches_per_epoch": null,
+    "val_max_batches_per_epoch": null,
+    "num_workers": 2,
+    "device": "cuda",
+    "lr": 0.0001,
+    "weight_decay": 0.01
+  },
+  "LinearGridTransformer": {
+    "epoch_train_loss": [
+      0.8000781770890337,
+      0.774144059449269,
+      0.766125287664714,
+      0.7594535296711965,
+      0.7530173028654158,
+      0.7461290357559264,
+      0.7387172552493545,
+      0.7314247139429448,
+      0.7241273450763669,
+      0.7169458696304851
+    ],
+    "epoch_val": [
+      {
+        "mae_global": 2.0200137591787746,
+        "rmse_global": 3.569917726729597,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.9825046030538422,
+        "rmse_global": 3.5663099395377293,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.983896646116461,
+        "rmse_global": 3.5778373926877975,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.9880774744919367,
+        "rmse_global": 3.5939074414116994,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 2.026876198393958,
+        "rmse_global": 3.619103807423796,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.99440464590277,
+        "rmse_global": 3.615044141454356,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.9919736768518175,
+        "rmse_global": 3.6005371479051456,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.9713854236262185,
+        "rmse_global": 3.603522823325225,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 2.036743979368891,
+        "rmse_global": 3.6307912341185977,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 2.0026672780513763,
+        "rmse_global": 3.6369903353708133,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      }
+    ]
+  },
+  "CDLinearBaseline": {
+    "epoch_train_loss": [
+      0.7275827007799582,
+      0.6600400445297814,
+      0.6503153883560503,
+      0.645909790020186,
+      0.6441085335885299,
+      0.6429002995394936,
+      0.6415797461541667,
+      0.6412550407583113,
+      0.6406089898122613,
+      0.6406775564340018
+    ],
+    "epoch_val": [
+      {
+        "mae_global": 1.9182262548378535,
+        "rmse_global": 3.304764892373766,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.8796627255422729,
+        "rmse_global": 3.2696015536785126,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.881674503641469,
+        "rmse_global": 3.2852392675621167,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.8195740591202463,
+        "rmse_global": 3.2477733130965913,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.868519266801221,
+        "rmse_global": 3.280885239796979,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.8568169612969672,
+        "rmse_global": 3.239852379475321,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.8504250102809496,
+        "rmse_global": 3.2470729276537895,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.8642129504254885,
+        "rmse_global": 3.294955810265882,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.8524126346622194,
+        "rmse_global": 3.243264033326081,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      },
+      {
+        "mae_global": 1.8282328428966659,
+        "rmse_global": 3.226416931620666,
+        "mae_global_naive": 2.4922972225717137,
+        "beats_naive": true
+      }
+    ]
+  }
+}
