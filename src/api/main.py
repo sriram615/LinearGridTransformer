@@ -239,6 +239,20 @@ def create_app(
     app.state.startup_error_type = None
     app.state.ready = False
 
+    @app.get("/")
+    def project_info() -> dict[str, Any]:
+        """Provide a small public index for the API without runtime details."""
+        return {
+            "name": "LinearGridTransformer",
+            "description": "Multi-zone electricity consumption forecasting API.",
+            "links": {
+                "health": "/health",
+                "docs": "/docs",
+                "openapi": "/openapi.json",
+                "api": "/api/v1",
+            },
+        }
+
     @app.get("/health", response_model=HealthResponse)
     def health(request: Request) -> JSONResponse:
         store_available = bool(request.app.state.experiment_store_available)

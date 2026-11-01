@@ -4,7 +4,7 @@ A multi-zone electricity forecasting system built around the UCI **Power Consump
 
 The main engineering result is not that the more complex model won: **CDLinear was selected as the operational forecaster because it performed better in the recorded comparison.** The Transformer remains available as an experimental alternative. The evaluation also has an important limitation: held-out test metrics informed that model-family selection, so the comparison is subject to test-selection bias.
 
-> **Deployment status:** the repository contains a Render Blueprint and container configuration, but no live public deployment has been confirmed. Demo URL: _not yet available_.
+> **Live demo:** [Frontend dashboard](https://lineargridtransformer-frontend.onrender.com) · [Backend API](https://lineargridtransformer-api.onrender.com). The public services were browser-verified for historical data and CPU forecasts; this does not imply an uptime guarantee. Render automatic deployment is disabled, so repository changes require a manual service redeploy.
 
 ## What is included
 
@@ -132,6 +132,7 @@ The current API exposes:
 
 | Method and path | Purpose |
 |---|---|
+| `GET /` | Public project information and links to health, docs, OpenAPI, and the API base. |
 | `GET /health` | Readiness and service availability. |
 | `GET /api/v1/models` | Forecastable model names, dimensions, configuration and selected/available status. |
 | `GET /api/v1/dataset` | Dataset provenance, features, targets, split, windows and normalization metadata. |
@@ -200,6 +201,18 @@ VITE_API_BASE_URL=http://127.0.0.1:8000 pnpm dev -- --host 127.0.0.1
 
 Vite serves the development frontend on port 8443. The provided API setup explicitly selects CPU with `TETOUAN_DEVICE`; without that override, inference selects an available accelerator and falls back to CPU. The API also accepts path overrides for runtime artifacts and CORS origins through the variables in `src/api/config.py`.
 
+### Local MLflow experiment tracking
+
+MLflow is a local research-history and artifact browser; FastAPI inference does not connect to MLflow. The tracking configuration defaults to a SQLite database at `.mlflow/tracking.db` and a local artifact store at `.mlflow/artifacts`, with `MLFLOW_TRACKING_URI` and `MLFLOW_ARTIFACT_ROOT` overrides. These paths are ignored by Git. Start the local UI with:
+
+```bash
+mlflow ui --backend-store-uri sqlite:///$(pwd)/.mlflow/tracking.db --default-artifact-root $(pwd)/.mlflow/artifacts --host 127.0.0.1 --port 5000
+```
+
+The historical importer registers already-saved experiment data; it does not retrain models or recalculate held-out metrics. For the original `tetouan_t4_20261101_v1` import, run `python -m src.mlops.import_tetouan_to_mlflow`. The extended `extended_training_v2` importer creates one historical parent run (`tetouan_extended_v2_historical_import`) and six child runs (two model families across seeds 42, 123 and 2026): `python -m src.mlops.import_extended_tetouan_to_mlflow`. The parent records three-seed summary and baseline metrics; child runs contain their corresponding 50-epoch train/validation histories, best-validation records, per-seed test, per-zone and horizon metrics, model configurations, checkpoint copies, and relevant manifests/evaluation artifacts. Test metrics are imported from saved reports, not recomputed. These are imported historical records, distinct from runs created by live MLflow training.
+
+The importer modules are research utilities in the local extended workspace and are not included in the deployment commit. The default Render deployment intentionally excludes MLflow and its database/artifact store. No database service, persistent disk, or remote tracking server is required for historical API pages or forecasting.
+
 ### Research and reproducibility
 
 The saved manifests record the dataset fingerprint, split and normalization contract, model configurations, seeds, optimizer settings, environment and best validation records. Histories and evaluation reports are included for inspection. Raw CSV data, the Colab notebook and the complete Tetouan training entry point are not part of the deployment commit, so this deployment-focused snapshot does not provide a clean-room retraining command. Held-out evaluation should be used only after selecting checkpoints with validation data; future model-family selection should not reuse the test results shown above.
@@ -208,7 +221,7 @@ The saved manifests record the dataset fingerprint, split and normalization cont
 
 `render.yaml` defines a free Docker Web Service for FastAPI and a free Static Site for the React build. The intended source is this GitHub repository on `main`. The backend image includes the curated `runtime-artifacts/` bundle; Render does not need the raw dataset or local MLflow store to serve the app. The frontend receives the backend public URL through `VITE_API_BASE_URL`, and the backend CORS origin is configured from the frontend public URL. Automatic deployment is disabled in the Blueprint configuration.
 
-The configuration is prepared for Render, but this README does not claim that Render is connected or that the application is live. Add the public demo URL here only after deployment has been verified.
+The deployed services are available at the live demo URLs near the top of this README. The Render Blueprint keeps automatic deployment disabled; after publishing source changes, manually deploy the affected service. Frontend environment variables are embedded at build time, so frontend changes require a Static Site rebuild.
 
 Free services can have cold starts after idle periods, and their local filesystem is ephemeral. The application packages its read-only inference and history artifacts with the backend image and does not depend on a persistent disk or MLflow at runtime. These configuration facts are not production reliability or availability guarantees.
 

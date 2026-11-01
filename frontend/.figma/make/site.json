@@ -6,5 +6,9 @@
   "accessibility": {
     "addBypassLinks": false,
     "ignoreReducedMotion": false
+  },
+  "title": "LinearGridTransformer | Energy Forecasting",
+  "icons": {
+    "icon": "/favicon.svg"
   }
 }
