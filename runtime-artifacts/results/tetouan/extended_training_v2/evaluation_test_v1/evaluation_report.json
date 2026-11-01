@@ -1,0 +1,617 @@
+{
+  "experiment": "extended_training_v2",
+  "evaluation": "held-out chronological test partition",
+  "test_windows": 7858,
+  "lookback": 144,
+  "forecast_horizon": 6,
+  "cadence_minutes": 10,
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "zones": [
+    "Zone 1",
+    "Zone 2",
+    "Zone 3"
+  ],
+  "measurement_units": "Undocumented by source; errors reported in original dataset scale.",
+  "normalization": "Inverse-transformed using training-partition statistics.",
+  "baseline": "Persistence: repeat last observed zone value across six forecast steps.",
+  "overall_metrics": [
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "MAE": 881.2094120374148,
+      "RMSE": 1424.0505543265078,
+      "macro_zone_MAE": 881.209412037415
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "MAE": 2106.817420034604,
+      "RMSE": 2640.1880247842296,
+      "macro_zone_MAE": 2106.8174200346043
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "MAE": 1637.367100757072,
+      "RMSE": 2103.1776343049446,
+      "macro_zone_MAE": 1637.3671007570717
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "MAE": 1968.050262542715,
+      "RMSE": 2417.2621864010925,
+      "macro_zone_MAE": 1968.0502625427146
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "MAE": 517.34808703204,
+      "RMSE": 713.2312783308388,
+      "macro_zone_MAE": 517.34808703204
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "MAE": 477.28160231432076,
+      "RMSE": 669.8194501985479,
+      "macro_zone_MAE": 477.2816023143207
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "MAE": 580.6732751977094,
+      "RMSE": 758.1565589352979,
+      "macro_zone_MAE": 580.6732751977094
+    }
+  ],
+  "three_seed_summary": [
+    {
+      "model": "CDLinear",
+      "MAE_mean": 525.1009881813567,
+      "MAE_std": 52.130030813147584,
+      "RMSE_mean": 713.7357624882283,
+      "RMSE_std": 44.17071510843912,
+      "macro_zone_MAE_mean": 525.1009881813567,
+      "macro_zone_MAE_std": 52.1300308131476
+    },
+    {
+      "model": "LinearGridTransformer",
+      "MAE_mean": 1904.0782611114637,
+      "MAE_std": 241.17465308938287,
+      "RMSE_mean": 2386.8759484967554,
+      "RMSE_std": 269.7916463887693,
+      "macro_zone_MAE_mean": 1904.0782611114635,
+      "macro_zone_MAE_std": 241.1746530893831
+    }
+  ],
+  "per_zone_metrics": [
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "zone": "Zone 1",
+      "MAE": 1107.0153922668935,
+      "RMSE": 1700.6450461340955
+    },
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "zone": "Zone 2",
+      "MAE": 951.5361075789987,
+      "RMSE": 1478.4342999368223
+    },
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "zone": "Zone 3",
+      "MAE": 585.0767362663527,
+      "RMSE": 1002.8950053035359
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "zone": "Zone 1",
+      "MAE": 2345.4449904108824,
+      "RMSE": 2920.593407066194
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "zone": "Zone 2",
+      "MAE": 1694.5476641350099,
+      "RMSE": 2196.402719280553
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "zone": "Zone 3",
+      "MAE": 2280.4596055579204,
+      "RMSE": 2749.1321656080177
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "zone": "Zone 1",
+      "MAE": 1582.1430270098856,
+      "RMSE": 2044.9943036918096
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "zone": "Zone 2",
+      "MAE": 1598.7451035868514,
+      "RMSE": 2144.9175656658845
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "zone": "Zone 3",
+      "MAE": 1731.2131716744782,
+      "RMSE": 2118.3473319282684
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "zone": "Zone 1",
+      "MAE": 2206.3381533178026,
+      "RMSE": 2637.2238373652413
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "zone": "Zone 2",
+      "MAE": 1700.8800724928653,
+      "RMSE": 2234.95489997854
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "zone": "Zone 3",
+      "MAE": 1996.932561817476,
+      "RMSE": 2362.0957770819196
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "zone": "Zone 1",
+      "MAE": 598.6483089681736,
+      "RMSE": 790.8998781936785
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "zone": "Zone 2",
+      "MAE": 499.535387150264,
+      "RMSE": 699.818353245989
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "zone": "Zone 3",
+      "MAE": 453.8605649776824,
+      "RMSE": 640.9588319865979
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "zone": "Zone 1",
+      "MAE": 551.266184015813,
+      "RMSE": 737.0230040461526
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "zone": "Zone 2",
+      "MAE": 435.45929182749506,
+      "RMSE": 615.8051923269435
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "zone": "Zone 3",
+      "MAE": 445.1193310996541,
+      "RMSE": 650.8112969231679
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "zone": "Zone 1",
+      "MAE": 600.0471171821617,
+      "RMSE": 779.6418051030694
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "zone": "Zone 2",
+      "MAE": 542.6379295055486,
+      "RMSE": 721.6974460367636
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "zone": "Zone 3",
+      "MAE": 599.3347789054177,
+      "RMSE": 771.826117522254
+    }
+  ],
+  "per_horizon_metrics": [
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "horizon_step": 1,
+      "minutes_ahead": 10,
+      "MAE": 292.93206465955836,
+      "RMSE": 456.59618275810766
+    },
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "horizon_step": 2,
+      "minutes_ahead": 20,
+      "MAE": 541.829625336933,
+      "RMSE": 834.3973409083522
+    },
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "horizon_step": 3,
+      "minutes_ahead": 30,
+      "MAE": 776.2532956281055,
+      "RMSE": 1178.7379756083806
+    },
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "horizon_step": 4,
+      "minutes_ahead": 40,
+      "MAE": 1003.1689159413323,
+      "RMSE": 1499.3749771456244
+    },
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "horizon_step": 5,
+      "minutes_ahead": 50,
+      "MAE": 1226.8201176069047,
+      "RMSE": 1802.7737565184527
+    },
+    {
+      "model": "Persistence",
+      "seed": "baseline",
+      "horizon_step": 6,
+      "minutes_ahead": 60,
+      "MAE": 1446.2524530516555,
+      "RMSE": 2091.716791685279
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "horizon_step": 1,
+      "minutes_ahead": 10,
+      "MAE": 2103.348860488194,
+      "RMSE": 2635.742734828656
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "horizon_step": 2,
+      "minutes_ahead": 20,
+      "MAE": 2104.6181771339398,
+      "RMSE": 2637.3393267064216
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "horizon_step": 3,
+      "minutes_ahead": 30,
+      "MAE": 2105.9710365147153,
+      "RMSE": 2639.0728491012665
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "horizon_step": 4,
+      "minutes_ahead": 40,
+      "MAE": 2107.422902062537,
+      "RMSE": 2640.9560767464213
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "horizon_step": 5,
+      "minutes_ahead": 50,
+      "MAE": 2108.9659855633668,
+      "RMSE": 2642.9560792274665
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "horizon_step": 6,
+      "minutes_ahead": 60,
+      "MAE": 2110.577558444873,
+      "RMSE": 2645.04952883632
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "horizon_step": 1,
+      "minutes_ahead": 10,
+      "MAE": 1632.4433808327524,
+      "RMSE": 2096.494543054297
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "horizon_step": 2,
+      "minutes_ahead": 20,
+      "MAE": 1634.1910148073846,
+      "RMSE": 2098.8581027213186
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "horizon_step": 3,
+      "minutes_ahead": 30,
+      "MAE": 1636.1041809768342,
+      "RMSE": 2101.436474578914
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "horizon_step": 4,
+      "minutes_ahead": 40,
+      "MAE": 1638.1783962933064,
+      "RMSE": 2104.2593118853156
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "horizon_step": 5,
+      "minutes_ahead": 50,
+      "MAE": 1640.4486481123654,
+      "RMSE": 2107.352535811509
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "horizon_step": 6,
+      "minutes_ahead": 60,
+      "MAE": 1642.836983519787,
+      "RMSE": 2110.6314329342204
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "horizon_step": 1,
+      "minutes_ahead": 10,
+      "MAE": 1965.9968834951421,
+      "RMSE": 2414.4797567603305
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "horizon_step": 2,
+      "minutes_ahead": 20,
+      "MAE": 1966.6689191703065,
+      "RMSE": 2415.364829748916
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "horizon_step": 3,
+      "minutes_ahead": 30,
+      "MAE": 1967.4866541817398,
+      "RMSE": 2416.424556078143
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "horizon_step": 4,
+      "minutes_ahead": 40,
+      "MAE": 1968.4061680347415,
+      "RMSE": 2417.6786048995277
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "horizon_step": 5,
+      "minutes_ahead": 50,
+      "MAE": 1969.3789762891763,
+      "RMSE": 2419.068558540204
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "horizon_step": 6,
+      "minutes_ahead": 60,
+      "MAE": 1970.3639740851818,
+      "RMSE": 2420.551372623592
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "horizon_step": 1,
+      "minutes_ahead": 10,
+      "MAE": 353.7942247615207,
+      "RMSE": 448.7095077287017
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "horizon_step": 2,
+      "minutes_ahead": 20,
+      "MAE": 390.4519656959335,
+      "RMSE": 534.5764150021914
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "horizon_step": 3,
+      "minutes_ahead": 30,
+      "MAE": 420.9191393220482,
+      "RMSE": 594.9766310429288
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "horizon_step": 4,
+      "minutes_ahead": 40,
+      "MAE": 542.5887009708812,
+      "RMSE": 734.938842309428
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "horizon_step": 5,
+      "minutes_ahead": 50,
+      "MAE": 637.081184489473,
+      "RMSE": 842.1791145545665
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "horizon_step": 6,
+      "minutes_ahead": 60,
+      "MAE": 759.2533069523836,
+      "RMSE": 980.6543826036246
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "horizon_step": 1,
+      "minutes_ahead": 10,
+      "MAE": 316.6729348363223,
+      "RMSE": 414.7005631345287
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "horizon_step": 2,
+      "minutes_ahead": 20,
+      "MAE": 400.8341795025103,
+      "RMSE": 545.4114163921083
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "horizon_step": 3,
+      "minutes_ahead": 30,
+      "MAE": 444.9993471986225,
+      "RMSE": 622.6155323801643
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "horizon_step": 4,
+      "minutes_ahead": 40,
+      "MAE": 514.0785751985219,
+      "RMSE": 709.3891345738581
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "horizon_step": 5,
+      "minutes_ahead": 50,
+      "MAE": 578.0342655189655,
+      "RMSE": 797.3202537585585
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "horizon_step": 6,
+      "minutes_ahead": 60,
+      "MAE": 609.0703116309816,
+      "RMSE": 834.2036756839863
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "horizon_step": 1,
+      "minutes_ahead": 10,
+      "MAE": 479.52537936382095,
+      "RMSE": 633.5407079995387
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "horizon_step": 2,
+      "minutes_ahead": 20,
+      "MAE": 528.0330121459889,
+      "RMSE": 682.6646545508111
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "horizon_step": 3,
+      "minutes_ahead": 30,
+      "MAE": 588.0910125959165,
+      "RMSE": 761.4120661155349
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "horizon_step": 4,
+      "minutes_ahead": 40,
+      "MAE": 616.0828971702667,
+      "RMSE": 789.1328897830383
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "horizon_step": 5,
+      "minutes_ahead": 50,
+      "MAE": 606.8260490583838,
+      "RMSE": 790.1165708766075
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "horizon_step": 6,
+      "minutes_ahead": 60,
+      "MAE": 665.4813008518801,
+      "RMSE": 868.7002360634368
+    }
+  ],
+  "checkpoints": [
+    {
+      "model": "LinearGridTransformer",
+      "seed": 42,
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s42_lineargridtransformer.pt",
+      "test_windows": 7858
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 123,
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s123_lineargridtransformer.pt",
+      "test_windows": 7858
+    },
+    {
+      "model": "LinearGridTransformer",
+      "seed": 2026,
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s2026_lineargridtransformer.pt",
+      "test_windows": 7858
+    },
+    {
+      "model": "CDLinear",
+      "seed": 42,
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s42_cdlinear.pt",
+      "test_windows": 7858
+    },
+    {
+      "model": "CDLinear",
+      "seed": 123,
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s123_cdlinear.pt",
+      "test_windows": 7858
+    },
+    {
+      "model": "CDLinear",
+      "seed": 2026,
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s2026_cdlinear.pt",
+      "test_windows": 7858
+    }
+  ]
+}

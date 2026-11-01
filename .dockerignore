@@ -1,0 +1,54 @@
+# Source-control state, local environments, generated caches
+.git/
+**/.git/
+.venv/
+.venv311/
+venv/
+env/
+.venv*/
+**/.venv*/
+**/venv/
+**/env/
+.env
+!.env.example
+**/__pycache__/
+**/*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+*.log
+*.tmp
+*.crdownload
+
+# Local MLflow database/artifacts and source data
+.mlflow/
+mlflow.db*
+mlruns/
+mlflow-artifacts/
+data/raw/
+*.ipynb
+.ipynb_checkpoints/
+
+src/data/global_mean.npy
+src/data/global_std.npy
+
+# Household/training-only artifacts and evaluation outputs. The required
+# runtime copy is runtime-artifacts/ and remains included in the context.
+/data/processed/
+data/benchmarks/
+/checkpoints/
+/results/
+output/
+kaggle_upload/
+
+# Generated frontend files and installed packages
+frontend/node_modules/
+**/node_modules/
+frontend/dist/
+dist/
+
+# The backend image packages this curated Tetouan runtime bundle.
+# Keep it in the context even though source artifact trees above are ignored.
+!runtime-artifacts/
+!runtime-artifacts/**

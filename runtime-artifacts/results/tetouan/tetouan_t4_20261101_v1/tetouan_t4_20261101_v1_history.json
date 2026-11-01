@@ -1,0 +1,400 @@
+{
+  "run_metadata": {
+    "run_name": "tetouan_t4_20261101_v1",
+    "run_type": "experiment",
+    "created_utc": "2026-11-01T08:21:14.566562+00:00",
+    "git_commit": null,
+    "python_version": "3.13.16",
+    "pytorch_version": "2.11.0+cu130",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "13.0",
+    "gpu_name": "Tesla T4",
+    "dataset": {
+      "dataset_name": "Power Consumption of Tetouan City",
+      "source_url": "https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city",
+      "source_file": "Tetuan City power consumption.csv",
+      "source_sha256": "ca8b2f30cf07dd872cb7f2aa45dac110ee38dbe5fc5910a6ff4bcc530dae3a40",
+      "doi": "10.24432/C5B034",
+      "dataset_row_count": 52416,
+      "feature_names": [
+        "zone_1_power_consumption",
+        "zone_2_power_consumption",
+        "zone_3_power_consumption",
+        "temperature",
+        "humidity",
+        "wind_speed",
+        "general_diffuse_flows",
+        "diffuse_flows"
+      ],
+      "target_names": [
+        "zone_1_power_consumption",
+        "zone_2_power_consumption",
+        "zone_3_power_consumption"
+      ],
+      "lookback": 144,
+      "horizon": 6,
+      "cadence_minutes": 10,
+      "timezone_status": "undocumented; timestamps are timezone-naive",
+      "units_status": "Not documented by the source metadata; preserved as unknown.",
+      "normalization": {
+        "method": "z-score: (value - mean) / std",
+        "fit_partition": "train",
+        "fit_row_range_half_open": [
+          0,
+          36691
+        ],
+        "std_ddof": 0
+      },
+      "used_partitions": {
+        "train": {
+          "start_index": 0,
+          "end_index_exclusive": 36691,
+          "row_count": 36691,
+          "first_timestamp": "2017-01-01 00:00:00",
+          "last_timestamp": "2017-09-12 19:00:00"
+        },
+        "validation": {
+          "start_index": 36691,
+          "end_index_exclusive": 44553,
+          "row_count": 7862,
+          "first_timestamp": "2017-09-12 19:10:00",
+          "last_timestamp": "2017-11-06 09:20:00"
+        }
+      },
+      "test_partition_used": false
+    },
+    "processed_artifacts": {
+      "metadata.json": {
+        "path": "/content/lineargrid_tetouan/data/processed/tetouan/metadata.json",
+        "size_bytes": 4799,
+        "sha256": "cb3a8a79ba7e49638143ae472c5b9885968e111e40896da636de67dae3bb2a26"
+      },
+      "series.npz": {
+        "path": "/content/lineargrid_tetouan/data/processed/tetouan/series.npz",
+        "size_bytes": 1847934,
+        "sha256": "720f68ffa4d7924b0adcc0852c6a9aa9290aa64381232eb0346d225a7609b0ad"
+      }
+    },
+    "training": {
+      "epochs": 10,
+      "batch_size": 32,
+      "num_workers": 0,
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "seed": 42,
+      "grad_clip_norm": 1.0,
+      "max_train_batches": null,
+      "max_validation_batches": null,
+      "smoke": false,
+      "device": "cuda",
+      "d_model": 64,
+      "num_heads": 4,
+      "ffn_dim": 256,
+      "dropout": 0.1
+    },
+    "seed_policy": {
+      "seed_everything_before_each_model_initialization": true,
+      "data_loader_generator_seed": 42,
+      "same_shuffled_order_seed_per_model": true
+    },
+    "gradient_clipping_max_norm": 1.0,
+    "loss": "mean squared error",
+    "optimizer": "AdamW",
+    "test_partition_used": false,
+    "models": {
+      "LinearGridTransformer": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "lookback": 144,
+        "horizon": 6,
+        "d_model": 64,
+        "num_heads": 4,
+        "ffn_dim": 256,
+        "dropout": 0.1
+      },
+      "CDLinear": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "seq_len": 144,
+        "pred_len": 6
+      }
+    }
+  },
+  "models": {
+    "LinearGridTransformer": {
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/tetouan_t4_20261101_v1_lineargridtransformer.pt",
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.10358502850822188,
+          "validation_loss": 0.10799432665667219,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 1,
+          "best_validation_loss": 0.10799432665667219
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.058244363167124634,
+          "validation_loss": 0.08804697277297253,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 2,
+          "best_validation_loss": 0.08804697277297253
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.05023523191676489,
+          "validation_loss": 0.09235743955925128,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 2,
+          "best_validation_loss": 0.08804697277297253
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.04606906487860055,
+          "validation_loss": 0.09790016120363468,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 2,
+          "best_validation_loss": 0.08804697277297253
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.043551841233367895,
+          "validation_loss": 0.11738474932019759,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 2,
+          "best_validation_loss": 0.08804697277297253
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.04130229005536764,
+          "validation_loss": 0.16256993998492114,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 2,
+          "best_validation_loss": 0.08804697277297253
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.03901267114841783,
+          "validation_loss": 0.11316184332553737,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 2,
+          "best_validation_loss": 0.08804697277297253
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.037149119216307105,
+          "validation_loss": 0.11271027844378825,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 2,
+          "best_validation_loss": 0.08804697277297253
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.03585821273577366,
+          "validation_loss": 0.08617514268415369,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 9,
+          "best_validation_loss": 0.08617514268415369
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.034661321496622266,
+          "validation_loss": 0.12204823347392452,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 9,
+          "best_validation_loss": 0.08617514268415369
+        }
+      ],
+      "best_epoch": 9,
+      "best_validation_loss": 0.08617514268415369
+    },
+    "CDLinear": {
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/tetouan_t4_20261101_v1_cdlinear.pt",
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.06725375056160761,
+          "validation_loss": 0.03258639443189236,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 1,
+          "best_validation_loss": 0.03258639443189236
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.028408497016648375,
+          "validation_loss": 0.022080029278094642,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 2,
+          "best_validation_loss": 0.022080029278094642
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.023526259306452264,
+          "validation_loss": 0.02146789964833256,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 3,
+          "best_validation_loss": 0.02146789964833256
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.020870740218619677,
+          "validation_loss": 0.019442218246427494,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 4,
+          "best_validation_loss": 0.019442218246427494
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.019908217428503194,
+          "validation_loss": 0.01940639368858792,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 5,
+          "best_validation_loss": 0.01940639368858792
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.01859106175643484,
+          "validation_loss": 0.02116165712022502,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 5,
+          "best_validation_loss": 0.01940639368858792
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.01889118688636433,
+          "validation_loss": 0.015862814238821486,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 7,
+          "best_validation_loss": 0.015862814238821486
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.01750466570929553,
+          "validation_loss": 0.01503909628307742,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": true,
+          "best_epoch": 8,
+          "best_validation_loss": 0.01503909628307742
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.017464570924484744,
+          "validation_loss": 0.01655322412308412,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 8,
+          "best_validation_loss": 0.01503909628307742
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.017088909754212036,
+          "validation_loss": 0.015996255663557713,
+          "train_batches": 1142,
+          "validation_batches": 246,
+          "train_samples": 36542,
+          "validation_samples": 7857,
+          "optimizer_updates": 1142,
+          "is_best": false,
+          "best_epoch": 8,
+          "best_validation_loss": 0.01503909628307742
+        }
+      ],
+      "best_epoch": 8,
+      "best_validation_loss": 0.01503909628307742
+    }
+  }
+}

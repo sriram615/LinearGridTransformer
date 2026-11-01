@@ -77,13 +77,34 @@ class ForecastHead(nn.Module):
 
     def __init__(self, d_model: int, t_forecast: int, n_channels: int) -> None:
         super().__init__()
+        if d_model <= 0:
+            raise ValueError(f"d_model must be positive, got {d_model}.")
+        if t_forecast <= 0:
+            raise ValueError(f"t_forecast must be positive, got {t_forecast}.")
+        if n_channels <= 0:
+            raise ValueError(f"n_channels must be positive, got {n_channels}.")
+
+        self.d_model = d_model
         self.t_forecast = t_forecast
+        self.n_channels = n_channels
         self.proj = nn.Linear(d_model, n_channels)
         nn.init.xavier_uniform_(self.proj.weight)
         nn.init.zeros_(self.proj.bias)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # x : [B, T, d_model]
+        if x.ndim != 3:
+            raise ValueError(
+                f"ForecastHead expects [B, T, d_model], got shape {tuple(x.shape)}."
+            )
+        if x.shape[-1] != self.d_model:
+            raise ValueError(
+                f"ForecastHead expected {self.d_model} input channels, got {x.shape[-1]}."
+            )
+        if x.shape[1] < self.t_forecast:
+            raise ValueError(
+                f"Input sequence length {x.shape[1]} is shorter than forecast "
+                f"horizon {self.t_forecast}."
+            )
         tail = x[:, -self.t_forecast:, :]          # [B, t_forecast, d_model]
         return self.proj(tail)                      # [B, t_forecast, n_channels]
 
@@ -98,7 +119,8 @@ class LinearGridForecaster(nn.Module):
 
     Parameters
     ----------
-    in_channels : int   — number of feature channels (7)
+    in_channels : int   — number of input feature channels (default 7)
+    out_channels: int   — number of forecast target channels (default matches input)
     d_model     : int   — encoder internal width (64)
     num_heads   : int   — number of attention heads (4)
     ffn_dim     : int   — FFN hidden dim (256)
@@ -108,7 +130,7 @@ class LinearGridForecaster(nn.Module):
     Shapes
     ------
     Input  x : [B, T_lookback, in_channels]
-    Output   : [B, t_forecast, in_channels]
+    Output   : [B, t_forecast, out_channels]
     """
 
     def __init__(
@@ -119,8 +141,21 @@ class LinearGridForecaster(nn.Module):
         ffn_dim:     int   = 256,
         t_forecast:  int   = T_FORECAST,
         dropout:     float = 0.1,
+        out_channels: int | None = None,
     ) -> None:
         super().__init__()
+        if in_channels <= 0:
+            raise ValueError(f"in_channels must be positive, got {in_channels}.")
+        if out_channels is None:
+            out_channels = in_channels
+        if out_channels <= 0:
+            raise ValueError(f"out_channels must be positive, got {out_channels}.")
+        if t_forecast <= 0:
+            raise ValueError(f"t_forecast must be positive, got {t_forecast}.")
+
+        self.in_channels = in_channels
+        self.out_channels = out_channels
+        self.t_forecast = t_forecast
         self.encoder = GridTransformerEncoder(
             in_channels=in_channels,
             d_model=d_model,
@@ -128,23 +163,35 @@ class LinearGridForecaster(nn.Module):
             ffn_dim=ffn_dim,
             dropout=dropout,
         )
-        # Re-expose the internal hidden projection so head connects at d_model
+        # GridTransformerEncoder returns [B, T, in_channels], so the head
+        # projects that encoded representation to the independent target width.
         self.head = ForecastHead(
-            d_model=in_channels,   # encoder output is in_channels (7)
-                                   # because GridTransformerEncoder ends with
-                                   # output_proj: d_model → in_channels
+            d_model=in_channels,
             t_forecast=t_forecast,
-            n_channels=in_channels,
+            n_channels=out_channels,
         )
-        self.t_forecast = t_forecast
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
-        x   : [B, T_lookback, C]
-        out : [B, T_forecast,  C]
+        x   : [B, T_lookback, in_channels]
+        out : [B, t_forecast, out_channels]
         """
-        enc = self.encoder(x)                 # [B, T_lookback, C]  (dim-preserving)
-        return self.head(enc)                 # [B, T_forecast,  C]
+        if x.ndim != 3:
+            raise ValueError(
+                f"LinearGridForecaster expects [B, T, C], got shape {tuple(x.shape)}."
+            )
+        if x.shape[-1] != self.in_channels:
+            raise ValueError(
+                f"LinearGridForecaster expected {self.in_channels} input channels, "
+                f"got {x.shape[-1]}."
+            )
+        if x.shape[1] < self.t_forecast:
+            raise ValueError(
+                f"Input sequence length {x.shape[1]} is shorter than forecast "
+                f"horizon {self.t_forecast}."
+            )
+        enc = self.encoder(x)                 # [B, T_lookback, in_channels]
+        return self.head(enc)                 # [B, t_forecast, out_channels]
 
     def param_count(self) -> int:
         return sum(p.numel() for p in self.parameters())

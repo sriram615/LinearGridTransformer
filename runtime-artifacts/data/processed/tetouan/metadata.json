@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file_name": "Tetuan City power consumption.csv",
+    "source_url": "https://archive.ics.uci.edu/static/public/849/power%2Bconsumption%2Bof%2Btetouan%2Bcity.zip",
+    "dataset_url": "https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city",
+    "doi": "10.24432/C5B034",
+    "attribution": "Salam, A. & El Hibaoui, A. (2018), Power Consumption of Tetouan City, UCI Machine Learning Repository.",
+    "license": "CC BY 4.0",
+    "sha256": "ca8b2f30cf07dd872cb7f2aa45dac110ee38dbe5fc5910a6ff4bcc530dae3a40"
+  },
+  "row_count": 52416,
+  "source_columns": [
+    "DateTime",
+    "Temperature",
+    "Humidity",
+    "Wind Speed",
+    "general diffuse flows",
+    "diffuse flows",
+    "Zone 1 Power Consumption",
+    "Zone 2  Power Consumption",
+    "Zone 3  Power Consumption"
+  ],
+  "features": {
+    "names": [
+      "zone_1_power_consumption",
+      "zone_2_power_consumption",
+      "zone_3_power_consumption",
+      "temperature",
+      "humidity",
+      "wind_speed",
+      "general_diffuse_flows",
+      "diffuse_flows"
+    ],
+    "source_columns": [
+      "Zone 1 Power Consumption",
+      "Zone 2  Power Consumption",
+      "Zone 3  Power Consumption",
+      "Temperature",
+      "Humidity",
+      "Wind Speed",
+      "general diffuse flows",
+      "diffuse flows"
+    ],
+    "count": 8
+  },
+  "targets": {
+    "names": [
+      "zone_1_power_consumption",
+      "zone_2_power_consumption",
+      "zone_3_power_consumption"
+    ],
+    "source_columns": [
+      "Zone 1 Power Consumption",
+      "Zone 2  Power Consumption",
+      "Zone 3  Power Consumption"
+    ],
+    "count": 3
+  },
+  "timestamps": {
+    "source_column": "DateTime",
+    "format": "%m/%d/%Y %H:%M",
+    "timezone": null,
+    "timezone_status": "undocumented; timestamps are timezone-naive",
+    "cadence_minutes": 10,
+    "first_timestamp": "2017-01-01 00:00:00",
+    "last_timestamp": "2017-12-30 23:50:00",
+    "missing_final_calendar_day": "2017-12-31",
+    "handling": "No records appended or fabricated."
+  },
+  "split": {
+    "method": "chronological row count; floor(0.70*N), floor(0.85*N)",
+    "partitions": {
+      "train": {
+        "start_index": 0,
+        "end_index_exclusive": 36691,
+        "row_count": 36691,
+        "first_timestamp": "2017-01-01 00:00:00",
+        "last_timestamp": "2017-09-12 19:00:00"
+      },
+      "validation": {
+        "start_index": 36691,
+        "end_index_exclusive": 44553,
+        "row_count": 7862,
+        "first_timestamp": "2017-09-12 19:10:00",
+        "last_timestamp": "2017-11-06 09:20:00"
+      },
+      "test": {
+        "start_index": 44553,
+        "end_index_exclusive": 52416,
+        "row_count": 7863,
+        "first_timestamp": "2017-11-06 09:30:00",
+        "last_timestamp": "2017-12-30 23:50:00"
+      }
+    }
+  },
+  "windows": {
+    "lookback": 144,
+    "horizon": 6,
+    "stride": 1,
+    "input_contract": [
+      144,
+      8
+    ],
+    "target_contract": [
+      6,
+      3
+    ],
+    "validation_test_context_may_precede_partition": true,
+    "targets_must_remain_in_partition": true,
+    "future_weather_features": false
+  },
+  "normalization": {
+    "method": "z-score: (value - mean) / std",
+    "fit_partition": "train",
+    "fit_row_range_half_open": [
+      0,
+      36691
+    ],
+    "std_ddof": 0,
+    "feature_names": [
+      "zone_1_power_consumption",
+      "zone_2_power_consumption",
+      "zone_3_power_consumption",
+      "temperature",
+      "humidity",
+      "wind_speed",
+      "general_diffuse_flows",
+      "diffuse_flows"
+    ],
+    "feature_mean": [
+      32956.889154861135,
+      20444.842906896814,
+      20024.412284957645,
+      19.23929549480799,
+      67.65614973699272,
+      1.9980433621324032,
+      207.65990060232755,
+      86.5442204627838
+    ],
+    "feature_std": [
+      7255.495984061855,
+      5067.655909170377,
+      6464.295943961523,
+      6.1814220292616655,
+      16.082367599823577,
+      2.357429773586254,
+      285.72304639219254,
+      135.88006188584916
+    ],
+    "target_names": [
+      "zone_1_power_consumption",
+      "zone_2_power_consumption",
+      "zone_3_power_consumption"
+    ],
+    "target_mean": [
+      32956.889154861135,
+      20444.842906896814,
+      20024.412284957645
+    ],
+    "target_std": [
+      7255.495984061855,
+      5067.655909170377,
+      6464.295943961523
+    ],
+    "inverse": "raw_target = normalized_target * target_std + target_mean"
+  },
+  "units": null,
+  "units_status": "Not documented by the source metadata; preserved as unknown.",
+  "arrays_file": "series.npz",
+  "arrays": {
+    "timestamps": "datetime64[ns], timezone-naive, length N",
+    "features": "float64 raw values, shape [N, 8], canonical feature order",
+    "targets": "float64 raw values, shape [N, 3], canonical target order"
+  }
+}

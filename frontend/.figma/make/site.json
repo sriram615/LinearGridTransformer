@@ -1,0 +1,10 @@
+{
+  "description": "Explore Tetouan energy data, compare forecasting models, review research experiments, and generate six-step consumption forecasts for three zones.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

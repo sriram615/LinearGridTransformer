@@ -1,0 +1,483 @@
+{
+  "report_schema_version": 1,
+  "experiment_id": "tetouan_t4_20261101_v1",
+  "source_evaluation_report": "results/tetouan/tetouan_t4_20261101_v1/tetouan_t4_20261101_v1_test_evaluation.json",
+  "prediction_artifact": "results/tetouan/tetouan_t4_20261101_v1/visualisations/test_predictions.npz",
+  "test_window_count": 7858,
+  "forecast_horizon_count": 6,
+  "target_zone_names": [
+    "zone_1_power_consumption",
+    "zone_2_power_consumption",
+    "zone_3_power_consumption"
+  ],
+  "metric_definitions": {
+    "scale": "Original dataset numeric values; physical units are undocumented.",
+    "per_horizon_per_zone_mae": "Mean absolute error across all test windows for one zone at one forecast lead.",
+    "per_horizon_per_zone_rmse": "Square root of mean squared error across all test windows for one zone at one forecast lead.",
+    "macro_average": "Arithmetic mean of the three zone-specific MAE or RMSE values at that horizon.",
+    "pooled_rmse": "Square root of mean squared error pooled across all test windows and all three zones at that horizon.",
+    "horizon_step": "Step 1 is 10 minutes ahead; step 6 is 60 minutes ahead.",
+    "window_order": "Arrays retain the source evaluator's sequential, non-shuffled test-loader order; actuals and predictions were appended from the same batches."
+  },
+  "models": {
+    "LinearGridTransformer": {
+      "prediction_array_key": "lineargridtransformer",
+      "per_horizon": [
+        {
+          "horizon_step": 1,
+          "horizon_minutes": 10,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 1447.2582630466097,
+              "rmse": 1920.444258309516
+            },
+            "zone_2_power_consumption": {
+              "mae": 1728.5023329217543,
+              "rmse": 2288.8906165876247
+            },
+            "zone_3_power_consumption": {
+              "mae": 1619.3898059491792,
+              "rmse": 2009.882891914022
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 1598.383467305848,
+            "rmse": 2073.0725889370538
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 2079.0026168963436
+          }
+        },
+        {
+          "horizon_step": 2,
+          "horizon_minutes": 20,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 1449.1240142383356,
+              "rmse": 1923.3249580605207
+            },
+            "zone_2_power_consumption": {
+              "mae": 1729.0783242039338,
+              "rmse": 2289.542208800244
+            },
+            "zone_3_power_consumption": {
+              "mae": 1619.855067703231,
+              "rmse": 2010.640929161788
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 1599.3524687151667,
+            "rmse": 2074.5026986741846
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 2080.3733131497484
+          }
+        },
+        {
+          "horizon_step": 3,
+          "horizon_minutes": 30,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 1451.058971115806,
+              "rmse": 1926.2927302758037
+            },
+            "zone_2_power_consumption": {
+              "mae": 1729.5558665459562,
+              "rmse": 2290.203107885846
+            },
+            "zone_3_power_consumption": {
+              "mae": 1620.363801390597,
+              "rmse": 2011.4384785163363
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 1600.3262130174528,
+            "rmse": 2075.978105559329
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 2081.7875901045168
+          }
+        },
+        {
+          "horizon_step": 4,
+          "horizon_minutes": 40,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 1453.1691998767267,
+              "rmse": 1929.4330681712124
+            },
+            "zone_2_power_consumption": {
+              "mae": 1730.0568536342173,
+              "rmse": 2290.8877534135586
+            },
+            "zone_3_power_consumption": {
+              "mae": 1620.905957200307,
+              "rmse": 2012.2403216608097
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 1601.3773369037506,
+            "rmse": 2077.5203810818603
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 2083.2658476064607
+          }
+        },
+        {
+          "horizon_step": 5,
+          "horizon_minutes": 50,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 1455.4678142841904,
+              "rmse": 1932.7864572160793
+            },
+            "zone_2_power_consumption": {
+              "mae": 1730.4881183841794,
+              "rmse": 2291.583565356514
+            },
+            "zone_3_power_consumption": {
+              "mae": 1621.5218326017896,
+              "rmse": 2013.1375523881793
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 1602.4925884233865,
+            "rmse": 2079.169191653591
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 2084.845440398035
+          }
+        },
+        {
+          "horizon_step": 6,
+          "horizon_minutes": 60,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 1457.8700407384335,
+              "rmse": 1936.2634275544647
+            },
+            "zone_2_power_consumption": {
+              "mae": 1730.7979998876942,
+              "rmse": 2292.263172290205
+            },
+            "zone_3_power_consumption": {
+              "mae": 1622.1123856089198,
+              "rmse": 2014.0322348546285
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 1603.5934754116824,
+            "rmse": 2080.8529448997665
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 2086.457312843667
+          }
+        }
+      ],
+      "existing_overall_per_zone_metrics": {
+        "zone_1_power_consumption": {
+          "mae": 1452.3247172166837,
+          "rmse": 1928.0983827302193
+        },
+        "zone_2_power_consumption": {
+          "mae": 1729.746582596289,
+          "rmse": 2290.5620286566136
+        },
+        "zone_3_power_consumption": {
+          "mae": 1620.6914750756707,
+          "rmse": 2011.8959009713517
+        }
+      },
+      "consistency_with_existing_overall_metrics": {
+        "tolerance": {
+          "rtol": 1e-07,
+          "atol": 1e-07
+        },
+        "all_match": true,
+        "per_zone": {
+          "zone_1_power_consumption": {
+            "mae_matches_saved": true,
+            "rmse_matches_saved": true,
+            "recalculated_overall": {
+              "mae": 1452.3247172166837,
+              "rmse": 1928.0983827302193
+            },
+            "aggregated_from_horizons": {
+              "mae": 1452.3247172166837,
+              "rmse": 1928.0983827302193
+            },
+            "saved_overall": {
+              "mae": 1452.3247172166837,
+              "rmse": 1928.0983827302193
+            }
+          },
+          "zone_2_power_consumption": {
+            "mae_matches_saved": true,
+            "rmse_matches_saved": true,
+            "recalculated_overall": {
+              "mae": 1729.746582596289,
+              "rmse": 2290.5620286566136
+            },
+            "aggregated_from_horizons": {
+              "mae": 1729.7465825962893,
+              "rmse": 2290.562028656614
+            },
+            "saved_overall": {
+              "mae": 1729.746582596289,
+              "rmse": 2290.5620286566136
+            }
+          },
+          "zone_3_power_consumption": {
+            "mae_matches_saved": true,
+            "rmse_matches_saved": true,
+            "recalculated_overall": {
+              "mae": 1620.6914750756707,
+              "rmse": 2011.8959009713517
+            },
+            "aggregated_from_horizons": {
+              "mae": 1620.6914750756707,
+              "rmse": 2011.8959009713517
+            },
+            "saved_overall": {
+              "mae": 1620.6914750756707,
+              "rmse": 2011.8959009713517
+            }
+          }
+        }
+      }
+    },
+    "CDLinear": {
+      "prediction_array_key": "cdlinear",
+      "per_horizon": [
+        {
+          "horizon_step": 1,
+          "horizon_minutes": 10,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 469.4366348695251,
+              "rmse": 600.6921501745717
+            },
+            "zone_2_power_consumption": {
+              "mae": 866.0986988750128,
+              "rmse": 1037.3378410666712
+            },
+            "zone_3_power_consumption": {
+              "mae": 467.9144751426298,
+              "rmse": 582.9257556934933
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 601.1499362957226,
+            "rmse": 740.3185823115788
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 769.567690858758
+          }
+        },
+        {
+          "horizon_step": 2,
+          "horizon_minutes": 20,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 519.3425485995735,
+              "rmse": 691.0983159650582
+            },
+            "zone_2_power_consumption": {
+              "mae": 433.1133926401903,
+              "rmse": 623.274877166164
+            },
+            "zone_3_power_consumption": {
+              "mae": 511.18126478376706,
+              "rmse": 652.9431059807046
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 487.87906867451034,
+            "rmse": 655.7720997039756
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 656.3594428065478
+          }
+        },
+        {
+          "horizon_step": 3,
+          "horizon_minutes": 30,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 673.5656408099773,
+              "rmse": 867.0962461550666
+            },
+            "zone_2_power_consumption": {
+              "mae": 501.8197556975416,
+              "rmse": 713.4356810975614
+            },
+            "zone_3_power_consumption": {
+              "mae": 590.5552894913232,
+              "rmse": 753.78684080474
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 588.6468953329473,
+            "rmse": 778.1062560191227
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 780.820289296186
+          }
+        },
+        {
+          "horizon_step": 4,
+          "horizon_minutes": 40,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 618.7512749204797,
+              "rmse": 814.3973299784143
+            },
+            "zone_2_power_consumption": {
+              "mae": 510.0566029509465,
+              "rmse": 735.6328127821685
+            },
+            "zone_3_power_consumption": {
+              "mae": 636.7863126192493,
+              "rmse": 830.4151892438013
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 588.5313968302252,
+            "rmse": 793.4817773347946
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 794.5623602219847
+          }
+        },
+        {
+          "horizon_step": 5,
+          "horizon_minutes": 50,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 678.7755134705963,
+              "rmse": 885.5789905325901
+            },
+            "zone_2_power_consumption": {
+              "mae": 629.9067760432599,
+              "rmse": 861.6851278767955
+            },
+            "zone_3_power_consumption": {
+              "mae": 741.5005896347265,
+              "rmse": 949.4600950676198
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 683.3942930495276,
+            "rmse": 898.9080711590018
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 899.6713993087669
+          }
+        },
+        {
+          "horizon_step": 6,
+          "horizon_minutes": 60,
+          "per_zone": {
+            "zone_1_power_consumption": {
+              "mae": 805.123382583645,
+              "rmse": 1027.6293968164441
+            },
+            "zone_2_power_consumption": {
+              "mae": 768.2270006870893,
+              "rmse": 1019.5748019820618
+            },
+            "zone_3_power_consumption": {
+              "mae": 763.1432324002359,
+              "rmse": 994.6596410007461
+            }
+          },
+          "macro_average_across_zones": {
+            "mae": 778.8312052236566,
+            "rmse": 1013.9546132664173
+          },
+          "pooled_across_test_windows_and_zones": {
+            "rmse": 1014.0517336365408
+          }
+        }
+      ],
+      "existing_overall_per_zone_metrics": {
+        "zone_1_power_consumption": {
+          "mae": 627.4991658756327,
+          "rmse": 826.016462553594
+        },
+        "zone_2_power_consumption": {
+          "mae": 618.2037044823401,
+          "rmse": 846.2388858709968
+        },
+        "zone_3_power_consumption": {
+          "mae": 618.513527345322,
+          "rmse": 807.7482485029309
+        }
+      },
+      "consistency_with_existing_overall_metrics": {
+        "tolerance": {
+          "rtol": 1e-07,
+          "atol": 1e-07
+        },
+        "all_match": true,
+        "per_zone": {
+          "zone_1_power_consumption": {
+            "mae_matches_saved": true,
+            "rmse_matches_saved": true,
+            "recalculated_overall": {
+              "mae": 627.4991658756327,
+              "rmse": 826.016462553594
+            },
+            "aggregated_from_horizons": {
+              "mae": 627.4991658756329,
+              "rmse": 826.016462553594
+            },
+            "saved_overall": {
+              "mae": 627.4991658756327,
+              "rmse": 826.016462553594
+            }
+          },
+          "zone_2_power_consumption": {
+            "mae_matches_saved": true,
+            "rmse_matches_saved": true,
+            "recalculated_overall": {
+              "mae": 618.2037044823401,
+              "rmse": 846.2388858709968
+            },
+            "aggregated_from_horizons": {
+              "mae": 618.2037044823401,
+              "rmse": 846.2388858709968
+            },
+            "saved_overall": {
+              "mae": 618.2037044823401,
+              "rmse": 846.2388858709968
+            }
+          },
+          "zone_3_power_consumption": {
+            "mae_matches_saved": true,
+            "rmse_matches_saved": true,
+            "recalculated_overall": {
+              "mae": 618.513527345322,
+              "rmse": 807.7482485029309
+            },
+            "aggregated_from_horizons": {
+              "mae": 618.5135273453219,
+              "rmse": 807.7482485029309
+            },
+            "saved_overall": {
+              "mae": 618.513527345322,
+              "rmse": 807.7482485029309
+            }
+          }
+        }
+      }
+    }
+  },
+  "derivation": {
+    "source": "Saved test_predictions.npz arrays only.",
+    "training_rerun": false,
+    "held_out_evaluation_rerun": false,
+    "test_dataset_instantiated": false,
+    "test_metrics_recalculated_from_models": false
+  }
+}

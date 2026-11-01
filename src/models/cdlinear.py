@@ -32,11 +32,13 @@ class CDLinearBaseline(nn.Module):
     seq_len  : int — input lookback window length (default 1440 = 24 h)
     pred_len : int — forecast horizon length      (default   60 =  1 h)
     channels : int — number of feature channels   (default    7)
+    in_channels : int | None — input feature channels (defaults to channels)
+    out_channels : int | None — forecast target channels (defaults to channels)
 
     Shapes
     ------
     Input  : [B, seq_len,  channels]
-    Output : [B, pred_len, channels]
+    Output : [B, pred_len, out_channels]
 
     Parameter count
     ---------------
@@ -51,15 +53,34 @@ class CDLinearBaseline(nn.Module):
         seq_len:  int = 1440,
         pred_len: int = 60,
         channels: int = 7,
+        in_channels: int | None = None,
+        out_channels: int | None = None,
     ) -> None:
         super().__init__()
+
+        for name, value in (("seq_len", seq_len), ("pred_len", pred_len),
+                            ("channels", channels)):
+            if not isinstance(value, int):
+                raise TypeError(f"{name} must be an integer, got {type(value).__name__}.")
+            if value <= 0:
+                raise ValueError(f"{name} must be positive, got {value}.")
+
+        in_channels = channels if in_channels is None else in_channels
+        out_channels = channels if out_channels is None else out_channels
+        for name, value in (("in_channels", in_channels), ("out_channels", out_channels)):
+            if not isinstance(value, int):
+                raise TypeError(f"{name} must be an integer, got {type(value).__name__}.")
+            if value <= 0:
+                raise ValueError(f"{name} must be positive, got {value}.")
 
         self.seq_len  = seq_len
         self.pred_len = pred_len
         self.channels = channels
+        self.in_channels = in_channels
+        self.out_channels = out_channels
 
-        # Single unified projection: (T × C) → (pred_len × C)
-        self.linear = nn.Linear(seq_len * channels, pred_len * channels)
+        # Single unified projection: (T × input channels) → (pred_len × output channels)
+        self.linear = nn.Linear(seq_len * in_channels, pred_len * out_channels)
 
         self._init_weights()
 
@@ -76,21 +97,30 @@ class CDLinearBaseline(nn.Module):
 
         Returns
         -------
-        out : Tensor  [B, pred_len, channels]
+        out : Tensor  [B, pred_len, out_channels]
         """
+        if x.ndim != 3:
+            raise ValueError(
+                f"Expected input rank 3 [B, {self.seq_len}, {self.in_channels}], "
+                f"got rank {x.ndim} with shape {tuple(x.shape)}."
+            )
         B, T, C = x.shape
+        if T != self.seq_len:
+            raise ValueError(f"Expected sequence length {self.seq_len}, got {T}.")
+        if C != self.in_channels:
+            raise ValueError(f"Expected {self.in_channels} input channels, got {C}.")
 
         # ── Step 1: Flatten to 2D spatial-temporal matrix ─────────────────────
         # [B, T, C] → [B, T * C]
         x_flat = x.reshape(B, -1)
 
         # ── Step 2: Unified joint linear projection ───────────────────────────
-        # [B, T * C] → [B, pred_len * C]
+        # [B, T * input_channels] → [B, pred_len * output_channels]
         out_flat = self.linear(x_flat)
 
         # ── Step 3: Reshape back to standard 3D pipeline format ───────────────
-        # [B, pred_len * C] → [B, pred_len, C]
-        return out_flat.reshape(B, self.pred_len, self.channels)
+        # [B, pred_len * output_channels] → [B, pred_len, output_channels]
+        return out_flat.reshape(B, self.pred_len, self.out_channels)
 
     def param_count(self) -> int:
         """Return total learnable parameter count."""
@@ -102,6 +132,8 @@ class CDLinearBaseline(nn.Module):
             f"seq_len={self.seq_len}, "
             f"pred_len={self.pred_len}, "
             f"channels={self.channels}, "
+            f"in_channels={self.in_channels}, "
+            f"out_channels={self.out_channels}, "
             f"params={self.param_count():,})"
         )
 

@@ -1,0 +1,154 @@
+{
+  "manifest_version": 1,
+  "run_metadata": {
+    "run_name": "tetouan_extended_v2_s123",
+    "run_type": "experiment",
+    "created_utc": "2026-11-01T12:06:11.297145+00:00",
+    "git_commit": null,
+    "python_version": "3.13.16",
+    "pytorch_version": "2.11.0+cu130",
+    "device": "cuda",
+    "cuda_available": true,
+    "cuda_version": "13.0",
+    "gpu_name": "Tesla T4",
+    "dataset": {
+      "dataset_name": "Power Consumption of Tetouan City",
+      "source_url": "https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city",
+      "source_file": "Tetuan City power consumption.csv",
+      "source_sha256": "ca8b2f30cf07dd872cb7f2aa45dac110ee38dbe5fc5910a6ff4bcc530dae3a40",
+      "doi": "10.24432/C5B034",
+      "dataset_row_count": 52416,
+      "feature_names": [
+        "zone_1_power_consumption",
+        "zone_2_power_consumption",
+        "zone_3_power_consumption",
+        "temperature",
+        "humidity",
+        "wind_speed",
+        "general_diffuse_flows",
+        "diffuse_flows"
+      ],
+      "target_names": [
+        "zone_1_power_consumption",
+        "zone_2_power_consumption",
+        "zone_3_power_consumption"
+      ],
+      "lookback": 144,
+      "horizon": 6,
+      "cadence_minutes": 10,
+      "timezone_status": "undocumented; timestamps are timezone-naive",
+      "units_status": "Not documented by the source metadata; preserved as unknown.",
+      "normalization": {
+        "method": "z-score: (value - mean) / std",
+        "fit_partition": "train",
+        "fit_row_range_half_open": [
+          0,
+          36691
+        ],
+        "std_ddof": 0
+      },
+      "used_partitions": {
+        "train": {
+          "start_index": 0,
+          "end_index_exclusive": 36691,
+          "row_count": 36691,
+          "first_timestamp": "2017-01-01 00:00:00",
+          "last_timestamp": "2017-09-12 19:00:00"
+        },
+        "validation": {
+          "start_index": 36691,
+          "end_index_exclusive": 44553,
+          "row_count": 7862,
+          "first_timestamp": "2017-09-12 19:10:00",
+          "last_timestamp": "2017-11-06 09:20:00"
+        }
+      },
+      "test_partition_used": false
+    },
+    "processed_artifacts": {
+      "metadata.json": {
+        "path": "/content/lineargrid_tetouan/data/processed/tetouan/metadata.json",
+        "size_bytes": 4799,
+        "sha256": "cb3a8a79ba7e49638143ae472c5b9885968e111e40896da636de67dae3bb2a26"
+      },
+      "series.npz": {
+        "path": "/content/lineargrid_tetouan/data/processed/tetouan/series.npz",
+        "size_bytes": 1847934,
+        "sha256": "720f68ffa4d7924b0adcc0852c6a9aa9290aa64381232eb0346d225a7609b0ad"
+      }
+    },
+    "training": {
+      "epochs": 50,
+      "batch_size": 32,
+      "num_workers": 0,
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "seed": 123,
+      "grad_clip_norm": 1.0,
+      "max_train_batches": null,
+      "max_validation_batches": null,
+      "smoke": false,
+      "device": "cuda",
+      "d_model": 64,
+      "num_heads": 4,
+      "ffn_dim": 256,
+      "dropout": 0.1
+    },
+    "seed_policy": {
+      "seed_everything_before_each_model_initialization": true,
+      "data_loader_generator_seed": 123,
+      "same_shuffled_order_seed_per_model": true
+    },
+    "gradient_clipping_max_norm": 1.0,
+    "loss": "mean squared error",
+    "optimizer": "AdamW",
+    "test_partition_used": false,
+    "models": {
+      "LinearGridTransformer": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "lookback": 144,
+        "horizon": 6,
+        "d_model": 64,
+        "num_heads": 4,
+        "ffn_dim": 256,
+        "dropout": 0.1
+      },
+      "CDLinear": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "seq_len": 144,
+        "pred_len": 6
+      }
+    }
+  },
+  "models": {
+    "LinearGridTransformer": {
+      "configuration": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "lookback": 144,
+        "horizon": 6,
+        "d_model": 64,
+        "num_heads": 4,
+        "ffn_dim": 256,
+        "dropout": 0.1
+      },
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s123_lineargridtransformer.pt",
+      "best_validation_epoch": 9,
+      "best_validation_loss": 0.07563394720019981
+    },
+    "CDLinear": {
+      "configuration": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "seq_len": 144,
+        "pred_len": 6
+      },
+      "checkpoint": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s123_cdlinear.pt",
+      "best_validation_epoch": 46,
+      "best_validation_loss": 0.011438840790749529
+    }
+  },
+  "history_path": "/content/drive/MyDrive/LinearGridTetouan/results/extended_training_v2/tetouan_extended_v2_s123_history.json"
+}

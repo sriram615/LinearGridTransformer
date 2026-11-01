@@ -1,0 +1,7 @@
+model,seed,checkpoint,test_windows
+LinearGridTransformer,42,/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s42_lineargridtransformer.pt,7858
+LinearGridTransformer,123,/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s123_lineargridtransformer.pt,7858
+LinearGridTransformer,2026,/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s2026_lineargridtransformer.pt,7858
+CDLinear,42,/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s42_cdlinear.pt,7858
+CDLinear,123,/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s123_cdlinear.pt,7858
+CDLinear,2026,/content/drive/MyDrive/LinearGridTetouan/checkpoints/extended_training_v2/tetouan_extended_v2_s2026_cdlinear.pt,7858
