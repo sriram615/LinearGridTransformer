@@ -4,7 +4,7 @@ A multi-zone electricity forecasting system built around the UCI **Power Consump
 
 The main engineering result is not that the more complex model won: **CDLinear was selected as the operational forecaster because it performed better in the recorded comparison.** The Transformer remains available as an experimental alternative. The evaluation also has an important limitation: held-out test metrics informed that model-family selection, so the comparison is subject to test-selection bias.
 
-> **Live demo:** [Frontend dashboard](https://lineargridtransformer-frontend.onrender.com) · [Backend API](https://lineargridtransformer-api.onrender.com). The public services were browser-verified for historical data and CPU forecasts; this does not imply an uptime guarantee. Render automatic deployment is disabled, so repository changes require a manual service redeploy.
+> **Live demo:** [Frontend dashboard](https://lineargridtransformer-frontend.onrender.com) · [Backend API](https://lineargridtransformer-api.onrender.com). On November 2, 2026, the frontend document, backend health/dataset/OpenAPI routes, and both model and comparison forecast endpoints returned successfully. The forecast checks used the first 144 training-period observations and returned finite `[6, 3]` outputs. Supplied browser captures show historical page data and a `Connected` badge; a fresh browser-console inspection was unavailable. These checks do not imply an uptime guarantee. Render automatic deployment is disabled, so repository changes require a manual service redeploy.
 
 ## What is included
 
@@ -124,7 +124,91 @@ The React application has five sections:
 
 The CSV is historical input only. A successful forecast comes from a backend response and contains six forecast steps and three ordered zone values per step. Units remain identified as undocumented.
 
-No genuine application screenshots are included in the repository. Recommended screenshots to capture after a live demo is available: Overview, a completed Forecast Explorer comparison, Model Laboratory horizon/zone analysis, and Dataset Explorer provenance.
+Genuine project screenshots supplied by the project owner are included below. They show the Overview, Model Laboratory, Dataset Explorer, and Forecast Explorer input state. The Forecast Explorer capture is an input screen, not evidence of a completed forecast; no Experiment Details or successful forecast capture was supplied. The browser screenshots show a `Connected` status at capture time.
+
+![Overview dashboard](docs/images/frontend/dashboard-overview.png)
+
+![Model Laboratory](docs/images/frontend/model-lab.png)
+
+![Model Laboratory: per-zone and horizon analysis](docs/images/frontend/model-lab-per-zone-and-horizon.png)
+
+![Model Laboratory: seed-level metrics](docs/images/frontend/model-lab-seed-metrics.png)
+
+![Dataset Explorer](docs/images/frontend/dataset-explorer.png)
+
+![Forecast Explorer input](docs/images/frontend/forecast-explorer.png)
+
+## MLOps: registry, repeatable runs and drift analysis
+
+MLflow is a **local research tracking store** in `.mlflow/` (SQLite plus filesystem artifacts). It is deliberately separate from the Render inference services; Render does not need MLflow, and FastAPI continues to load its curated checkpoint bundle directly. Do not copy the local tracking database to a public service.
+
+### Model Registry
+
+The local registry contains two registered model names: `Tetouan-CDLinear` and `Tetouan-LinearGridTransformer`. Each contains four hash-verified versions: the two original-run checkpoints (seed 42) and three extended-run seeds (42, 123 and 2026). Versions include the source training run ID, checkpoint SHA-256, best validation epoch/loss, dataset artifact fingerprints, channel order and model dimensions. Original historical MLflow runs remain unchanged. No alias is assigned: the recorded model-family choice used test metrics and is subject to test-selection bias, so it is not safe to promote that choice as a validation-approved production alias.
+
+The MLflow PyTorch flavor uses the `pickle` serialization format because this project environment has PyTorch 2.2.2 while MLflow 3.17's PT2 serializer requires PyTorch 2.4 or newer. Only load these trusted local model artifacts; Python pickle deserialization is unsafe for untrusted artifacts. Registry inputs and outputs are normalized tensors with shapes `[N,144,8]` and `[N,6,3]`; callers must use the recorded training-only statistics to normalize and inverse-transform. The deployed API retains its existing direct-checkpoint loading path.
+
+Start the local UI and register/reconcile the verified historical checkpoints with:
+
+```bash
+.venv311/bin/python3 -m mlflow ui \
+  --backend-store-uri "sqlite:///$PWD/.mlflow/tracking.db" \
+  --default-artifact-root "$PWD/.mlflow/artifacts" --host 127.0.0.1 --port 5000
+.venv311/bin/python3 -m src.mlops.model_registry --all-historical
+```
+
+The importer is idempotent by source-run ID and checkpoint hash. The first command is optional for registration. It binds only to loopback; this project does not publish an MLflow server.
+
+### Multi-seed training and evaluation pipeline
+
+`src.pipelines.tetouan_pipeline` is an explicit Python CLI wrapper around the existing preprocessing, training, evaluation and registration code. Dry-run is the default and verifies dataset/artifact fingerprints without writing. An actual run requires `--execute`, a unique `--run-name`, and an available official CSV whose hash matches the saved provenance:
+
+```bash
+.venv311/bin/python3 -m src.pipelines.tetouan_pipeline \
+  --run-name tetouan-research-2027-01 --seeds 42 123 2026
+.venv311/bin/python3 -m src.pipelines.tetouan_pipeline \
+  --run-name tetouan-research-2027-01 --seeds 42 123 2026 \
+  --epochs 50 --batch-size 32 --execute
+```
+
+The executing run preprocesses into its own output folder, uses the fixed chronological split and train-only normalization, trains one independent pair of models per seed, records parent/child MLflow runs and best-validation checkpoints, then reports held-out test metrics only after configurations are fixed. Test metrics are never used for tuning, family selection or alias assignment. Outputs are collision-protected under `results/pipelines/tetouan/<run-name>/`; training uses checkpoints under the same isolated run root. This is a local CLI pipeline, not a GitHub Actions workflow or an automatic retraining service. A full run is expensive and was not launched as part of implementation verification.
+
+### Drift and observed-performance monitoring
+
+`src.monitoring.tetouan_drift` provides NumPy PSI reports for eight features, 18 zone/horizon prediction distributions, and MAE/RMSE when matching observed targets are available. Feature reference values are loaded only from rows in the saved training partition; prediction reference arrays should come from a designated validation period. PSI warning/alert boundaries of 0.10 and 0.25 are provisional heuristics and need calibration on validation windows. The CLI can consult prior aggregate reports via `--alert-history-dir` and records a separate `repeated_alert` flag after the configured consecutive-window count; individual-window drift findings remain visible. Distribution movement is not proof of accuracy loss; performance comparison requires correctly aligned ground truth and is reported separately. The CLI writes aggregate JSON only and can log JSON/Markdown and aggregate metrics to a new MLflow monitoring run; it does not store observation rows, upload CSV contents, retrain, or replace the serving model.
+
+Example (prepare `current_features.npy` with shape `[N,8]`; the file is read locally and never logged):
+
+```bash
+mkdir -p results/monitoring
+.venv311/bin/python3 -m src.monitoring.tetouan_drift \
+  --current-features /path/to/current_features.npy \
+  --output results/monitoring/tetouan-window-001.json \
+  --log-mlflow
+```
+
+For later windows, choose a new output filename and add the existing report directory to the alert history:
+
+```bash
+.venv311/bin/python3 -m src.monitoring.tetouan_drift \
+  --current-features /path/to/next_features.npy \
+  --output results/monitoring/tetouan-window-002.json \
+  --alert-history-dir results/monitoring --log-mlflow
+```
+
+Optional `--reference-predictions` and `--current-predictions` compare prediction distributions; `--current-actuals` adds observed performance metrics. For performance comparison, provide `--validation-metrics` JSON. Never use the held-out test predictions as the operational reference distribution.
+
+### MLflow screenshots
+
+The supplied genuine MLflow captures show the experiment run list and the registered model/version views. They document the local MLflow UI; MLflow is not deployed with the Render application. No drift-monitoring UI screenshot was supplied, so monitoring behavior is evidenced by automated tests and MLflow artifacts rather than a screenshot.
+
+![MLflow experiment runs](docs/images/mlflow/experiment-tracking.png)
+
+![Registered Tetouan models](docs/images/mlflow/model-registry.png)
+
+![Registered model versions and source-run lineage](docs/images/mlflow/model-version-lineage.png)
+
+The screenshot folders also record the remaining capture checklist: `docs/images/frontend/experiment-details.png`, successful CDLinear/Transformer/comparison forecasts, `docs/images/mlflow/drift-monitoring.png`, and backend root, health, and Swagger views. These files have not been fabricated or represented as captured.
 
 ## API reference
 

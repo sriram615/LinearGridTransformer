@@ -407,3 +407,355 @@ main { min-height: 100vh; margin-left: 246px; }
   .result-footer { align-items: flex-start; flex-direction: column; }
   .result-footer .button { width: 100%; }
 }
+
+/* ==========================================================================
+   Dataset Switcher & Live Telemetry Styles
+   ========================================================================== */
+
+.dataset-switcher {
+  display: flex;
+  align-items: center;
+  background: rgba(12, 16, 23, .88);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 3px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+}
+
+.dataset-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dataset-pill:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, .04);
+}
+
+.dataset-pill.active {
+  background: linear-gradient(145deg, #182230, #131b26);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .08);
+  font-weight: 600;
+}
+
+.pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(67, 207, 145, 0.8);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(67, 207, 145, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(67, 207, 145, 0);
+  }
+}
+
+.grid-dot {
+  background: var(--green);
+  animation: livePulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.tetouan-dot {
+  background: var(--blue-light);
+}
+
+.telemetry-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.button-telemetry {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(67, 207, 145, .16), rgba(76, 141, 255, .16));
+  border: 1px solid rgba(67, 207, 145, .4);
+  color: #43cf91;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .02em;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  cursor: pointer;
+  transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+
+.button-telemetry:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(67, 207, 145, .28), rgba(76, 141, 255, .28));
+  border-color: rgba(67, 207, 145, .65);
+  box-shadow: 0 0 20px rgba(67, 207, 145, .25), 0 4px 12px rgba(0, 0, 0, .3);
+  transform: translateY(-1px);
+  color: #58f0ab;
+}
+
+.button-telemetry:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 0 10px rgba(67, 207, 145, .2);
+}
+
+.button-telemetry:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.telemetry-caption {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.telemetry-banner {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  margin-bottom: 14px;
+  background: linear-gradient(90deg, rgba(67, 207, 145, .12), rgba(67, 207, 145, .04));
+  border: 1px solid rgba(67, 207, 145, .3);
+  border-radius: var(--radius-sm);
+  color: #58f0ab;
+  font-size: 11px;
+  line-height: 1.45;
+  animation: bannerSlideIn .3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bannerSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 14px 0;
+  color: var(--text-muted);
+  font-size: 9px;
+  letter-spacing: .12em;
+  font-weight: 600;
+}
+
+.or-divider::before, .or-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.or-divider span {
+  padding: 0 12px;
+}
+
+/* Econometric Significance Card */
+.econometric-card {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 100% 0%, rgba(67, 207, 145, .12), transparent 45%), linear-gradient(145deg, rgba(14, 25, 20, .92), rgba(9, 15, 13, .98));
+  border: 1px solid rgba(67, 207, 145, .35);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .05);
+  backdrop-filter: blur(12px);
+}
+
+.econometric-header h2 {
+  margin: 6px 0 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--text);
+}
+
+.econometric-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+  padding: 18px;
+  background: rgba(4, 8, 7, .5);
+  border: 1px solid rgba(67, 207, 145, .2);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, .3);
+}
+
+.econometric-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.econometric-stat span {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.econometric-stat strong {
+  font-size: 28px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -.03em;
+}
+
+.econometric-stat strong.best {
+  color: #43cf91;
+  text-shadow: 0 0 16px rgba(67, 207, 145, .4);
+}
+
+.econometric-stat small {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.econometric-explanation {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  padding-top: 14px;
+}
+
+.econometric-explanation strong {
+  color: var(--text);
+}
+
+/* Scientific Framework Matrix */
+.scientific-framework-card {
+  border: 1px solid rgba(76, 141, 255, .28);
+  background: linear-gradient(145deg, rgba(13, 18, 26, .95), rgba(8, 12, 18, .98));
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+.framework-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .03);
+}
+
+.framework-row {
+  display: grid;
+  grid-template-columns: 210px 1.2fr 1.8fr 140px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  transition: background .15s ease;
+}
+
+.framework-row:hover:not(.framework-head) {
+  background: rgba(255, 255, 255, .02);
+}
+
+.framework-row:last-child {
+  border-bottom: 0;
+}
+
+.framework-head {
+  background: var(--surface-raised);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.framework-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.framework-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--blue-light);
+  background: var(--blue-soft);
+  border: 1px solid rgba(76, 141, 255, .2);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.framework-title strong {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.framework-legacy {
+  color: var(--text-muted);
+  line-height: 1.45;
+  font-size: 11px;
+}
+
+.framework-nyiso {
+  color: var(--text);
+  line-height: 1.45;
+  font-size: 12px;
+}
+
+.framework-status {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+  .framework-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 14px;
+  }
+  .framework-head {
+    display: none;
+  }
+  .econometric-stat-row {
+    grid-template-columns: 1fr;
+  }
+  .dataset-pill {
+    padding: 0 8px;
+    font-size: 10px;
+  }
+}
+

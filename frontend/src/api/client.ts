@@ -1,12 +1,15 @@
 import type {
   ApiErrorBody,
   ApiHealth,
+  DatasetId,
   DatasetInfo,
+  DatasetListResponse,
   EvaluationMetrics,
   ExperimentInfo,
   ForecastComparisonResponse,
   ForecastRequest,
   ForecastResponse,
+  GridTelemetryResponse,
   ModelInfo,
   ModelName,
   TrainingHistory,
@@ -14,6 +17,7 @@ import type {
 
 export const DEFAULT_EXPERIMENT_ID = 'extended_training_v2'
 export const ORIGINAL_EXPERIMENT_ID = 'tetouan_t4_20261101_v1'
+export const GRID_EXPERIMENT_ID = 'grid_colab_v1'
 
 export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:8000').replace(/\/$/, '')
 
@@ -62,18 +66,34 @@ function postJson<T>(path: string, body: unknown): Promise<T> {
 
 export const apiClient = {
   health: () => request<ApiHealth>('/health'),
-  models: () => request<ModelInfo[]>('/api/v1/models'),
-  dataset: () => request<DatasetInfo>('/api/v1/dataset'),
+  datasets: () => request<DatasetListResponse>('/api/v1/datasets'),
+  latestTelemetry: (limit = 144) =>
+    request<GridTelemetryResponse>(`/api/v1/grid/telemetry/latest?limit=${limit}`),
+  models: (datasetId?: string) =>
+    request<ModelInfo[]>(datasetId ? `/api/v1/models?dataset=${encodeURIComponent(datasetId)}` : '/api/v1/models'),
+  dataset: (datasetId?: string) =>
+    request<DatasetInfo>(datasetId ? `/api/v1/dataset?dataset=${encodeURIComponent(datasetId)}` : '/api/v1/dataset'),
   experiment: (experimentId: string) =>
     request<ExperimentInfo>(`/api/v1/experiments/${encodeURIComponent(experimentId)}`),
   history: (experimentId: string) =>
     request<TrainingHistory>(`/api/v1/experiments/${encodeURIComponent(experimentId)}/history`),
   metrics: (experimentId: string) =>
     request<EvaluationMetrics>(`/api/v1/experiments/${encodeURIComponent(experimentId)}/metrics`),
-  forecast: (modelName: ModelName, input: ForecastRequest) =>
-    postJson<ForecastResponse>(`/api/v1/forecasts/${encodeURIComponent(modelName)}`, input),
-  compareForecasts: (input: ForecastRequest) =>
-    postJson<ForecastComparisonResponse>('/api/v1/forecasts/compare', input),
+  forecast: (modelName: ModelName, input: ForecastRequest, datasetId?: string) =>
+    postJson<ForecastResponse>(
+      datasetId
+        ? `/api/v1/forecasts/${encodeURIComponent(modelName)}?dataset=${encodeURIComponent(datasetId)}`
+        : `/api/v1/forecasts/${encodeURIComponent(modelName)}`,
+      input,
+    ),
+  compareForecasts: (input: ForecastRequest, datasetId?: string) =>
+    postJson<ForecastComparisonResponse>(
+      datasetId
+        ? `/api/v1/forecasts/compare?dataset=${encodeURIComponent(datasetId)}`
+        : '/api/v1/forecasts/compare',
+      input,
+    ),
 }
 
 export type ApiClient = typeof apiClient
+
