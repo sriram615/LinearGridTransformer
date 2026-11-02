@@ -1,0 +1,72 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - "8000"
+    environment:
+      TETOUAN_RUN_NAME: tetouan_t4_20261101_v1
+      TETOUAN_ARTIFACT_DIR: /opt/runtime-artifacts/data/processed/tetouan
+      TETOUAN_EXPERIMENT_DIR: /opt/runtime-artifacts/results/tetouan/tetouan_t4_20261101_v1
+      TETOUAN_CHECKPOINT_DIR: /opt/runtime-artifacts/checkpoints/tetouan
+      TETOUAN_LATEST_EXPERIMENT_ID: extended_training_v2
+      TETOUAN_LATEST_EXPERIMENT_DIR: /opt/runtime-artifacts/results/tetouan/extended_training_v2
+      TETOUAN_LATEST_CHECKPOINT_DIR: /opt/runtime-artifacts/checkpoints/tetouan/extended_training_v2
+      TETOUAN_LATEST_EVALUATION_DIR: /opt/runtime-artifacts/results/tetouan/extended_training_v2/evaluation_test_v1
+      TETOUAN_DEVICE: cpu
+      API_CORS_ORIGINS: "${API_CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}"
+    volumes:
+      - type: bind
+        source: ${RUNTIME_ARTIFACTS_DIR:-./runtime-artifacts}
+        target: /opt/runtime-artifacts
+        read_only: true
+        bind:
+          create_host_path: false
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json,urllib.request; r=urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=4); assert json.load(r)['status']=='ready'"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 90s
+    restart: unless-stopped
+    init: true
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_BASE_URL: ""
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-8080}:80"
+    restart: unless-stopped
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-grid_forecasting}
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+      - ./src/data/db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d grid_forecasting"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  timescaledb_data:
+

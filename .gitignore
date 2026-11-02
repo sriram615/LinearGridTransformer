@@ -21,8 +21,10 @@ Thumbs.db
 
 # Raw Data & Intermediate Payload Artifacts
 data/raw/
+data/processed/
 output/cloud_ready/
 kaggle_upload/
+
 
 # Large Binaries / Archives
 *.zip
@@ -35,3 +37,12 @@ checkpoints/*
 
 # Notebook Checkpoints
 .ipynb_checkpoints
+
+# Local MLflow tracking database, artifacts and generated state
+.mlflow/
+mlflow.db
+mlflow.db-journal
+mlflow.db-shm
+mlflow.db-wal
+mlruns/
+mlflow-artifacts/
