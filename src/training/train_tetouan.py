@@ -601,6 +601,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--device", default=None, help="cpu, cuda, or mps; default auto-detect")
     parser.add_argument("--checkpoint-dir", default=str(DEFAULT_CHECKPOINT_DIR))
     parser.add_argument("--results-dir", default=str(DEFAULT_RESULTS_DIR))
+    parser.add_argument("--artifact-dir", default=str(DEFAULT_OUTPUT_DIR),
+                        help="Directory containing series.npz and metadata.json")
     parser.add_argument("--run-name", default=None, help="Unique name; existing output names are refused")
     parser.add_argument("--smoke", action="store_true",
                         help="one epoch, two train and two validation batches per model; not an experiment")
@@ -623,6 +625,7 @@ def main(argv: list[str] | None = None) -> None:
         config,
         checkpoint_dir=args.checkpoint_dir,
         results_dir=args.results_dir,
+        artifact_dir=args.artifact_dir,
         run_name=args.run_name,
     )
 
