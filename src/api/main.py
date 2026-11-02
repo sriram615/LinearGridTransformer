@@ -12,6 +12,7 @@ from typing import Any, Callable, Literal
 
 import numpy as np
 from fastapi import FastAPI, Request
+import json
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -19,16 +20,21 @@ from fastapi.responses import JSONResponse
 from src.api.config import ApiConfig
 from src.api.schemas import (
     DatasetInfo,
+    DatasetListResponse,
+    DatasetSummary,
     EvaluationMetrics,
     ExperimentInfo,
     ForecastComparisonResponse,
     ForecastRequest,
     ForecastResponse,
+    GridTelemetryResponse,
     HealthResponse,
     ModelInfo,
     SafeArtifactInfo,
     TrainingHistory,
 )
+from src.data.db.postgres_manager import PostgresManager
+from src.data.grid_experiment_store import GridExperimentStore
 from src.data.tetouan_experiment_store import (
     MODEL_ORDER,
     InvalidArtifactError,
@@ -40,7 +46,16 @@ from src.data.tetouan_extended_experiment_store import (
     MissingExtendedArtifactError,
     TetouanExtendedExperimentStore,
 )
+from src.data.tetouan_preprocess import FEATURE_NAMES
+from src.inference.grid_service import GridInferenceService
 from src.inference.tetouan_service import MODEL_NAMES, TetouanInferenceService
+
+GRID_EXPERIMENT_IDS: tuple[str, ...] = (
+    "grid_colab_v1",
+    "grid_colab_s42",
+    "grid_colab_s123",
+    "grid_colab_s2026",
+)
 
 logger = logging.getLogger(__name__)
 StoreFactory = Callable[..., Any]
@@ -150,6 +165,8 @@ def create_app(
     store_factory: StoreFactory | None = None,
     extended_store_factory: StoreFactory | None = None,
     inference_factory: InferenceFactory | None = None,
+    grid_store_factory: StoreFactory | None = None,
+    grid_inference_factory: InferenceFactory | None = None,
 ) -> FastAPI:
     """Create an app; services are initialized once during each app lifespan."""
     settings = config or ApiConfig.from_env()
@@ -158,6 +175,8 @@ def create_app(
         TetouanExtendedExperimentStore if store_factory is None else None
     )
     build_inference = inference_factory or TetouanInferenceService
+    build_grid_store = grid_store_factory or GridExperimentStore
+    build_grid_inference = grid_inference_factory or GridInferenceService
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
@@ -165,6 +184,9 @@ def create_app(
         app.state.latest_experiment_store = None
         app.state.experiment_store_available = False
         app.state.inference_service = None
+        app.state.grid_store = None
+        app.state.grid_inference_service = None
+        app.state.grid_db_manager = None
         app.state.startup_error_type = None
         app.state.ready = False
         try:
@@ -210,6 +232,37 @@ def create_app(
                 device=settings.device,
             )
             app.state.inference_service = inference
+
+            # Grid store & inference initialization (graceful in isolated test environments)
+            try:
+                grid_store = build_grid_store(
+                    results_dir=settings.grid_experiment_dir,
+                    checkpoint_dir=settings.grid_checkpoint_dir,
+                    processed_dir=settings.grid_artifact_dir,
+                )
+                grid_verification = grid_store.verify_artifacts()
+                if isinstance(grid_verification, dict) and grid_verification.get("status") == "ok":
+                    app.state.grid_store = grid_store
+            except Exception as exc:
+                logger.debug("Grid store initialization skipped: %s", exc)
+
+            try:
+                grid_inference = build_grid_inference(
+                    processed_dir=settings.grid_artifact_dir,
+                    checkpoint_dir=settings.grid_checkpoint_dir,
+                    results_dir=settings.grid_experiment_dir,
+                    run_name=settings.grid_run_name,
+                    device=settings.device,
+                )
+                app.state.grid_inference_service = grid_inference
+            except Exception as exc:
+                logger.debug("Grid inference service initialization skipped: %s", exc)
+
+            try:
+                app.state.grid_db_manager = PostgresManager(connection_url=settings.grid_db_url)
+            except Exception as exc:
+                logger.debug("PostgresManager initialization skipped: %s", exc)
+
             app.state.ready = True
         except Exception as exc:  # startup stays available for sanitized health reporting
             app.state.startup_error_type = type(exc).__name__
@@ -223,6 +276,9 @@ def create_app(
             app.state.inference_service = None
             app.state.experiment_store = None
             app.state.latest_experiment_store = None
+            app.state.grid_store = None
+            app.state.grid_inference_service = None
+            app.state.grid_db_manager = None
 
     app = FastAPI(title=settings.title, version=settings.version, lifespan=lifespan)
     app.add_middleware(
@@ -236,6 +292,9 @@ def create_app(
     app.state.latest_experiment_store = None
     app.state.experiment_store_available = False
     app.state.inference_service = None
+    app.state.grid_store = None
+    app.state.grid_inference_service = None
+    app.state.grid_db_manager = None
     app.state.startup_error_type = None
     app.state.ready = False
 
@@ -269,9 +328,98 @@ def create_app(
         ).model_dump()
         return JSONResponse(status_code=200 if ready else 503, content=payload)
 
+    @app.get("/api/v1/datasets", response_model=DatasetListResponse)
+    def list_datasets() -> dict[str, Any]:
+        return {
+            "active_dataset": settings.active_dataset,
+            "datasets": [
+                {
+                    "id": "grid",
+                    "name": "NYISO Regional Multi-Zone Transmission Grid",
+                    "description": "New York Independent System Operator 2023 power consumption across 3 key zones with real Megawatts (MW) units.",
+                    "physical_units": "Megawatts (MW)",
+                    "zones": [
+                        "New York City (N.Y.C.)",
+                        "Long Island (LONGIL)",
+                        "Hudson Valley (HUD VL)",
+                    ],
+                    "active": settings.active_dataset == "grid",
+                },
+                {
+                    "id": "tetouan",
+                    "name": "Power Consumption of Tetouan City",
+                    "description": "Legacy 2017 Moroccan power distribution dataset across 3 distribution zones.",
+                    "physical_units": "undocumented",
+                    "zones": ["Zone 1", "Zone 2", "Zone 3"],
+                    "active": settings.active_dataset == "tetouan",
+                },
+            ],
+        }
+
+    @app.get("/api/v1/grid/telemetry/latest", response_model=GridTelemetryResponse)
+    def latest_telemetry(request: Request, limit: int = 144) -> dict[str, Any]:
+        """Fetch recent sliding-window observations in real Megawatts (MW)."""
+        limit = max(1, min(limit, 1000))
+        # 1. Try TimescaleDB if manager is configured
+        db_manager = request.app.state.grid_db_manager
+        if db_manager is not None:
+            try:
+                df = db_manager.fetch_latest_telemetry(limit=limit)
+                if not df.empty and len(df) == limit:
+                    timestamps = [str(t) for t in df["time"]]
+                    feat_cols = [c for c in df.columns if c != "time"]
+                    observations = df[feat_cols].to_numpy().astype(np.float64).tolist()
+                    return {
+                        "timestamp_range": {
+                            "start": timestamps[0],
+                            "end": timestamps[-1],
+                        },
+                        "row_count": len(observations),
+                        "feature_names": feat_cols,
+                        "observations": observations,
+                        "timestamps": timestamps,
+                        "units": "Megawatts (MW)",
+                    }
+            except Exception as exc:
+                logger.warning("TimescaleDB telemetry query failed, falling back to disk cache: %s", exc)
+
+        # 2. Disk fallback from data/processed/grid/series.npz
+        processed_file = settings.grid_artifact_dir / "series.npz"
+        if not processed_file.is_file():
+            raise PublicApiError(503, "telemetry_unavailable", "Live grid telemetry is currently unavailable.")
+        try:
+            data = np.load(processed_file, allow_pickle=True)
+            series = data["series"]
+            ts = data["timestamps"]
+            obs = series[-limit:].astype(np.float64).tolist()
+            timestamps = [str(t) for t in ts[-limit:]]
+            metadata_file = settings.grid_artifact_dir / "metadata.json"
+            meta = json.loads(metadata_file.read_text(encoding="utf-8")) if metadata_file.is_file() else {}
+            feature_names = meta.get("features", {}).get("names", list(FEATURE_NAMES))
+            return {
+                "timestamp_range": {
+                    "start": timestamps[0],
+                    "end": timestamps[-1],
+                },
+                "row_count": len(obs),
+                "feature_names": feature_names,
+                "observations": obs,
+                "timestamps": timestamps,
+                "units": "Megawatts (MW)",
+            }
+        except Exception as exc:
+            logger.error("Failed to read processed grid telemetry fallback: %s", exc)
+            raise PublicApiError(500, "internal_error", "Failed to retrieve grid telemetry.") from exc
+
     @app.post("/api/v1/forecasts/compare", response_model=ForecastComparisonResponse)
-    def compare_forecasts(body: ForecastRequest, request: Request) -> dict[str, Any]:
-        service = _inference_service(request)
+    def compare_forecasts(
+        body: ForecastRequest, request: Request, dataset: str | None = None
+    ) -> dict[str, Any]:
+        selected = dataset or ("tetouan" if store_factory is not None else settings.active_dataset)
+        use_grid = selected == "grid" and request.app.state.grid_inference_service is not None
+        service = request.app.state.grid_inference_service if use_grid else _inference_service(request)
+        experiment_id = settings.grid_experiment_id if use_grid else settings.latest_experiment_id
+
         observations = np.asarray(body.observations, dtype=np.float64)
         try:
             predictions = service.predict_both(
@@ -294,21 +442,30 @@ def create_app(
                 "output_dimensions": output_dimensions,
                 "forecast_steps": steps,
             }
+        units_default = (
+            "Physical units: Megawatts (MW) from NYISO telemetry."
+            if use_grid
+            else "Physical units are undocumented; values are original dataset numeric values."
+        )
         return {
-            "experiment_id": settings.latest_experiment_id,
+            "experiment_id": experiment_id,
             "input_dimensions": list(observations.shape),
             "target_zone_names": list(service.target_channel_names),
             "models": models_result,
-            "units_status": service.metadata.get(
-                "units_status", "Physical units are undocumented; values are original dataset numeric values."
-            ),
+            "units_status": service.metadata.get("units_status", units_default),
         }
 
     @app.post("/api/v1/forecasts/{model_name}", response_model=ForecastResponse)
-    def forecast(model_name: str, body: ForecastRequest, request: Request) -> dict[str, Any]:
+    def forecast(
+        model_name: str, body: ForecastRequest, request: Request, dataset: str | None = None
+    ) -> dict[str, Any]:
         if model_name not in MODEL_NAMES:
             raise PublicApiError(404, "model_not_found", "The requested model was not found.")
-        service = _inference_service(request)
+        selected = dataset or ("tetouan" if store_factory is not None else settings.active_dataset)
+        use_grid = selected == "grid" and request.app.state.grid_inference_service is not None
+        service = request.app.state.grid_inference_service if use_grid else _inference_service(request)
+        experiment_id = settings.grid_experiment_id if use_grid else settings.latest_experiment_id
+
         observations = np.asarray(body.observations, dtype=np.float64)
         try:
             prediction = service.predict(
@@ -324,20 +481,53 @@ def create_app(
             logger.error("Forecast inference failed (%s)", type(exc).__name__)
             raise PublicApiError(500, "inference_failed", "Forecast inference failed.") from exc
         output_dimensions, steps = _forecast_steps(prediction)
+        units_default = (
+            "Physical units: Megawatts (MW) from NYISO telemetry."
+            if use_grid
+            else "Physical units are undocumented; values are original dataset numeric values."
+        )
         return {
-            "experiment_id": settings.latest_experiment_id,
+            "experiment_id": experiment_id,
             "model_name": model_name,
             "input_dimensions": list(observations.shape),
             "output_dimensions": output_dimensions,
             "target_zone_names": list(service.target_channel_names),
             "forecast_steps": steps,
-            "units_status": service.metadata.get(
-                "units_status", "Physical units are undocumented; values are original dataset numeric values."
-            ),
+            "units_status": service.metadata.get("units_status", units_default),
         }
 
     @app.get("/api/v1/models", response_model=list[ModelInfo])
-    def models(request: Request) -> list[dict[str, Any]]:
+    def models(request: Request, dataset: str | None = None) -> list[dict[str, Any]]:
+        selected = dataset or ("tetouan" if store_factory is not None else settings.active_dataset)
+        if selected == "grid" and request.app.state.grid_inference_service is not None:
+            inference = request.app.state.grid_inference_service
+            grid_store = request.app.state.grid_store
+            roles = grid_store.get_model_roles() if grid_store is not None else {}
+            checkpoints = getattr(inference, "checkpoints", {})
+            loaded_models = getattr(inference, "models", {})
+            result = []
+            for name in MODEL_ORDER:
+                payload = checkpoints.get(name, {})
+                configuration = payload.get("model_config", {})
+                lookback = configuration.get("lookback", configuration.get("seq_len", 144))
+                horizon = configuration.get("horizon", configuration.get("pred_len", 6))
+                input_channels = configuration.get("in_channels", 8)
+                output_channels = configuration.get("out_channels", 3)
+                loaded = name in loaded_models and loaded_models[name] is not None
+                role_info = roles.get(name, {})
+                result.append({
+                    "name": name,
+                    "input_shape": [lookback, input_channels],
+                    "forecast_output_shape": [horizon, output_channels],
+                    "configuration": _json_safe(configuration),
+                    "selected_inference_device": str(inference.device),
+                    "loaded": loaded,
+                    "available": loaded,
+                    "role": role_info.get("role", "forecasting_model"),
+                    "selected": role_info.get("selected", False),
+                })
+            return result
+
         inference = request.app.state.inference_service
         if inference is None:
             raise PublicApiError(503, "service_unavailable", "Inference models are unavailable.")
@@ -377,12 +567,22 @@ def create_app(
         return result
 
     @app.get("/api/v1/dataset", response_model=DatasetInfo)
-    def dataset(request: Request) -> dict[str, Any]:
+    def dataset(request: Request, dataset: str | None = None) -> dict[str, Any]:
+        selected = dataset or ("tetouan" if store_factory is not None else settings.active_dataset)
+        if selected == "grid" and request.app.state.grid_store is not None:
+            return _json_safe(request.app.state.grid_store.get_dataset_info())
         return _json_safe(_read_store(request, "get_dataset_info"))
 
     @app.get("/api/v1/experiments/{experiment_id}", response_model=ExperimentInfo)
     def experiment(request: Request, experiment_id: str) -> dict[str, Any]:
-        if experiment_id == settings.latest_experiment_id:
+        is_grid = (
+            experiment_id == settings.grid_experiment_id
+            or experiment_id == settings.grid_run_name
+            or experiment_id in GRID_EXPERIMENT_IDS
+        )
+        if is_grid:
+            store = request.app.state.grid_store
+        elif experiment_id == settings.latest_experiment_id:
             store = request.app.state.latest_experiment_store
         elif experiment_id == settings.run_name:
             store = request.app.state.experiment_store
@@ -414,6 +614,7 @@ def create_app(
         return {
             "run_identifier": raw.get("run_identifier"),
             "run_type": raw.get("run_type"),
+            "physical_units": raw.get("physical_units"),
             "created_utc": raw.get("created_utc"),
             "provenance": _json_safe(raw.get("provenance", {})),
             "training_configuration": _json_safe(raw.get("training_configuration")),
@@ -429,7 +630,14 @@ def create_app(
 
     @app.get("/api/v1/experiments/{experiment_id}/history", response_model=TrainingHistory)
     def history(request: Request, experiment_id: str) -> dict[str, Any]:
-        if experiment_id == settings.latest_experiment_id:
+        is_grid = (
+            experiment_id == settings.grid_experiment_id
+            or experiment_id == settings.grid_run_name
+            or experiment_id in GRID_EXPERIMENT_IDS
+        )
+        if is_grid:
+            store = request.app.state.grid_store
+        elif experiment_id == settings.latest_experiment_id:
             store = request.app.state.latest_experiment_store
         elif experiment_id == settings.run_name:
             store = request.app.state.experiment_store
@@ -446,7 +654,14 @@ def create_app(
 
     @app.get("/api/v1/experiments/{experiment_id}/metrics", response_model=EvaluationMetrics)
     def metrics(request: Request, experiment_id: str) -> dict[str, Any]:
-        if experiment_id == settings.latest_experiment_id:
+        is_grid = (
+            experiment_id == settings.grid_experiment_id
+            or experiment_id == settings.grid_run_name
+            or experiment_id in GRID_EXPERIMENT_IDS
+        )
+        if is_grid:
+            store = request.app.state.grid_store
+        elif experiment_id == settings.latest_experiment_id:
             store = request.app.state.latest_experiment_store
         elif experiment_id == settings.run_name:
             store = request.app.state.experiment_store

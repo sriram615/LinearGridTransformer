@@ -213,4 +213,28 @@ class PostgresManager:
                 cols = [desc[0] for desc in cur.description]
         return pd.DataFrame(rows, columns=cols)
 
+    def fetch_latest_telemetry(self, limit: int = 144) -> pd.DataFrame:
+        """Fetch the latest `limit` rows (time + 8 channels) from grid_telemetry_wide."""
+        query = """
+            SELECT time,
+                   zone_1_power_consumption, zone_2_power_consumption, zone_3_power_consumption,
+                   temperature, humidity, wind_speed, general_diffuse_flows, diffuse_flows
+            FROM (
+                SELECT time,
+                       zone_1_power_consumption, zone_2_power_consumption, zone_3_power_consumption,
+                       temperature, humidity, wind_speed, general_diffuse_flows, diffuse_flows
+                FROM grid_telemetry_wide
+                ORDER BY time DESC
+                LIMIT %s
+            ) sub
+            ORDER BY time ASC;
+        """
+        with psycopg.connect(self.url) as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, (limit,))
+                rows = cur.fetchall()
+                cols = [desc[0] for desc in cur.description]
+        return pd.DataFrame(rows, columns=cols)
+
+
 

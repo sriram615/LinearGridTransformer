@@ -44,12 +44,13 @@ class GridInferenceService:
         self,
         *,
         processed_dir: str | Path = DEFAULT_PROCESSED_DIR,
+        artifact_dir: str | Path | None = None,
         checkpoint_dir: str | Path = DEFAULT_CHECKPOINT_DIR,
         results_dir: str | Path = DEFAULT_RESULTS_DIR,
         run_name: str = DEFAULT_RUN_NAME,
         device: str | torch.device | None = None,
     ) -> None:
-        self.processed_dir = Path(processed_dir)
+        self.processed_dir = Path(artifact_dir if artifact_dir is not None else processed_dir)
         self.checkpoint_dir = Path(checkpoint_dir)
         self.results_dir = Path(results_dir)
         self.run_name = run_name

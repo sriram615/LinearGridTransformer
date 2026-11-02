@@ -24,8 +24,15 @@ class ApiConfig:
     latest_inference_run_name: str | None = None
     device: str | None = None
     cors_origins: tuple[str, ...] = ("http://localhost:8443", "http://127.0.0.1:8443")
-    title: str = "LinearGridTransformer Tetouan API"
-    version: str = "0.1.0"
+    title: str = "LinearGridTransformer Multi-Zone Grid API"
+    version: str = "0.2.0"
+    active_dataset: str = "tetouan"
+    grid_experiment_id: str = "grid_colab_v1"
+    grid_artifact_dir: Path = REPO_ROOT / "data" / "processed" / "grid"
+    grid_experiment_dir: Path = REPO_ROOT / "results" / "grid"
+    grid_checkpoint_dir: Path = REPO_ROOT / "checkpoints" / "grid"
+    grid_run_name: str = "grid_colab_s42"
+    grid_db_url: str = "postgresql://postgres:postgres@localhost:5433/grid_forecasting"
 
     @classmethod
     def from_env(cls) -> "ApiConfig":
@@ -42,7 +49,7 @@ class ApiConfig:
             latest_checkpoint_dir=Path(os.getenv("TETOUAN_LATEST_CHECKPOINT_DIR", defaults.latest_checkpoint_dir)),
             latest_evaluation_dir=Path(os.getenv("TETOUAN_LATEST_EVALUATION_DIR", defaults.latest_evaluation_dir)),
             latest_inference_run_name=os.getenv("TETOUAN_LATEST_INFERENCE_RUN_NAME") or None,
-            device=os.getenv("TETOUAN_DEVICE") or None,
+            device=os.getenv("DEVICE", os.getenv("TETOUAN_DEVICE")) or None,
             cors_origins=tuple(
                 origin.strip()
                 for origin in os.getenv(
@@ -52,4 +59,12 @@ class ApiConfig:
             ),
             title=os.getenv("API_TITLE", defaults.title),
             version=os.getenv("API_VERSION", defaults.version),
+            active_dataset=os.getenv("ACTIVE_DATASET", defaults.active_dataset),
+            grid_experiment_id=os.getenv("GRID_EXPERIMENT_ID", defaults.grid_experiment_id),
+            grid_artifact_dir=Path(os.getenv("GRID_ARTIFACT_DIR", defaults.grid_artifact_dir)),
+            grid_experiment_dir=Path(os.getenv("GRID_EXPERIMENT_DIR", defaults.grid_experiment_dir)),
+            grid_checkpoint_dir=Path(os.getenv("GRID_CHECKPOINT_DIR", defaults.grid_checkpoint_dir)),
+            grid_run_name=os.getenv("GRID_RUN_NAME", defaults.grid_run_name),
+            grid_db_url=os.getenv("GRID_DB_URL", defaults.grid_db_url),
         )
+

@@ -1,0 +1,201 @@
+{
+  "report_schema_version": 1,
+  "created_utc": "2026-11-02T13:50:24.444226+00:00",
+  "dataset": {
+    "name": "Power Consumption of Tetouan City",
+    "source_url": "https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city",
+    "source_file": "grid_power_consumption.csv",
+    "source_sha256": "689ed7227193b4a5465a6c83c30fecd3d37c340841f2a9e52f258fc4c264cf92",
+    "doi": "10.24432/C5B034",
+    "attribution": "Salam, A. & El Hibaoui, A. (2018), Power Consumption of Tetouan City, UCI Machine Learning Repository.",
+    "license": "CC BY 4.0",
+    "units_status": "Not documented by the source metadata; preserved as unknown.",
+    "timezone_status": "undocumented; timestamps are timezone-naive"
+  },
+  "split": {
+    "name": "test",
+    "method": "chronological row count; floor(0.70*N), floor(0.85*N)",
+    "partition": {
+      "start_index": 44671,
+      "end_index_exclusive": 52555,
+      "row_count": 7884,
+      "first_timestamp": "2023-11-07 05:10:00",
+      "last_timestamp": "2023-12-31 23:00:00"
+    },
+    "evaluation_sample_count": 7879,
+    "target_timestamp_range": {
+      "start": "2023-11-07 05:10",
+      "end": "2023-12-31 23:00"
+    },
+    "partition_timestamp_range": {
+      "start": "2023-11-07 05:10",
+      "end": "2023-12-31 23:00"
+    }
+  },
+  "normalization": {
+    "method": "z-score: (value - mean) / std",
+    "fit_partition": "train",
+    "fit_row_range_half_open": [
+      0,
+      36788
+    ],
+    "target_channel_names": [
+      "zone_1_power_consumption",
+      "zone_2_power_consumption",
+      "zone_3_power_consumption"
+    ],
+    "target_training_mean": [
+      5682.900083425741,
+      2298.3780035874274,
+      1048.8158361007988
+    ],
+    "target_training_std": [
+      1186.2152367251508,
+      680.0007533507722,
+      229.4261461462425
+    ],
+    "inverse_transform": "raw = normalized * training_target_std + training_target_mean",
+    "units": "undocumented; metrics are raw numeric values without physical unit assignment"
+  },
+  "checkpoints": {
+    "LinearGridTransformer": {
+      "path": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/grid_colab_s2026_lineargridtransformer.pt",
+      "model_config": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "lookback": 144,
+        "horizon": 6,
+        "d_model": 64,
+        "num_heads": 4,
+        "ffn_dim": 256,
+        "dropout": 0.1
+      },
+      "best_epoch": 10,
+      "best_validation_loss": 0.017976257200860005,
+      "selection_metric": "validation_loss",
+      "run_name": "grid_colab_s2026"
+    },
+    "CDLinear": {
+      "path": "/content/drive/MyDrive/LinearGridTetouan/checkpoints/grid_colab_s2026_cdlinear.pt",
+      "model_config": {
+        "in_channels": 8,
+        "out_channels": 3,
+        "seq_len": 144,
+        "pred_len": 6
+      },
+      "best_epoch": 27,
+      "best_validation_loss": 0.005816620252574892,
+      "selection_metric": "validation_loss",
+      "run_name": "grid_colab_s2026"
+    }
+  },
+  "metrics": {
+    "aggregation_note": "Per-zone metrics aggregate across all test windows and forecast steps. Macro-average is the arithmetic mean of zone metrics; pooled metrics aggregate samples, horizons, and zones together.",
+    "models": {
+      "LinearGridTransformer": {
+        "per_zone": {
+          "zone_1_power_consumption": {
+            "mae": 102.04759007784774,
+            "rmse": 136.75432278728198
+          },
+          "zone_2_power_consumption": {
+            "mae": 57.88456985274925,
+            "rmse": 72.88579916667224
+          },
+          "zone_3_power_consumption": {
+            "mae": 34.551159153300375,
+            "rmse": 44.01141611458009
+          }
+        },
+        "macro_average_across_zones": {
+          "mae": 64.82777302796579,
+          "rmse": 84.55051268951145
+        },
+        "pooled_across_all_samples_horizons_and_zones": {
+          "mae": 64.82777302796579,
+          "rmse": 93.00732815139409
+        }
+      },
+      "CDLinear": {
+        "per_zone": {
+          "zone_1_power_consumption": {
+            "mae": 48.59170913729731,
+            "rmse": 62.5937898219991
+          },
+          "zone_2_power_consumption": {
+            "mae": 30.179907853425195,
+            "rmse": 40.31000109669092
+          },
+          "zone_3_power_consumption": {
+            "mae": 18.79413703616847,
+            "rmse": 24.597423331227425
+          }
+        },
+        "macro_average_across_zones": {
+          "mae": 32.52191800896366,
+          "rmse": 42.50040474997248
+        },
+        "pooled_across_all_samples_horizons_and_zones": {
+          "mae": 32.52191800896366,
+          "rmse": 45.26923880970916
+        }
+      }
+    },
+    "baselines": {
+      "training_mean": {
+        "per_zone": {
+          "zone_1_power_consumption": {
+            "mae": 660.7310492145049,
+            "rmse": 823.2898237697425
+          },
+          "zone_2_power_consumption": {
+            "mae": 318.2214051478804,
+            "rmse": 377.7715082499218
+          },
+          "zone_3_power_consumption": {
+            "mae": 117.10201801390038,
+            "rmse": 141.15467502572324
+          }
+        },
+        "macro_average_across_zones": {
+          "mae": 365.35149079209515,
+          "rmse": 447.40533568179586
+        },
+        "pooled_across_all_samples_horizons_and_zones": {
+          "mae": 365.35149079209526,
+          "rmse": 529.289488733041
+        }
+      },
+      "persistence": {
+        "per_zone": {
+          "zone_1_power_consumption": {
+            "mae": 84.25336704006273,
+            "rmse": 118.61142643337936
+          },
+          "zone_2_power_consumption": {
+            "mae": 51.45888636123506,
+            "rmse": 69.09406099764729
+          },
+          "zone_3_power_consumption": {
+            "mae": 27.65061595810101,
+            "rmse": 37.097080488071974
+          }
+        },
+        "macro_average_across_zones": {
+          "mae": 54.45428978646627,
+          "rmse": 74.9341893063662
+        },
+        "pooled_across_all_samples_horizons_and_zones": {
+          "mae": 54.454289786466276,
+          "rmse": 82.09517469873217
+        }
+      }
+    }
+  },
+  "test_usage": {
+    "statement": "The test set was used only for this final evaluation; it was not used for training, checkpoint selection, or model configuration.",
+    "used_for_training": false,
+    "used_for_checkpoint_selection": false,
+    "used_for_model_configuration": false
+  }
+}

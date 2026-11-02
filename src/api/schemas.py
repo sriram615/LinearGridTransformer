@@ -141,3 +141,27 @@ class ForecastComparisonResponse(ApiResponse):
     target_zone_names: list[str]
     models: dict[str, ComparedModelForecast]
     units_status: str
+
+
+class DatasetSummary(ApiResponse):
+    id: str
+    name: str
+    description: str
+    physical_units: str
+    zones: list[str]
+    active: bool
+
+
+class DatasetListResponse(ApiResponse):
+    active_dataset: str
+    datasets: list[DatasetSummary]
+
+
+class GridTelemetryResponse(ApiResponse):
+    timestamp_range: dict[str, str]
+    row_count: int
+    feature_names: list[str]
+    observations: list[list[float]]
+    timestamps: list[str]
+    units: str = "Megawatts (MW)"
+
