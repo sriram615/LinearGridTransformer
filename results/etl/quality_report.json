@@ -1,0 +1,231 @@
+{
+  "report_metadata": {
+    "generated_utc": "2026-11-03T11:56:02.901637+00:00",
+    "pipeline": "grid_etl",
+    "schema_version": 1,
+    "overall_status": "PASSED"
+  },
+  "row_counts": {
+    "total_rows": 52555,
+    "expected_rows": 52555,
+    "nominal_calendar_year_rows": 52560,
+    "internal_missing_intervals": 0,
+    "calendar_year_boundary_deficit": 5,
+    "calendar_year_boundary_deficit_minutes": 50,
+    "reconciliation_summary": "The dataset covers 2023-01-01 00:00:00 to 2023-12-31 23:00:00 with 0 internal missing intervals across 52,554 contiguous 10-minute steps. A nominal 365-day calendar year at 10-minute intervals contains 52,560 timestamps ending December 31 at 23:50. The 5-interval deficit (23:10 to 23:50 on Dec 31) occurs because Open-Meteo hourly weather reanalysis terminates at 2023-12-31 23:00:00 UTC, and inner-joining load with weather strictly bounds the canonical dataset to 23:00:00 UTC.",
+    "partitions": {
+      "train": {
+        "row_count": 36788,
+        "first_timestamp": "2023-01-01 00:00:00",
+        "last_timestamp": "2023-09-13 11:10:00"
+      },
+      "validation": {
+        "row_count": 7883,
+        "first_timestamp": "2023-09-13 11:20:00",
+        "last_timestamp": "2023-11-07 05:00:00"
+      },
+      "test": {
+        "row_count": 7884,
+        "first_timestamp": "2023-11-07 05:10:00",
+        "last_timestamp": "2023-12-31 23:00:00"
+      }
+    }
+  },
+  "source_coverage": {
+    "dataset_name": "NYISO Regional Multi-Zone Power Consumption + Open-Meteo Reanalysis",
+    "year": 2023,
+    "start_time": "2023-01-01 00:00:00",
+    "end_time": "2023-12-31 23:00:00",
+    "cadence_minutes": 10,
+    "timezone": "UTC",
+    "physical_units": "Megawatts (MW)",
+    "zones": {
+      "ZONE_1": {
+        "name": "New York City (N.Y.C.)",
+        "column": "Zone 1 Power Consumption"
+      },
+      "ZONE_2": {
+        "name": "Long Island (LONGIL)",
+        "column": "Zone 2  Power Consumption"
+      },
+      "ZONE_3": {
+        "name": "Hudson Valley (HUD VL)",
+        "column": "Zone 3  Power Consumption"
+      }
+    },
+    "source_urls": [
+      "http://mis.nyiso.com/public/csv/pal/",
+      "https://archive-api.open-meteo.com/v1/archive"
+    ]
+  },
+  "failed_checks": [],
+  "quality_checks": {
+    "timestamp_continuity": {
+      "status": "PASSED",
+      "details": {
+        "is_monotonic": true,
+        "start_time": "2023-01-01 00:00:00",
+        "end_time": "2023-12-31 23:00:00",
+        "expected_count": 52555,
+        "actual_count": 52555,
+        "cadence_violations": 0,
+        "missing_interval_count": 0,
+        "missing_intervals": [],
+        "calendar_year_nominal_count": 52560,
+        "calendar_year_deficit": 5,
+        "reconciliation_note": "Zero internal missing intervals. The 5-interval (50 min) difference from nominal 52,560 calendar-year steps occurs because source weather reanalysis terminates at 2023-12-31 23:00, inner-joining with load up to 23:00."
+      }
+    },
+    "duplicate_records": {
+      "status": "PASSED",
+      "details": {
+        "duplicate_timestamps": 0,
+        "sample_duplicate_timestamps": [],
+        "duplicate_rows": 0
+      }
+    },
+    "missing_and_invalid_values": {
+      "status": "PASSED",
+      "details": {
+        "missing_counts": {},
+        "type_errors": {},
+        "non_finite_counts": {},
+        "range_violations": {},
+        "range_details": {}
+      }
+    },
+    "zone_presence": {
+      "status": "PASSED",
+      "details": {
+        "all_present": true,
+        "expected_zones": [
+          "HUD VL",
+          "LONGIL",
+          "N.Y.C."
+        ],
+        "found_zones": [
+          "HUD VL",
+          "LONGIL",
+          "N.Y.C."
+        ],
+        "missing_zones": []
+      }
+    }
+  },
+  "physical_threshold_justifications": {
+    "Temperature": {
+      "expected_range": [
+        -60.0,
+        60.0
+      ],
+      "units": "\u00b0C",
+      "source": "Open-Meteo ERA5 reanalysis (temperature_2m)",
+      "rationale": "Historical meteorological extreme bounds for New York State (-47\u00b0C Old Forge 1934 to +42\u00b0C Troy 1911) with engineering safety margin.",
+      "observed_min": -16.5,
+      "observed_max": 35.9,
+      "observed_mean": 13.03,
+      "within_bounds": true
+    },
+    "Humidity": {
+      "expected_range": [
+        0.0,
+        100.0
+      ],
+      "units": "%",
+      "source": "Open-Meteo ERA5 reanalysis (relative_humidity_2m)",
+      "rationale": "Standard physical boundary definition for relative humidity percentage.",
+      "observed_min": 14.0,
+      "observed_max": 100.0,
+      "observed_mean": 71.06,
+      "within_bounds": true
+    },
+    "Wind Speed": {
+      "expected_range": [
+        0.0,
+        150.0
+      ],
+      "units": "km/h",
+      "source": "Open-Meteo ERA5 reanalysis (wind_speed_10m)",
+      "rationale": "Open-Meteo default wind speed unit is km/h. 0 km/h is calm; 150 km/h (~41.7 m/s) reflects Category 1 hurricane wind gust ceiling (e.g. Hurricane Sandy gusts reached ~140 km/h).",
+      "observed_min": 0.0,
+      "observed_max": 53.5,
+      "observed_mean": 12.77,
+      "within_bounds": true
+    },
+    "general diffuse flows": {
+      "expected_range": [
+        0.0,
+        2000.0
+      ],
+      "units": "W/m\u00b2",
+      "source": "Open-Meteo ERA5 reanalysis (diffuse_radiation)",
+      "rationale": "Clear-sky surface solar irradiance ceiling; atmospheric solar constant is ~1361 W/m\u00b2; 2000 W/m\u00b2 accommodates cloud enhancement reflections while catching unphysical scaling spikes.",
+      "observed_min": 0.0,
+      "observed_max": 421.0,
+      "observed_mean": 58.86,
+      "within_bounds": true
+    },
+    "diffuse flows": {
+      "expected_range": [
+        0.0,
+        2000.0
+      ],
+      "units": "W/m\u00b2",
+      "source": "Open-Meteo ERA5 reanalysis (direct_normal_irradiance)",
+      "rationale": "Direct normal solar irradiance physical surface ceiling.",
+      "observed_min": 0.0,
+      "observed_max": 962.1,
+      "observed_mean": 200.02,
+      "within_bounds": true
+    },
+    "Zone 1 Power Consumption": {
+      "expected_range": [
+        100.0,
+        25000.0
+      ],
+      "units": "Megawatts (MW)",
+      "source": "NYISO PAL zonal load (N.Y.C. / Zone J)",
+      "rationale": "New York City transmission baseload is ~3.5 GW, peaking at ~11.5 GW historically during extreme heatwaves. Lower bound (100 MW) detects zero/blackout dropouts; upper bound (25 GW) catches unit scaling errors.",
+      "observed_min": 3689.88,
+      "observed_max": 10413.68,
+      "observed_mean": 5511.64,
+      "within_bounds": true
+    },
+    "Zone 2  Power Consumption": {
+      "expected_range": [
+        50.0,
+        15000.0
+      ],
+      "units": "Megawatts (MW)",
+      "source": "NYISO PAL zonal load (LONGIL / Zone K)",
+      "rationale": "Long Island transmission baseload is ~1.2 GW with summer peaks ~5.0-5.5 GW. Bounds catch unit errors and line drops.",
+      "observed_min": 1238.33,
+      "observed_max": 5054.6,
+      "observed_mean": 2212.74,
+      "within_bounds": true
+    },
+    "Zone 3  Power Consumption": {
+      "expected_range": [
+        20.0,
+        10000.0
+      ],
+      "units": "Megawatts (MW)",
+      "source": "NYISO PAL zonal load (HUD VL / Zone G)",
+      "rationale": "Hudson Valley transmission baseload is ~400 MW with summer peaks ~2.1 GW.",
+      "observed_min": 410.36,
+      "observed_max": 2055.93,
+      "observed_mean": 1029.14,
+      "within_bounds": true
+    }
+  },
+  "ingestion_status": {
+    "raw_csv_available": true,
+    "raw_csv_path": "data/raw/grid/grid_power_consumption.csv",
+    "processed_series_npz_available": true,
+    "processed_metadata_json_available": true,
+    "timescaledb_target_hypertable": "grid_telemetry",
+    "timescaledb_materialized_view": "grid_telemetry_wide",
+    "fallback_mechanism": "disk_cache (data/processed/grid/series.npz)",
+    "pipeline_readiness": "ready_for_training_and_inference"
+  }
+}

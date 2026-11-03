@@ -389,7 +389,7 @@ def create_app(
             raise PublicApiError(503, "telemetry_unavailable", "Live grid telemetry is currently unavailable.")
         try:
             data = np.load(processed_file, allow_pickle=True)
-            series = data["series"]
+            series = data["features"] if "features" in data else data["series"]
             ts = data["timestamps"]
             obs = series[-limit:].astype(np.float64).tolist()
             timestamps = [str(t) for t in ts[-limit:]]
